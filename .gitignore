@@ -1,0 +1,5 @@
+# build output
+*.exe
+build/
+payload/bin/
+payload/obj/

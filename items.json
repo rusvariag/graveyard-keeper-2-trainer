@@ -1,0 +1,7643 @@
+[
+ {
+  "id": "acid",
+  "name": "Acid",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "detail_2_iron",
+  "name": "Advanced Detail",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "advanced_rod",
+  "name": "Advanced Rod",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "alchemy_albedo",
+  "name": "Albedo Tear",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_b_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_b_b_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_g",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_g_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_g_b_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_g_g",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_g_g_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_g_g_g",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r_b_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r_g",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r_g_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r_g_g",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r_r",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r_r_b",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r_r_g",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "powder_r_r_r",
+  "name": "Alchemic Powder",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "bag_alchemy",
+  "name": "Alchemist's bag",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "hero_clothes_9004",
+  "name": "Alchemist's Clothes",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "alchemy_kit_2",
+  "name": "Alchemist's Kit",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "note_lab_tower",
+  "name": "Alchemist's note",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "alchemy_flask",
+  "name": "Alchemy Flasks",
+  "detail": "",
+  "stack": 100,
+  "groups": [
+   "fuel"
+  ]
+ },
+ {
+  "id": "alchemy_bottle_1",
+  "name": "Alchemy Flasks I",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "alchemy_bottle_2",
+  "name": "Alchemy Flasks II",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "alcohol",
+  "name": "Alcohol",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "alkali",
+  "name": "Alkali",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "allahbless_potion_test",
+  "name": "allahbless_potion_test",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "alum",
+  "name": "Alum",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "amateur_rod",
+  "name": "Amateur Rod",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "fish_anchovy",
+  "name": "Anchovy",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_sea_fish_1"
+  ]
+ },
+ {
+  "id": "alchemy_anima_mundi",
+  "name": "Anima Mundi Fragment",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "apple",
+  "name": "Apple",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "apple_cider",
+  "name": "Apple Cider",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "apple_juice",
+  "name": "Apple Juice",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "apple_seedling",
+  "name": "Apple Tree Seedling",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "farm_bag"
+  ]
+ },
+ {
+  "id": "aqua_vitae",
+  "name": "Aqua Vitae",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "tower_1_pre",
+  "name": "Archer Tower I",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "tower_2_pre",
+  "name": "Archer Tower II",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "tower_3_pre",
+  "name": "Archer Tower III",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "ash",
+  "name": "Ash",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "bag_quest",
+  "name": "bag_quest",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "bag_scroll_small",
+  "name": "bag_scroll_small",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "cook_baked_apple",
+  "name": "Baked apple",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_baked_fish",
+  "name": "Baked fish",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_baked_meat",
+  "name": "Baked meat",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_baked_mushroom",
+  "name": "Baked mushrooms",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_pumpkin_baked",
+  "name": "Baked pumpkin",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_baked_salmon",
+  "name": "Baked salmon",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "barricade_1_pre",
+  "name": "Barricade I",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "barricade_2_pre",
+  "name": "Barricade II",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "barricade_3_pre",
+  "name": "Barricade III",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "basic_rod",
+  "name": "Basic Rod",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "bat_wings",
+  "name": "bat_wings",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "bow_2",
+  "name": "Battle Bow",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "range"
+  ]
+ },
+ {
+  "id": "loot_battle_purse",
+  "name": "Battle Loot",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "pike_2",
+  "name": "Battle Pike",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "melee"
+  ]
+ },
+ {
+  "id": "beer",
+  "name": "Beer",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "gr_beer",
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "beeswax",
+  "name": "Beeswax",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "beet",
+  "name": "Beet",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "beet_seed",
+  "name": "Beet Seed",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "cook_beet_sliced",
+  "name": "Beet slices",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "berry",
+  "name": "Berry",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "berry_cider",
+  "name": "Berry Cider",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "berry_juice",
+  "name": "Berry Juice",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "berry_pie",
+  "name": "Berry Pie",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_smothie",
+  "name": "Berry smoothie",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "berserk_potion",
+  "name": "Berserker Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "berserk_potion_2",
+  "name": "Berserker Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "berserk_potion_3",
+  "name": "Berserker Potion III",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "bag_universal_big",
+  "name": "Big universal bag",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "black_oil",
+  "name": "Black Oil",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "black_paint",
+  "name": "black_paint",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "hero_clothes_9005",
+  "name": "Blacksmith's Clothes",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "notebook_hard",
+  "name": "Blank Hardcover Notebook",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "notebook",
+  "name": "Blank Softcover Notebook",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "blood",
+  "name": "Blood",
+  "detail": "1 red / 0 white skulls",
+  "stack": 99,
+  "groups": [
+   "bodypart",
+   "gr_blood",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "crystal_goddess",
+  "name": "Blue Crystal",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "techbook_b_1",
+  "name": "Blue Techbook",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "techbook_b_2",
+  "name": "Blue Techbook II",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "berry_blue",
+  "name": "Blueberry",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "blueberry_cider",
+  "name": "Blueberry Cider",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "blue_berry_juice",
+  "name": "Blueberry Juice",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "blueberry_seedling",
+  "name": "Blueberry Seedling",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "farm_bag"
+  ]
+ },
+ {
+  "id": "flitch",
+  "name": "Board",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "body_wild_zombie",
+  "name": "body_wild_zombie",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "body",
+   "wild_zombie",
+   "overhead"
+  ]
+ },
+ {
+  "id": "boiled_egg",
+  "name": "Boiled Egg",
+  "detail": "",
+  "stack": 30,
+  "groups": []
+ },
+ {
+  "id": "bones_0_0:1",
+  "name": "Bones",
+  "detail": "0 red / 0 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_bones",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "bones_0_1:1",
+  "name": "Bones",
+  "detail": "0 red / 1 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_bones",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "bones_1_1:2",
+  "name": "Bones",
+  "detail": "1 red / 1 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_bones",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "bones_1_3:3",
+  "name": "Bones",
+  "detail": "1 red / 3 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_bones",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "bones_2_1:2",
+  "name": "Bones",
+  "detail": "2 red / 1 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_bones",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "bones_3_1:3",
+  "name": "Bones",
+  "detail": "3 red / 1 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_bones",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "book_hard:1",
+  "name": "Written Hardcover Book",
+  "detail": "★",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "book_hard:2",
+  "name": "Written Hardcover Book",
+  "detail": "★★",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "book_hard:3",
+  "name": "Written Hardcover Book",
+  "detail": "★★★",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "brain_0_1:1",
+  "name": "Brain",
+  "detail": "0 red / 1 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_brain",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "brain_0_2:2",
+  "name": "Brain",
+  "detail": "0 red / 2 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_brain",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "brain_0_3:3",
+  "name": "Brain",
+  "detail": "0 red / 3 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_brain",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "brain_1_0:1",
+  "name": "Brain",
+  "detail": "1 red / 0 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_brain",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "brain_2_1:2",
+  "name": "Brain",
+  "detail": "2 red / 1 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_brain",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "brain_3_1:3",
+  "name": "Brain",
+  "detail": "3 red / 1 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_brain",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "bread",
+  "name": "Bread",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "breadcrumb_bite",
+  "name": "Breadcrumb Bait",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "fish_bag"
+  ]
+ },
+ {
+  "id": "fish_bream",
+  "name": "Bream",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_river_fish_3"
+  ]
+ },
+ {
+  "id": "brick",
+  "name": "Brick",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "brimstone",
+  "name": "Brimstone",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "ceramic_broken",
+  "name": "Broken ceramic",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "armor_1",
+  "name": "Bronze Armor",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "axe_1",
+  "name": "Bronze Axe",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "chisel_basic",
+  "name": "Bronze Chisel",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "details_1_bronze",
+  "name": "Bronze Detail",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "bronze_gear",
+  "name": "Bronze Gear",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "hammer_1",
+  "name": "Bronze Hammer",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "ingot_bronze",
+  "name": "Bronze Ingot",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "nails_bronze",
+  "name": "Bronze Nails",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "pickaxe_1",
+  "name": "Bronze Pickaxe",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "bronze_scrap",
+  "name": "Bronze Scrap",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "shovel_1",
+  "name": "Bronze Shovel",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "sword_1",
+  "name": "Bronze Sword",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "melee"
+  ]
+ },
+ {
+  "id": "tool_talisman_1",
+  "name": "Bronze Talisman",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "small_instruments_1",
+  "name": "Bronze tools",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "collar_bronze",
+  "name": "Bronze Zombie Collar",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "mushroom_brown",
+  "name": "Brown Mushroom",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "mushroom_brown_quest:3",
+  "name": "Brown Mushroom",
+  "detail": "★★★",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "bag_builder",
+  "name": "Builder's bag",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "building_kit_1",
+  "name": "Building Kit I",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "building_kit_2",
+  "name": "Building Kit II",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "cook_burger",
+  "name": "Burger",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "body_certificate:1",
+  "name": "Burial Certificate I",
+  "detail": "★",
+  "stack": 30,
+  "groups": [
+   "burial_reward",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "body_certificate:2",
+  "name": "Burial Certificate II",
+  "detail": "★★",
+  "stack": 30,
+  "groups": [
+   "burial_reward",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "body_certificate:3",
+  "name": "Burial Certificate III",
+  "detail": "★★★",
+  "stack": 30,
+  "groups": [
+   "burial_reward",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "berry_seedling",
+  "name": "Bush Seedling",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "farm_bag"
+  ]
+ },
+ {
+  "id": "surgical_kit_1",
+  "name": "Butcher's Kit",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "butter",
+  "name": "butter",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cabbage:1",
+  "name": "Cabbage",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "gr_cabbage"
+  ]
+ },
+ {
+  "id": "cabbage:2",
+  "name": "Cabbage",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "gr_cabbage"
+  ]
+ },
+ {
+  "id": "cabbage:3",
+  "name": "Cabbage",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "gr_cabbage"
+  ]
+ },
+ {
+  "id": "cabbage_seed:1",
+  "name": "Cabbage seed",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "gr_cabbage_seed"
+  ]
+ },
+ {
+  "id": "cabbage_seed:2",
+  "name": "Cabbage seed",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "gr_cabbage_seed"
+  ]
+ },
+ {
+  "id": "cabbage_seed:3",
+  "name": "Cabbage seed",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "gr_cabbage_seed"
+  ]
+ },
+ {
+  "id": "cook_cabbage_soup",
+  "name": "Cabbage soup",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cacao",
+  "name": "Cacao",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "quest_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "cook_cake",
+  "name": "Cake",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "camphor",
+  "name": "Camphor",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "fish_carp",
+  "name": "Carp",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_river_fish_3"
+  ]
+ },
+ {
+  "id": "carpet",
+  "name": "Carpet",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "carrot",
+  "name": "Carrot",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_carrot_cutlet",
+  "name": "Carrot cutlet",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "carrot_seed",
+  "name": "Carrot seed",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "cook_carrot_soup",
+  "name": "Carrot soup",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "marble_plate_3",
+  "name": "Carved Marble",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "stone_plate_3",
+  "name": "Carved Stone",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "carved_wood",
+  "name": "Carved Wood",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "catalyst",
+  "name": "Catalyst",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "fish_catfish",
+  "name": "Catfish",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_river_fish_4"
+  ]
+ },
+ {
+  "id": "fish_celestial_salmon",
+  "name": "Celestial Salmon",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes"
+  ]
+ },
+ {
+  "id": "ceramic_fired_1",
+  "name": "Ceramic Plate",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "ceramic_fired_2",
+  "name": "Ceramic Urn",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "ceramic_3",
+  "name": "ceramic_3",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "chair",
+  "name": "chair",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "alchemy_spagyric",
+  "name": "Chaos Spagyric Root",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "hypno_device_charged",
+  "name": "Charged hypno-device",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "cheese",
+  "name": "Cheese",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "egg_chicken",
+  "name": "Chicken Egg",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "chocolate",
+  "name": "Chocolate",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cinnabar",
+  "name": "Cinnabar",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "clay",
+  "name": "Clay",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "buil_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "clay_molds",
+  "name": "Clay Molds",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "ceramic_1",
+  "name": "Clay Plate",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "ceramic_2",
+  "name": "Clay Urn",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "clean_paper",
+  "name": "Clean Paper",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "coal",
+  "name": "Coal",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "buil_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "cognac:1",
+  "name": "Cognac",
+  "detail": "★",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "cognac:2",
+  "name": "Cognac",
+  "detail": "★★",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "cognac:3",
+  "name": "Cognac",
+  "detail": "★★★",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "comets_tail",
+  "name": "Comet's Tail",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "chair_comfortable",
+  "name": "Comfortable Chair",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "alchemy_conjunctio",
+  "name": "Coniunctio Salt",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "cook_cabbage_bowl:1",
+  "name": "Bowl of sauerkraut",
+  "detail": "★",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_cabbage_bowl:2",
+  "name": "Bowl of sauerkraut",
+  "detail": "★★",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_cabbage_bowl:3",
+  "name": "Bowl of sauerkraut",
+  "detail": "★★★",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_vegetable_salad:1",
+  "name": "Vegetable salad",
+  "detail": "★",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_vegetable_salad:2",
+  "name": "Vegetable salad",
+  "detail": "★★",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_vegetable_salad:3",
+  "name": "Vegetable salad",
+  "detail": "★★★",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_vegetable_stew",
+  "name": "cook_vegetable_stew",
+  "detail": "",
+  "stack": 30,
+  "groups": []
+ },
+ {
+  "id": "details_1_copper",
+  "name": "Copper Detail",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "ingot_copper",
+  "name": "Copper Ingot",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "nails_copper",
+  "name": "Copper Nails",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "nugget_copper",
+  "name": "Copper Nugget",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "copper_scrap",
+  "name": "Copper Scrap",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "trinkets_bronze",
+  "name": "Copper Trinkets",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "body_corpse",
+  "name": "Corpse",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "body",
+   "corpse",
+   "overhead"
+  ]
+ },
+ {
+  "id": "craftInventory",
+  "name": "craftInventory",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "box_empty",
+  "name": "Crate",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "cook_croissant",
+  "name": "Croissant",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "fertilizer:add_cells_2",
+  "name": "Crop Boosting Fertilizer I",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "fish_crucian",
+  "name": "Crucian",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_river_fish_2"
+  ]
+ },
+ {
+  "id": "damage_potion",
+  "name": "Damage Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "damage_potion_2",
+  "name": "Damage Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "damage_potion_3",
+  "name": "Damage Potion III",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "card_deck",
+  "name": "Deck of Cards",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "shield_squad",
+  "name": "Defender's Emblem",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "tool_book_2",
+  "name": "Dictionary",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "disco_prayer_test",
+  "name": "Disco Prayer",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "dough",
+  "name": "Dough",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "powder_dreams",
+  "name": "Dream Dust",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "dye",
+  "name": "Dye",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "dynamite",
+  "name": "Dynamite",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "fish_eel",
+  "name": "Eel",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_sea_fish_3"
+  ]
+ },
+ {
+  "id": "fish_elder_catfish",
+  "name": "Elder Catfish",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes"
+  ]
+ },
+ {
+  "id": "cook_elder_catfish",
+  "name": "Elder's meal",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "hand_prothesis_elegant",
+  "name": "Elegant Prosthetic Hand",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "embalm_red:1",
+  "name": "Solution for Zombies",
+  "detail": "★ · skulls red +1",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_red:2",
+  "name": "Solution for Zombies",
+  "detail": "★★ · skulls red +2",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_red:3",
+  "name": "Solution for Zombies",
+  "detail": "★★★ · skulls red +3",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_red_white:1",
+  "name": "Injection for Zombies",
+  "detail": "★ · skulls white -1 red +1",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_red_white:2",
+  "name": "Injection for Zombies",
+  "detail": "★★ · skulls white -2 red +2",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_red_white:3",
+  "name": "Injection for Zombies",
+  "detail": "★★★ · skulls white -3 red +3",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_white:1",
+  "name": "Solution for Corpses",
+  "detail": "★ · skulls white +1",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_white:2",
+  "name": "Solution for Corpses",
+  "detail": "★★ · skulls white +2",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_white:3",
+  "name": "Solution for Corpses",
+  "detail": "★★★ · skulls white +3",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_white_red:1",
+  "name": "Injection for Corpses",
+  "detail": "★ · skulls white +1 red -1",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_white_red:2",
+  "name": "Injection for Corpses",
+  "detail": "★★ · skulls white +2 red -2",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "embalm_white_red:3",
+  "name": "Injection for Corpses",
+  "detail": "★★★ · skulls white +3 red -3",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "bottle_empty",
+  "name": "Empty Bottle",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "glass_bottle_empty",
+  "name": "Empty Glass Bottle",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "energy_potion",
+  "name": "Energy Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "energy_potion_2",
+  "name": "Energy Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "energy_potion_3",
+  "name": "Energy Potion III",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "energy_potion_scroll",
+  "name": "Energy Potion Scroll",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "detail_2_steel",
+  "name": "Engineering Details",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "engineering_kit",
+  "name": "Engineering Kit",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "ev_needles",
+  "name": "Everlasting Needles",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "exhume_certificate",
+  "name": "Exhumation Certificate",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "dust_explosive",
+  "name": "Explosive Dust",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "fabric_flax",
+  "name": "Fabric",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "fairy_swamp_map",
+  "name": "Fairy's Swamp Map",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "faith",
+  "name": "Faith",
+  "detail": "",
+  "stack": 999,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "faith_prayer_tier_1_test",
+  "name": "Faith Prayer",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "fake_porter_slot_filler",
+  "name": "fake_porter_slot_filler",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "incense_advanced",
+  "name": "Fancy Incense",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "bag_farming",
+  "name": "Farmer's bag",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "hero_clothes_9002",
+  "name": "Farmer's Clothes",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "fertilizer:farming_2",
+  "name": "Farming Fertilizer I",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "fertilizer:farming_3",
+  "name": "Farming Fertilizer II",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "fertilizer:farming_5",
+  "name": "Farming Fertilizer III",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "fat",
+  "name": "Fat",
+  "detail": "1 red / 0 white skulls",
+  "stack": 30,
+  "groups": [
+   "bodypart",
+   "gr_fat",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "fertilizer:add_cells_1",
+  "name": "fertilizer:add_cells_1",
+  "detail": "",
+  "stack": 25,
+  "groups": [
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "fertilizer:farming_1",
+  "name": "fertilizer:farming_1",
+  "detail": "",
+  "stack": 25,
+  "groups": [
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "fertilizer:farming_4",
+  "name": "fertilizer:farming_4",
+  "detail": "",
+  "stack": 25,
+  "groups": [
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "jewelry",
+  "name": "Fine Jewelry",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "fireflight",
+  "name": "Firefly",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "firewood",
+  "name": "Firewood",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "cook_fish_nuggets",
+  "name": "Fish nuggets",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_fish_soup",
+  "name": "Fish soup",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "bag_fishing",
+  "name": "Fisherman's bag",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "cook_fisherman_pie",
+  "name": "Fisherman's pie",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "thread_metal",
+  "name": "Fishing Line",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "fishing_rod_0",
+  "name": "fishing_rod_0",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "flax",
+  "name": "Flax",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "flax_seed",
+  "name": "Flax Seed",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "thread_flax",
+  "name": "Flax Thread",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "flesh",
+  "name": "Flesh",
+  "detail": "0 red / 1 white skulls",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_flesh",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "flour",
+  "name": "Flour",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "bag_food",
+  "name": "Food bag",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "forest_pass",
+  "name": "Forest Pass",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "barricade_wall_1_pre",
+  "name": "Fortified Barricade I",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "barricade_wall_2_pre",
+  "name": "Fortified Barricade II",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "barricade_wall_3_pre",
+  "name": "Fortified Barricade III",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "fragrance",
+  "name": "Fragrance",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "fried_egg",
+  "name": "Fried egg",
+  "detail": "",
+  "stack": 30,
+  "groups": []
+ },
+ {
+  "id": "cook_golden_carp",
+  "name": "Fried golden carp",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "fish_frog",
+  "name": "Frog",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes"
+  ]
+ },
+ {
+  "id": "fire",
+  "name": "Fuel",
+  "detail": "",
+  "stack": 100,
+  "groups": [
+   "fuel"
+  ]
+ },
+ {
+  "id": "furniture_kit_1",
+  "name": "Furniture Kit I",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "furniture_kit_2",
+  "name": "Furniture Kit II",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "game_res_tech_blue",
+  "name": "game_res_tech_blue",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "game_res_tech_green",
+  "name": "game_res_tech_green",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "game_res_tech_red",
+  "name": "game_res_tech_red",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "gem",
+  "name": "Gem",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "glass",
+  "name": "Glass",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "glass_containers",
+  "name": "Glass Containers",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "tool_book_3",
+  "name": "Glossary",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "glue",
+  "name": "Glue",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "godbless_potion",
+  "name": "godbless_potion",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "ingot_gold",
+  "name": "Golden ingot",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "gold_nugget",
+  "name": "Golden nugget",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "tool_talisman_3",
+  "name": "Golden Talisman",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "collar_gold",
+  "name": "Golden Zombie Collar",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "fish_goldfish",
+  "name": "Goldfish",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes"
+  ]
+ },
+ {
+  "id": "alchemy_kit_3",
+  "name": "Good Alchemist's kit",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "cook_grape_pie",
+  "name": "Grape pie",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "grape_seed:1",
+  "name": "Grape Seeds",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "vineyard_seed"
+  ]
+ },
+ {
+  "id": "grape_seed:2",
+  "name": "Grape Seeds",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "vineyard_seed"
+  ]
+ },
+ {
+  "id": "grape_seed:3",
+  "name": "Grape Seeds",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "vineyard_seed"
+  ]
+ },
+ {
+  "id": "grape_juice:1",
+  "name": "Grape Juice",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "grape_juice:2",
+  "name": "Grape Juice",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "grape_juice:3",
+  "name": "Grape Juice",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "grape:1",
+  "name": "Grapes",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "grape:2",
+  "name": "Grapes",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "grape:3",
+  "name": "Grapes",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_beet_grated",
+  "name": "Grated beets",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "grave_top_stn_1",
+  "name": "Gravestone I",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravetop",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grave_top_stn_2",
+  "name": "Gravestone II",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravetop",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "cook_green_jelly",
+  "name": "Green jelly",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "mold_green",
+  "name": "Green mold",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "green_scroll",
+  "name": "Green Scroll",
+  "detail": "",
+  "stack": 999,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "techbook_g_1",
+  "name": "Green Techbook",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "techbook_g_2",
+  "name": "Green Techbook II",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grow_potion",
+  "name": "Grow potion",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "grow_potion_scroll",
+  "name": "grow_potion_scroll",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "fish_gudgeon",
+  "name": "Gudgeon",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_river_fish_1"
+  ]
+ },
+ {
+  "id": "powder_gun",
+  "name": "Gunpowder",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "guts_0_0:1",
+  "name": "Guts",
+  "detail": "0 red / 0 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_guts",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "guts_1_0:1",
+  "name": "Guts",
+  "detail": "1 red / 0 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_guts",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "guts_2_2:2",
+  "name": "Guts",
+  "detail": "1 red / 1 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_guts",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "guts_1_3:3",
+  "name": "Guts",
+  "detail": "1 red / 3 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_guts",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "guts_2_1:2",
+  "name": "Guts",
+  "detail": "2 red / 1 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_guts",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "guts_3_0:3",
+  "name": "Guts",
+  "detail": "3 red / 0 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_guts",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "hand_tool",
+  "name": "Hands",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "tool"
+  ]
+ },
+ {
+  "id": "fertilizer:start_bonus_1",
+  "name": "Headstart Fertilizer I",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "fertilizer:start_bonus_2",
+  "name": "Headstart Fertilizer II",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "heal_potion",
+  "name": "Healing Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "heal_potion_2",
+  "name": "Healing Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "heal_potion_3",
+  "name": "Healing Potion III",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "heal_potion_scroll",
+  "name": "Healing Potion Scroll",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "heart_0_1:1",
+  "name": "Heart",
+  "detail": "0 red / 1 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_heart",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "heart_0_3:3",
+  "name": "Heart",
+  "detail": "0 red / 3 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_heart",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "heart_1_1:1",
+  "name": "Heart",
+  "detail": "1 red / 1 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_heart",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "heart_1_2:2",
+  "name": "Heart",
+  "detail": "1 red / 2 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_heart",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "heart_2_2:2",
+  "name": "Heart",
+  "detail": "2 red / 2 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_heart",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "heart_3_1:3",
+  "name": "Heart",
+  "detail": "3 red / 1 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_heart",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "cook_heavenly_salmon",
+  "name": "Heavenly salmon",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "bow_3",
+  "name": "Heavy Bow",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "range"
+  ]
+ },
+ {
+  "id": "fish_dace",
+  "name": "Herring",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_river_fish_2"
+  ]
+ },
+ {
+  "id": "homunculus",
+  "name": "Homunculus",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "honey",
+  "name": "Honey",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "hop_seed",
+  "name": "Hop Seeds",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "vineyard_seed"
+  ]
+ },
+ {
+  "id": "hop",
+  "name": "Hops",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "hypno_device",
+  "name": "Hypno-device",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "imported_components",
+  "name": "Imported Components",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "ink",
+  "name": "Ink",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "intro_prison_note",
+  "name": "Inquisitor's note",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "inq_note_1",
+  "name": "Inquisitor's Note I",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "inq_note_2",
+  "name": "Inquisitor's Note II",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "intro_prison_medallion",
+  "name": "Inquisitor’s medallion",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "insect_bite",
+  "name": "Insect Bait",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "fish_bag"
+  ]
+ },
+ {
+  "id": "armor_2",
+  "name": "Iron Armor",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "axe_2",
+  "name": "Iron Axe",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "chisel_iron",
+  "name": "Iron Chisel",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "detail_1_iron",
+  "name": "Iron Detail",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "hammer_2",
+  "name": "Iron Hammer",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "ingot_iron",
+  "name": "Iron Ingot",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "iron_kit_1",
+  "name": "Iron Kit I",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "iron_kit_2",
+  "name": "Iron Kit II",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "nails_iron",
+  "name": "Iron Nails",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "iron_ore",
+  "name": "Iron Ore",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "pickaxe_2",
+  "name": "Iron Pickaxe",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "iron_scrap",
+  "name": "Iron Scrap",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "shovel_2",
+  "name": "Iron Shovel",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "sword_2",
+  "name": "Iron Sword",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "melee"
+  ]
+ },
+ {
+  "id": "small_instruments_2",
+  "name": "Iron tools",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "iron_ore_2h",
+  "name": "iron_ore_2h",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "overhead"
+  ]
+ },
+ {
+  "id": "jug_milk",
+  "name": "Jug of Milk",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_kebab_fish_mushrooms",
+  "name": "Kebab with fish and mushrooms",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "cook_kebab_fish_onion",
+  "name": "Kebab with fish and onion",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "cook_kebab_fish_pumpkin",
+  "name": "Kebab with fish and pumpkin",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "hero_clothes_9001",
+  "name": "Keeper's Clothes",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "intro_prison_key",
+  "name": "Key from the Inquisition dungeon",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "key_resurrection",
+  "name": "Key to the Resurrection Room",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "keys_looters",
+  "name": "Keys for Looters",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "intro_prison_kings_signet",
+  "name": "King's signet",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "pike_3",
+  "name": "Knight's Spear",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "melee"
+  ]
+ },
+ {
+  "id": "fish_kraken_jr",
+  "name": "Kraken Jr",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes"
+  ]
+ },
+ {
+  "id": "cook_kraken_jr",
+  "name": "Kraken steak",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "krotowuha_potion",
+  "name": "Krotowuha",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "krotowuha_potion_scroll",
+  "name": "Krotowuha Scroll",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "frill",
+  "name": "Lace",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "lacquer",
+  "name": "Lacquer",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "cook_lasagna",
+  "name": "Lasagna",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "leaf",
+  "name": "Leaf",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "crop",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "skroll_skin_pig",
+  "name": "Leather Scroll",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "lences",
+  "name": "lences",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "lence",
+  "name": "Lens",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "mwater_drop",
+  "name": "Life water",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "pike_1",
+  "name": "Light Pike",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "melee"
+  ]
+ },
+ {
+  "id": "ultimate_bite",
+  "name": "Live Bait",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "fish_bag"
+  ]
+ },
+ {
+  "id": "wood",
+  "name": "Log",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "overhead"
+  ]
+ },
+ {
+  "id": "book_love",
+  "name": "Love Novel",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "drape_luxury",
+  "name": "Luxury Drapes",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "fish_mackerel",
+  "name": "Mackerel",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_sea_fish_1"
+  ]
+ },
+ {
+  "id": "quest_bell",
+  "name": "Magic bell",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "candle_master",
+  "name": "Magnificent Candle",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "1h_marble",
+  "name": "Marble",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "marble",
+  "name": "marble",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "overhead"
+  ]
+ },
+ {
+  "id": "grave_top_mrb_1",
+  "name": "Marble Cross I",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravetop",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grave_top_mrb_2",
+  "name": "Marble Cross II",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravetop",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grave_bot_mrb_1",
+  "name": "Marble Fence I",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravebot",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grave_bot_mrb_2",
+  "name": "Marble Fence II",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravebot",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "marble_kit",
+  "name": "Marble Kit",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "marble_plate_1",
+  "name": "Marble Plate",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "mash",
+  "name": "Mash drop",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "armor_4",
+  "name": "Master Armor",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "master_rod",
+  "name": "Master Rod",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "surgical_kit_3",
+  "name": "Master Surgeon's Kit",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "sword_4",
+  "name": "Master Sword",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "melee"
+  ]
+ },
+ {
+  "id": "mead",
+  "name": "Mead",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "melted_fat",
+  "name": "Melted Fat",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "alchemy_mercurius",
+  "name": "Mercurius Vivus",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "minced_meat",
+  "name": "Minced Meat",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "miracle_growing_elixir",
+  "name": "Miracle growth elixir",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "mirror",
+  "name": "mirror",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "money_prayer_tier_1_test",
+  "name": "Money Prayer",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "moonshine",
+  "name": "Moonshine",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "alchemy_mortificartio",
+  "name": "Mortificatio Oil",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "mouth_spit",
+  "name": "mouth_spit",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "weapon"
+  ]
+ },
+ {
+  "id": "cook_muffin",
+  "name": "Muffin",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "music_notes",
+  "name": "Music Notes",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "chest_myst",
+  "name": "Mysterious Chest",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "fillet_fish_myst",
+  "name": "Mysterious fish fillet",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "fish_mythic_carp",
+  "name": "Mythic Carp",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes"
+  ]
+ },
+ {
+  "id": "natural_resin",
+  "name": "Natural Resin",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "necromonicon",
+  "name": "Necronomicon",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "newspaper:1",
+  "name": "Newspaper",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "gr_newspapers"
+  ]
+ },
+ {
+  "id": "newspaper:2",
+  "name": "Newspaper",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "gr_newspapers",
+   "gr_good_newspapers"
+  ]
+ },
+ {
+  "id": "newspaper:3",
+  "name": "Newspaper",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "gr_newspapers",
+   "gr_good_newspapers"
+  ]
+ },
+ {
+  "id": "flower_night",
+  "name": "Night flower",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "alchemy_nigredo",
+  "name": "Nigredo Ash",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "no_bait",
+  "name": "No Bait",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "npc_town_barracks_mercenary_1_armor",
+  "name": "npc_town_barracks_mercenary_1_armor",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "npc_town_barracks_mercenary_1_weapon",
+  "name": "npc_town_barracks_mercenary_1_weapon",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "weapon"
+  ]
+ },
+ {
+  "id": "npc_town_barracks_mercenary_2_armor",
+  "name": "npc_town_barracks_mercenary_2_armor",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "npc_town_barracks_mercenary_2_weapon",
+  "name": "npc_town_barracks_mercenary_2_weapon",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "weapon"
+  ]
+ },
+ {
+  "id": "npc_town_barracks_mercenary_3_armor",
+  "name": "npc_town_barracks_mercenary_3_armor",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "npc_town_barracks_mercenary_3_weapon",
+  "name": "npc_town_barracks_mercenary_3_weapon",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "weapon"
+  ]
+ },
+ {
+  "id": "npc_town_barracks_mercenary_4_armor",
+  "name": "npc_town_barracks_mercenary_4_armor",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "npc_town_barracks_mercenary_4_weapon",
+  "name": "npc_town_barracks_mercenary_4_weapon",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "weapon"
+  ]
+ },
+ {
+  "id": "oiled_beam",
+  "name": "Oiled Beam",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "oiled_plank",
+  "name": "Oiled Plank",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "cook_omelette",
+  "name": "Omelet",
+  "detail": "",
+  "stack": 30,
+  "groups": []
+ },
+ {
+  "id": "onion:1",
+  "name": "Onion",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "gr_onions"
+  ]
+ },
+ {
+  "id": "onion:2",
+  "name": "Onion",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "gr_onions"
+  ]
+ },
+ {
+  "id": "onion:3",
+  "name": "Onion",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "gr_onions"
+  ]
+ },
+ {
+  "id": "cook_onion_rings",
+  "name": "Onion rings",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "onion_seed:1",
+  "name": "Onion seed",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "gr_onion_seed"
+  ]
+ },
+ {
+  "id": "onion_seed:2",
+  "name": "Onion seed",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "gr_onion_seed"
+  ]
+ },
+ {
+  "id": "onion_seed:3",
+  "name": "Onion seed",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "gr_onion_seed"
+  ]
+ },
+ {
+  "id": "organ_improver_red",
+  "name": "Organ Improver (red skull)",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "organ_improver_white",
+  "name": "Organ Improver (white skull)",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "organ_randomizer",
+  "name": "Organ Randomizer",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "organ_restoration",
+  "name": "Organ Restorer",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "quest_paint",
+  "name": "Paint",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "cook_pancakes",
+  "name": "Pancakes",
+  "detail": "",
+  "stack": 30,
+  "groups": []
+ },
+ {
+  "id": "paper_liquid",
+  "name": "Paper glop",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "cook_pasta",
+  "name": "Pasta",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "fertilizer:peat",
+  "name": "Peat",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "fertilizer",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "philosopher_stone",
+  "name": "Philosopher Stone",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "alchemy_sulfur",
+  "name": "Philosophic Sulfur",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "stone_plate_1",
+  "name": "Piece of stone",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "fish_pike",
+  "name": "Pike",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_river_fish_4"
+  ]
+ },
+ {
+  "id": "hero_clothes_9006",
+  "name": "Pilgrim's Clothes",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "potato",
+  "name": "Po-ta-to",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "polished_bronze",
+  "name": "Polished Bronze",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "marble_plate_2",
+  "name": "Polished Marble",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "stone_plate_2",
+  "name": "Polished Stone",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "polishing_paste",
+  "name": "Polishing Paste",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "portal_stone_envy",
+  "name": "Portal fragment Envy",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "portal_stone_gluttony",
+  "name": "Portal fragment Gluttony",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "portal_stone_greed",
+  "name": "Portal fragment Greed",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "portal_stone_lust",
+  "name": "Portal fragment Lust",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "portal_stone_pride",
+  "name": "Portal fragment Pride",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "portal_stone_sloth",
+  "name": "Portal fragment Sloth",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "portal_stone_wrath",
+  "name": "Portal fragment Wrath",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "bag_potions",
+  "name": "Potion bag",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "agreement_frontman",
+  "name": "PR Agreement",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "prayer_music",
+  "name": "Prayer for Music",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_old_god",
+  "name": "Prayer for Old God",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_speed",
+  "name": "Prayer for Speed",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_storms",
+  "name": "Prayer for Storms",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_base:1",
+  "name": "prayer_base:1",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_base:2",
+  "name": "prayer_base:2",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_base:3",
+  "name": "prayer_base:3",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_combat:1",
+  "name": "Combat Prayer",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_combat:2",
+  "name": "Combat Prayer",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_combat:3",
+  "name": "Combat Prayer",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_combo:1",
+  "name": "Combo Prayer",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_combo:2",
+  "name": "Combo Prayer",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_combo:3",
+  "name": "Combo Prayer",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_consumption:1",
+  "name": "Prayer for Consumption",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_consumption:2",
+  "name": "Prayer for Consumption",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_consumption:3",
+  "name": "Prayer for Consumption",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_demand:1",
+  "name": "Prayer for Demand",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_demand:2",
+  "name": "Prayer for Demand",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_demand:3",
+  "name": "Prayer for Demand",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_excellence:1",
+  "name": "Prayer for Excellence",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_excellence:2",
+  "name": "Prayer for Excellence",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_excellence:3",
+  "name": "Prayer for Excellence",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_faith:1",
+  "name": "prayer_faith:1",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_faith:2",
+  "name": "prayer_faith:2",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_faith:3",
+  "name": "prayer_faith:3",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_harvest:1",
+  "name": "Harvest Prayer",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_harvest:2",
+  "name": "Harvest Prayer",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_harvest:3",
+  "name": "Harvest Prayer",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_hypno:1",
+  "name": "Hypno Prayer",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_hypno:2",
+  "name": "Hypno Prayer",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_hypno:3",
+  "name": "Hypno Prayer",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_imagination:1",
+  "name": "Prayer for Imagination",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_imagination:2",
+  "name": "Prayer for Imagination",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_imagination:3",
+  "name": "Prayer for Imagination",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_insanity:1",
+  "name": "Prayer for Insanity",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_insanity:2",
+  "name": "Prayer for Insanity",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_insanity:3",
+  "name": "Prayer for Insanity",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_insanity_less",
+  "name": "prayer_insanity_less",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_insanity_more",
+  "name": "prayer_insanity_more",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_labor:1",
+  "name": "Labor Prayer",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_labor:2",
+  "name": "Labor Prayer",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_labor:3",
+  "name": "Labor Prayer",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_likes:1",
+  "name": "Prayer for Likes",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_likes:2",
+  "name": "Prayer for Likes",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_likes:3",
+  "name": "Prayer for Likes",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_money:1",
+  "name": "prayer_money:1",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_money:2",
+  "name": "prayer_money:2",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_money:3",
+  "name": "prayer_money:3",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_obedience:1",
+  "name": "Prayer for Obedience",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_obedience:2",
+  "name": "Prayer for Obedience",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_obedience:3",
+  "name": "Prayer for Obedience",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_prosperity:1",
+  "name": "Prayer for Prosperity",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_prosperity:2",
+  "name": "Prayer for Prosperity",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_prosperity:3",
+  "name": "Prayer for Prosperity",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_protection:1",
+  "name": "Prayer for Protection",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_protection:2",
+  "name": "Prayer for Protection",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_protection:3",
+  "name": "Prayer for Protection",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_purity:1",
+  "name": "Prayer for Purity",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_purity:2",
+  "name": "Prayer for Purity",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_purity:3",
+  "name": "Prayer for Purity",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_repentance:1",
+  "name": "Prayer for Repentance",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_repentance:2",
+  "name": "Prayer for Repentance",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_repentance:3",
+  "name": "Prayer for Repentance",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_repose:1",
+  "name": "Prayer for Repose",
+  "detail": "★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_repose:2",
+  "name": "Prayer for Repose",
+  "detail": "★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "prayer_repose:3",
+  "name": "Prayer for Repose",
+  "detail": "★★★",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "trinkets_gold",
+  "name": "Precious Trinkets",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "preservative",
+  "name": "Preservative",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "candle_advanced",
+  "name": "Pretty Candle",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "hero_clothes_9008",
+  "name": "Priest's Clothes",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "alchemy_prima_materia",
+  "name": "Prima Materia Dust",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "tool_book_1",
+  "name": "Primer",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "printed_money",
+  "name": "Printed Money",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "book_poetry",
+  "name": "Printed Poetry",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "pro_rod",
+  "name": "Pro Rod",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "prosperity_item",
+  "name": "prosperity_item",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "hand_prothesis",
+  "name": "Prosthetic Hand",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "pseudo_blood",
+  "name": "pseudo_blood",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pseudo_bones",
+  "name": "pseudo_bones",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pseudo_brain",
+  "name": "pseudo_brain",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pseudo_fat",
+  "name": "pseudo_fat",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pseudo_flesh",
+  "name": "pseudo_flesh",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pseudo_guts",
+  "name": "pseudo_guts",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pseudo_heart",
+  "name": "pseudo_heart",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pseudo_skin",
+  "name": "pseudo_skin",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pseudo_skull",
+  "name": "pseudo_skull",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pseudo_tool",
+  "name": "pseudo_tool",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "tool"
+  ]
+ },
+ {
+  "id": "pseudo_tooth",
+  "name": "pseudo_tooth",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "pumpkin:1",
+  "name": "Pumpkin",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "pumpkin:2",
+  "name": "Pumpkin",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "pumpkin:3",
+  "name": "Pumpkin",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "pumpkin_seed:1",
+  "name": "Pumpkin Seeds",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "gr_pumpkin_seed"
+  ]
+ },
+ {
+  "id": "pumpkin_seed:2",
+  "name": "Pumpkin Seeds",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "gr_pumpkin_seed"
+  ]
+ },
+ {
+  "id": "pumpkin_seed:3",
+  "name": "Pumpkin Seeds",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag",
+   "gr_pumpkin_seed"
+  ]
+ },
+ {
+  "id": "cook_pumpkin_soup",
+  "name": "Pumpkin soup",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "quicksilver",
+  "name": "Quicksilver",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "alchemy_quintessence",
+  "name": "Quintessence Vial",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "resurrection_balm",
+  "name": "Reanimation Liquid",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "resurrection_liquid",
+  "name": "Reanimation Liquid",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "red_eye",
+  "name": "Red Eye",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "cook_red_jelly",
+  "name": "Red jelly",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "mushroom_red",
+  "name": "Red Mushroom",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "alch_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "techbook_r_1",
+  "name": "Red Techbook",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "techbook_r_2",
+  "name": "Red Techbook II",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "reinforced_beam",
+  "name": "Reinforced Beam",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "bow_1",
+  "name": "Reinforced Bow",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "range"
+  ]
+ },
+ {
+  "id": "reinforced_plank",
+  "name": "Reinforced Plank",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "resin",
+  "name": "Resin",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "note_resurrection",
+  "name": "Resurrection Note",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "flower_rhod",
+  "name": "Rhododendron",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "rhod_seedling",
+  "name": "Rhododendron Seedling",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "farm_bag"
+  ]
+ },
+ {
+  "id": "rich_growing_elixir",
+  "name": "Rich growth elixir",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "fillet_fish_river",
+  "name": "River fish fillet",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "fish_roach",
+  "name": "Roach",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_river_fish_1"
+  ]
+ },
+ {
+  "id": "royal_pardon",
+  "name": "Royal Pardon",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "alchemy_rubedo",
+  "name": "Rubedo Crystallis",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "armor_0",
+  "name": "Rusty Armor",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "axe_0",
+  "name": "Rusty Axe",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "hammer_0",
+  "name": "Rusty Hammer",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "pickaxe_0",
+  "name": "Rusty Pickaxe",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "shovel_0",
+  "name": "Rusty Shovel",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "sword_0",
+  "name": "Rusty Sword",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "melee"
+  ]
+ },
+ {
+  "id": "fish_salmon",
+  "name": "Salmon",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_sea_fish_2"
+  ]
+ },
+ {
+  "id": "salt",
+  "name": "Salt",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "sand",
+  "name": "Sand",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "buil_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "cook_sandwich",
+  "name": "Sandwich",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "saw",
+  "name": "saw",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "scary_idol",
+  "name": "Scary Idol",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "science",
+  "name": "Science",
+  "detail": "",
+  "stack": 999,
+  "groups": [
+   "fuel"
+  ]
+ },
+ {
+  "id": "science_kit_1",
+  "name": "Science Kit I",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "science_kit_2",
+  "name": "Science Kit II",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "sculpture_kit_1",
+  "name": "Sculpture Kit I",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "sculpture_kit_2",
+  "name": "Sculpture Kit II",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "fillet_fish_sea",
+  "name": "Sea fish fillet",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "doctor_meeting_code",
+  "name": "Secret combination",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "seed_oil",
+  "name": "Seed oil",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "food_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "alchemy_separatio",
+  "name": "Separatio Membrane",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "wood1",
+  "name": "Short Log",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "shrimp_bite",
+  "name": "Shrimp Bait",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "agreement_frontman_signed",
+  "name": "Signed PR Agreement",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "printed_money_signed",
+  "name": "Signed Printed Money",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "tool_talisman_2",
+  "name": "Silver Talisman",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "fish_silverfin",
+  "name": "Silverfin",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes"
+  ]
+ },
+ {
+  "id": "bow_0",
+  "name": "Simple Bow",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "range"
+  ]
+ },
+ {
+  "id": "candle_basic",
+  "name": "Simple Candle",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "incense_basic",
+  "name": "Simple Incense",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "detail_1",
+  "name": "Simple iron part",
+  "detail": "",
+  "stack": 10,
+  "groups": []
+ },
+ {
+  "id": "pike_0",
+  "name": "Simple Pike",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "melee"
+  ]
+ },
+ {
+  "id": "skin_0_0:1",
+  "name": "Skin",
+  "detail": "0 red / 0 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skin",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skin_1_0:1",
+  "name": "Skin",
+  "detail": "1 red / 0 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skin",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skin_1_2:2",
+  "name": "Skin",
+  "detail": "1 red / 2 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skin",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skin_1_3:3",
+  "name": "Skin",
+  "detail": "1 red / 3 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skin",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skin_2_0:2",
+  "name": "Skin",
+  "detail": "2 red / 0 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skin",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skin_3_0:3",
+  "name": "Skin",
+  "detail": "3 red / 0 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skin",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skull_0_0:1",
+  "name": "Skull",
+  "detail": "0 red / 0 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skulls",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skull_0_1:1",
+  "name": "Skull",
+  "detail": "0 red / 1 white skulls, ★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skulls",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skull_0_2:2",
+  "name": "Skull",
+  "detail": "0 red / 2 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skulls",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skull_0_3:3",
+  "name": "Skull",
+  "detail": "0 red / 3 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skulls",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skull_2_2:2",
+  "name": "Skull",
+  "detail": "2 red / 2 white skulls, ★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skulls",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "skull_3_2:3",
+  "name": "Skull",
+  "detail": "3 red / 2 white skulls, ★★★",
+  "stack": 20,
+  "groups": [
+   "bodypart",
+   "gr_skulls",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "slug",
+  "name": "Slug",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "small_printing_press",
+  "name": "Small Printing Press",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "cook_soldier_ale",
+  "name": "Soldier's ale",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "cook_soldier_stew",
+  "name": "Soldier's stew",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "some_em_1",
+  "name": "some_em_1",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "some_em_2",
+  "name": "some_em_2",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "hero_clothes_9007",
+  "name": "Special Clothes",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "wood_2",
+  "name": "Special Wood",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "speech_writing_device",
+  "name": "Speech Writing Device",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "speed_potion",
+  "name": "Speed Potion",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "speed_potion_scroll",
+  "name": "Speed Potion Scroll",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "quality_food_silver",
+  "name": "Spices",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "spices",
+  "name": "Spices",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "barricade_spike_1_pre",
+  "name": "Spiked Barricade I",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "barricade_spike_2_pre",
+  "name": "Spiked Barricade II",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "barricade_spike_3_pre",
+  "name": "Spiked Barricade III",
+  "detail": "",
+  "stack": 99,
+  "groups": []
+ },
+ {
+  "id": "alchemy_kit_1",
+  "name": "Starter Alchemist's Kit",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "armor_3",
+  "name": "Steel Armor",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "axe_3",
+  "name": "Steel Axe",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "detail_1_steel",
+  "name": "Steel Detail",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "hammer_3",
+  "name": "Steel Hammer",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "ingot_steel",
+  "name": "Steel Ingot",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "pickaxe_3",
+  "name": "Steel Pickaxe",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "screw_steel",
+  "name": "Steel Screws",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "shovel_3",
+  "name": "Steel Shovel",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "sword_3",
+  "name": "Steel Sword",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "weapon",
+   "melee"
+  ]
+ },
+ {
+  "id": "small_instruments_3",
+  "name": "Steel tools",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "collar_steel",
+  "name": "Steel Zombie Collar",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "stick",
+  "name": "Stick",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "1h_stone",
+  "name": "Stone",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "stone",
+  "name": "stone",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "overhead"
+  ]
+ },
+ {
+  "id": "grave_bot_stn_1",
+  "name": "Stone Fence I",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravebot",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grave_bot_stn_2",
+  "name": "Stone Fence II",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravebot",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "stone_kit_1",
+  "name": "Stone Kit",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "trinkets_stone",
+  "name": "Stone Marbles",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "story:1",
+  "name": "Story",
+  "detail": "★",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "gr_stories"
+  ]
+ },
+ {
+  "id": "story:2",
+  "name": "Story",
+  "detail": "★★",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "gr_stories"
+  ]
+ },
+ {
+  "id": "story:3",
+  "name": "Story",
+  "detail": "★★★",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "gr_stories"
+  ]
+ },
+ {
+  "id": "box_appliances_1",
+  "name": "Supply: Appliances I",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_appliances_2",
+  "name": "Supply: Appliances II",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_beer",
+  "name": "Supply: Beer",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_building_kit_1",
+  "name": "Supply: Building materials I",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_building_kit_2",
+  "name": "Supply: Building materials II",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_clothes_1",
+  "name": "Supply: Clothes I",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_clothes_2",
+  "name": "Supply: Clothes II",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_cutlery_1",
+  "name": "Supply: Cutlery I",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_cutlery_2",
+  "name": "Supply: Cutlery II",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_engineering_mechanism",
+  "name": "Supply: Engineering Mechanism",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_fabric",
+  "name": "Supply: Fabric",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_flour",
+  "name": "Supply: Flour Sack",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_furniture_1",
+  "name": "Supply: Furniture I",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_furniture_2",
+  "name": "Supply: Furniture II",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_iron_ingot",
+  "name": "Supply: Iron",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_tools_iron",
+  "name": "Supply: Iron Tools",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_kitchen_utensils",
+  "name": "Supply: Kitchen Utensils",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_preserves_1",
+  "name": "Supply: Preserves I",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_preserves_2",
+  "name": "Supply: Preserves II",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_tools_steel",
+  "name": "Supply: Steel Tools",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_vegetables",
+  "name": "Supply: Vegetables",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "box_vine",
+  "name": "Supply: Wine",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "town_box",
+   "overhead"
+  ]
+ },
+ {
+  "id": "surgeon_mistake_bones",
+  "name": "Surgeon's Error",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "bodypart",
+   "mistake"
+  ]
+ },
+ {
+  "id": "surgeon_mistake_brain",
+  "name": "Surgeon's Error",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "bodypart",
+   "mistake"
+  ]
+ },
+ {
+  "id": "surgeon_mistake_guts",
+  "name": "Surgeon's Error",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "bodypart",
+   "mistake"
+  ]
+ },
+ {
+  "id": "surgeon_mistake_heart",
+  "name": "Surgeon's Error",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "bodypart",
+   "mistake"
+  ]
+ },
+ {
+  "id": "surgeon_mistake_skin",
+  "name": "Surgeon's Error",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "bodypart",
+   "mistake"
+  ]
+ },
+ {
+  "id": "surgeon_mistake_skull",
+  "name": "Surgeon's Error",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "bodypart",
+   "mistake"
+  ]
+ },
+ {
+  "id": "surgical_kit_2",
+  "name": "Surgeon's Kit",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "tool"
+  ]
+ },
+ {
+  "id": "surgeon_mistake_flesh",
+  "name": "surgeon_mistake_flesh",
+  "detail": "1 red / 1 white skulls",
+  "stack": 1,
+  "groups": [
+   "bodypart",
+   "mistake"
+  ]
+ },
+ {
+  "id": "surgeon_mistake_optional",
+  "name": "surgeon_mistake_optional",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "bodypart",
+   "mistake"
+  ]
+ },
+ {
+  "id": "fish_swamp_ghost",
+  "name": "Swamp Ghost",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes"
+  ]
+ },
+ {
+  "id": "mushroom_green",
+  "name": "Swamp mushroom",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "tableware",
+  "name": "Tableware",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "tannin",
+  "name": "tannin",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "liquid_harden",
+  "name": "Tannin Liquid",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "temp_village_head_paper",
+  "name": "Temporary Head of the Village Certificate",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "temptation",
+  "name": "Temptation",
+  "detail": "",
+  "stack": 100,
+  "groups": []
+ },
+ {
+  "id": "test_note",
+  "name": "Test Note",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "test_armor",
+  "name": "test_armor",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "test_cross",
+  "name": "test_cross",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "test_firewood",
+  "name": "test_firewood",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "test_flag_item",
+  "name": "test_flag_item",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "test_flitch",
+  "name": "test_flitch",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "test_ingot",
+  "name": "test_ingot",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "test_inventory_1",
+  "name": "test_inventory_1",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "test_item_1",
+  "name": "test_item_1",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "test_item_2",
+  "name": "test_item_2",
+  "detail": "",
+  "stack": 2,
+  "groups": []
+ },
+ {
+  "id": "test_item_3",
+  "name": "test_item_3",
+  "detail": "",
+  "stack": 3,
+  "groups": []
+ },
+ {
+  "id": "test_item_insertable_to_u_bag",
+  "name": "test_item_insertable_to_u_bag",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "test_ore",
+  "name": "test_ore",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "test_stick",
+  "name": "test_stick",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "test_weapon",
+  "name": "test_weapon",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "test_wooden_plank",
+  "name": "test_wooden_plank",
+  "detail": "",
+  "stack": 50,
+  "groups": []
+ },
+ {
+  "id": "third_eye_salt",
+  "name": "Third Eye Salt",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "lead",
+  "name": "Tin",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "buil_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "cook_onion_toast",
+  "name": "Toast with onions",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "bag_tools",
+  "name": "Tool bag",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "toolBeltInventory",
+  "name": "toolBeltInventory",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "tooth",
+  "name": "Tooth",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "town_gratitude",
+  "name": "Town Gratitude",
+  "detail": "",
+  "stack": 100,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "town_happiness",
+  "name": "town_happiness",
+  "detail": "",
+  "stack": 999,
+  "groups": []
+ },
+ {
+  "id": "exp_blue_potion",
+  "name": "Toxic Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "exp_green_potion",
+  "name": "Toxic Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "exp_orange_potion",
+  "name": "Toxic Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "exp_potion_b_1",
+  "name": "Toxic Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "exp_potion_g_1",
+  "name": "Toxic Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "exp_potion_r_1",
+  "name": "Toxic Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "exp_red_potion",
+  "name": "Toxic Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "exp_yellow_potion",
+  "name": "Toxic Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "exp_blue_potion_2",
+  "name": "Toxic Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "exp_green_potion_2",
+  "name": "Toxic Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "exp_orange_potion_2",
+  "name": "Toxic Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "exp_potion_b_2",
+  "name": "Toxic Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "exp_potion_g_2",
+  "name": "Toxic Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "exp_potion_r_2",
+  "name": "Toxic Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "exp_red_potion_2",
+  "name": "Toxic Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "exp_yellow_potion_2",
+  "name": "Toxic Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "quality_items_silver",
+  "name": "Transmutation Potion I",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "quality_items_gold",
+  "name": "Transmutation Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "trilogy",
+  "name": "Trilogy",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "fish_trout",
+  "name": "Trout",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_sea_fish_3"
+  ]
+ },
+ {
+  "id": "fish_tuna",
+  "name": "Tuna",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "fishes",
+   "gr_sea_fish_2"
+  ]
+ },
+ {
+  "id": "quality_food_gold",
+  "name": "Umami",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "sinful_idol",
+  "name": "Unholy Idol",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "bag_universal",
+  "name": "Universal bag",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "urn_ashes_1",
+  "name": "Urn with Ashes I",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "urn_ashes_2",
+  "name": "Urn with Ashes II",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "cook_vegetabe_soup",
+  "name": "Vegetable soup",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "flag_reward",
+  "name": "Victory Banner",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "flag_blue",
+  "name": "Victory Flag",
+  "detail": "",
+  "stack": 10,
+  "groups": []
+ },
+ {
+  "id": "violine",
+  "name": "Violin",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "u_bag",
+   "quest_bag"
+  ]
+ },
+ {
+  "id": "paper_wanted",
+  "name": "Wanted Poster",
+  "detail": "",
+  "stack": 10,
+  "groups": []
+ },
+ {
+  "id": "water",
+  "name": "Water",
+  "detail": "",
+  "stack": 999,
+  "groups": [
+   "u_bag",
+   "food_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "weak_growing_elixir",
+  "name": "Weak growth elixir",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "wheat",
+  "name": "Wheat",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "seedable"
+  ]
+ },
+ {
+  "id": "wheat_seed",
+  "name": "Wheat seed",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "seed",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grape_wine:1",
+  "name": "Wine",
+  "detail": "★",
+  "stack": 50,
+  "groups": [
+   "gr_wine",
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "grape_wine:2",
+  "name": "Wine",
+  "detail": "★★",
+  "stack": 50,
+  "groups": [
+   "gr_wine",
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "grape_wine:3",
+  "name": "Wine",
+  "detail": "★★★",
+  "stack": 50,
+  "groups": [
+   "gr_wine",
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "wood_wedge",
+  "name": "Wood wedge",
+  "detail": "",
+  "stack": 50,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "wood_OLD",
+  "name": "wood_OLD",
+  "detail": "",
+  "stack": 1,
+  "groups": []
+ },
+ {
+  "id": "wooden_beam",
+  "name": "Wooden beam",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "wood_billet",
+  "name": "Wooden Billet",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grave_top_wd_1",
+  "name": "Wooden Cross I",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravetop",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grave_top_wd_2",
+  "name": "Wooden Cross II",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravetop",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grave_bot_wd_1",
+  "name": "Wooden Fence I",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravebot",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "grave_bot_wd_2",
+  "name": "Wooden Fence II",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravebot",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "wooden_joint",
+  "name": "Wooden Joint",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "wooden_kit_1",
+  "name": "Wooden Kit I",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "wooden_kit_2",
+  "name": "Wooden Kit II",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "wooden_plank",
+  "name": "Wooden Plank",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "grave_top_wd_0",
+  "name": "Wooden Sign",
+  "detail": "",
+  "stack": 10,
+  "groups": [
+   "gravetop",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "trinkets_wood",
+  "name": "Wooden Trinkets",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "wooden_detail:1",
+  "name": "Wooden Detail",
+  "detail": "★",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "wooden_detail:2",
+  "name": "Wooden Detail",
+  "detail": "★★",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "wooden_detail:3",
+  "name": "Wooden Detail",
+  "detail": "★★★",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "wooden_figure:1",
+  "name": "wooden_figure:1",
+  "detail": "★",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "wooden_figure:2",
+  "name": "wooden_figure:2",
+  "detail": "★★",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "wooden_figure:3",
+  "name": "wooden_figure:3",
+  "detail": "★★★",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "wooden_kit:1",
+  "name": "Wood Kit",
+  "detail": "★",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "wooden_kit:2",
+  "name": "Wood Kit",
+  "detail": "★★",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "wooden_kit:3",
+  "name": "Wood Kit",
+  "detail": "★★★",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "worms_bite",
+  "name": "Worms Bait",
+  "detail": "",
+  "stack": 20,
+  "groups": []
+ },
+ {
+  "id": "book",
+  "name": "Written Softcover Book",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag"
+  ]
+ },
+ {
+  "id": "cook_yogurt",
+  "name": "Yogurt",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "food_bag"
+  ]
+ },
+ {
+  "id": "body_zombie",
+  "name": "Zombie",
+  "detail": "",
+  "stack": 1,
+  "groups": [
+   "body",
+   "zombie",
+   "overhead"
+  ]
+ },
+ {
+  "id": "zombie_goo",
+  "name": "Zombie goo",
+  "detail": "",
+  "stack": 99,
+  "groups": [
+   "u_bag",
+   "alch_bag"
+  ]
+ },
+ {
+  "id": "zombie_mechanism",
+  "name": "Zombie Mechanism",
+  "detail": "",
+  "stack": 30,
+  "groups": [
+   "u_bag",
+   "buil_bag"
+  ]
+ },
+ {
+  "id": "motivator_potion",
+  "name": "Zombie Motivator Potion",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "motivator_potion_2",
+  "name": "Zombie Motivator Potion II",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "motivator_potion_3",
+  "name": "Zombie Motivator Potion III",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "battle_potion",
+   "pot_bag",
+   "u_bag"
+  ]
+ },
+ {
+  "id": "zombie_power",
+  "name": "Zombie Power",
+  "detail": "",
+  "stack": 20,
+  "groups": [
+   "u_bag"
+  ]
+ }
+]
