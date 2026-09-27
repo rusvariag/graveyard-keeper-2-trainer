@@ -21,6 +21,11 @@ type spawnerUI struct {
 	list      *walk.ListBox
 	count     *walk.NumberEdit
 	addBtn    *walk.PushButton
+	techR     *walk.NumberEdit
+	techG     *walk.NumberEdit
+	techB     *walk.NumberEdit
+	techBtn   *walk.PushButton
+	techRead  *walk.PushButton
 	logBox    *walk.TextEdit
 	countInfo *walk.Label
 
@@ -104,6 +109,21 @@ func (ui *spawnerUI) run() error {
 							PushButton{AssignTo: &ui.addBtn, Text: "Add to inventory", Font: bold, OnClicked: ui.addSelected},
 						},
 					},
+				},
+			},
+			GroupBox{
+				Title:  "Tech points (max 999 each)",
+				Layout: HBox{},
+				Children: []Widget{
+					Label{Text: "Red", TextColor: walk.RGB(180, 60, 45)},
+					NumberEdit{AssignTo: &ui.techR, MinValue: 0, MaxValue: techCap, Decimals: 0, MaxSize: Size{Width: 70}},
+					Label{Text: "Green", TextColor: walk.RGB(70, 140, 60)},
+					NumberEdit{AssignTo: &ui.techG, MinValue: 0, MaxValue: techCap, Decimals: 0, MaxSize: Size{Width: 70}},
+					Label{Text: "Blue", TextColor: walk.RGB(60, 100, 180)},
+					NumberEdit{AssignTo: &ui.techB, MinValue: 0, MaxValue: techCap, Decimals: 0, MaxSize: Size{Width: 70}},
+					HSpacer{},
+					PushButton{AssignTo: &ui.techBtn, Text: "Add", OnClicked: ui.addTechPoints},
+					PushButton{AssignTo: &ui.techRead, Text: "Show", OnClicked: func() { ui.sendAsync(func() (bool, string) { return addTech(0, 0, 0) }) }},
 				},
 			},
 			Label{Text: "Log"},
@@ -218,6 +238,8 @@ func (ui *spawnerUI) updateButtons() {
 	}
 	on := ui.ready.Load() && !ui.busy.Load()
 	ui.addBtn.SetEnabled(on && ui.selected() != nil)
+	ui.techBtn.SetEnabled(on)
+	ui.techRead.SetEnabled(on)
 }
 
 func (ui *spawnerUI) addSelected() {
@@ -227,6 +249,15 @@ func (ui *spawnerUI) addSelected() {
 	}
 	id, n := it.ID, int(ui.count.Value())
 	ui.sendAsync(func() (bool, string) { return addItem(id, n) })
+}
+
+func (ui *spawnerUI) addTechPoints() {
+	r, g, b := int(ui.techR.Value()), int(ui.techG.Value()), int(ui.techB.Value())
+	if r+g+b == 0 {
+		ui.log("Enter how many red / green / blue points to add.")
+		return
+	}
+	ui.sendAsync(func() (bool, string) { return addTech(r, g, b) })
 }
 
 // sendAsync runs a game request off the UI thread and logs the answer.
@@ -276,7 +307,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	var color walk.Color = walk.RGB(200, 70, 60)
 	switch st := probeHelper(); {
 	case st == helperReady:
-		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v1", walk.RGB(70, 160, 70)
+		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v2", walk.RGB(70, 160, 70)
 	case st == helperOutdated:
 		text, warn, color = "Old helper in the game - restart the game", outdatedMsg, walk.RGB(210, 160, 40)
 	case !gameRunning():
@@ -284,7 +315,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	default:
 		err := connectToGame()
 		if err == nil {
-			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v1", walk.RGB(70, 160, 70)
+			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v2", walk.RGB(70, 160, 70)
 			ui.mw.Synchronize(func() { ui.log("Connected - helper loaded into the game.") })
 		} else {
 			// Mono isn't ready until the main menu; keep retrying quietly.

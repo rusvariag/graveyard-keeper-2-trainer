@@ -4,6 +4,7 @@
 //   PING                    -> PONG
 //   VERSION                 -> VERSION <n>
 //   ADD <itemId> <count>    -> OK ... / ERR ...
+//   TECH <red> <green> <blue> -> OK tech points now ... (TECH 0 0 0 = read balance)
 // Commands are queued and executed on Unity's main thread
 // (Application.onBeforeRender), because game/Unity APIs are not thread-safe.
 
@@ -21,8 +22,10 @@ namespace GK2Spawner
     public static class Bridge
     {
         public const int Port = 27817;
-        public const int Version = 1; // bump when the protocol changes; the launcher checks it
+        public const int Version = 2; // bump when the protocol changes; the launcher checks it
         private const int MaxCount = 9999;
+        private const int TechCap = 999; // max of GameResSystemDef tech_red/green/blue
+        private static readonly string[] TechRes = { "tech_red", "tech_green", "tech_blue" };
 
         private static int started;
         private static readonly ConcurrentQueue<Command> Queue = new ConcurrentQueue<Command>();
@@ -31,6 +34,7 @@ namespace GK2Spawner
         {
             public string ItemId;
             public int Count;
+            public int[] Tech; // red, green, blue to add (TECH command); null for ADD
             public string Result;
             public readonly ManualResetEventSlim Done = new ManualResetEventSlim(false);
         }
@@ -109,9 +113,13 @@ namespace GK2Spawner
             {
                 return "VERSION " + Version;
             }
+            if (parts.Length >= 1 && parts[0] == "TECH")
+            {
+                return HandleTech(parts);
+            }
             if (parts.Length != 3 || parts[0] != "ADD")
             {
-                return "ERR usage: ADD <itemId> <count>";
+                return "ERR usage: ADD <itemId> <count> | TECH <red> <green> <blue>";
             }
             int count;
             if (!int.TryParse(parts[2], out count) || count < 1 || count > MaxCount)
@@ -119,6 +127,17 @@ namespace GK2Spawner
                 return "ERR count must be 1-" + MaxCount;
             }
             return Run(new Command { ItemId = parts[1], Count = count });
+        }
+
+        private static string HandleTech(string[] parts)
+        {
+            int r, g, b;
+            if (parts.Length != 4 || !int.TryParse(parts[1], out r) || !int.TryParse(parts[2], out g) || !int.TryParse(parts[3], out b)
+                || r < 0 || g < 0 || b < 0 || r > TechCap || g > TechCap || b > TechCap)
+            {
+                return "ERR usage: TECH <red> <green> <blue> (0-" + TechCap + " each)";
+            }
+            return Run(new Command { Tech = new[] { r, g, b } });
         }
 
         private static string Run(Command cmd)
@@ -136,7 +155,7 @@ namespace GK2Spawner
             {
                 try
                 {
-                    cmd.Result = Give(cmd.ItemId, cmd.Count);
+                    cmd.Result = cmd.Tech != null ? AddTechPoints(cmd.Tech) : Give(cmd.ItemId, cmd.Count);
                 }
                 catch (Exception e)
                 {
@@ -171,6 +190,31 @@ namespace GK2Spawner
             Vector3 pos = player.position.Value + new Vector3(player.Direction.x, 0f, player.Direction.y);
             MainGame.Instance.dropSystem.DropItem(new Item(itemId, count), player.currentGameSceneId, pos);
             return "OK inventory full - dropped " + count + " x " + itemId + " at your feet";
+        }
+
+        // Adds red/green/blue tech points straight to the player's balance (capped at 999 each).
+        // "TECH 0 0 0" just reports the current balance.
+        private static string AddTechPoints(int[] add)
+        {
+            PlayerData player = MainGame.PlayerData;
+            if (MainGame.Instance == null || player == null)
+            {
+                return "ERR no save loaded - load your game first";
+            }
+            var now = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                GameResSystemDef def = GameBalance.Me != null ? GameBalance.Me.GetDataOrNull<GameResSystemDef>(TechRes[i]) : null;
+                string resId = def != null ? def.ResId : TechRes[i];
+                int current = player.GetResInt(resId);
+                int amount = Math.Max(0, Math.Min(add[i], TechCap - current));
+                if (amount > 0)
+                {
+                    player.AddRes(resId, amount); // raises OnGameResChanged so the HUD updates
+                }
+                now[i] = player.GetResInt(resId);
+            }
+            return "OK tech points now red " + now[0] + ", green " + now[1] + ", blue " + now[2];
         }
 
     }

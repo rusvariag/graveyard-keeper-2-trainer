@@ -23,11 +23,12 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "1.0"
+	appVersion    = "1.1"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
-	helperVersion = "VERSION 1"       // must match Bridge.Version
+	helperVersion = "VERSION 2"       // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."
 	maxCount      = 9999
+	techCap       = 999
 )
 
 // Item is one entry of items.json (generated from the game's GameBalance + English texts).
@@ -109,6 +110,16 @@ func addItem(id string, count int) (ok bool, message string) {
 		return false, fmt.Sprintf("count must be 1-%d", maxCount)
 	}
 	return runCommand(fmt.Sprintf("ADD %s %d", id, count))
+}
+
+// addTech adds red/green/blue tech points (0,0,0 just reports the current balance).
+func addTech(r, g, b int) (ok bool, message string) {
+	for _, v := range []int{r, g, b} {
+		if v < 0 || v > techCap {
+			return false, fmt.Sprintf("tech points must be 0-%d each", techCap)
+		}
+	}
+	return runCommand(fmt.Sprintf("TECH %d %d %d", r, g, b))
 }
 
 func runCommand(cmd string) (bool, string) {
