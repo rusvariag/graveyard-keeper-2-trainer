@@ -6,6 +6,7 @@
 //   ADD <itemId> <count>    -> OK ... / ERR ...
 //   TECH <red> <green> <blue> -> OK tech points now ... (TECH 0 0 0 = read balance)
 //   MONEY <delta>           -> OK money now ... (copper; negative removes, MONEY 0 = read balance)
+//   INSTANT <1|0>           -> OK instant craft on/off (player crafts finish on the first hit)
 // Commands are queued and executed on Unity's main thread
 // (Application.onBeforeRender), because game/Unity APIs are not thread-safe.
 
@@ -23,13 +24,15 @@ namespace GK2Spawner
     public static class Bridge
     {
         public const int Port = 27817;
-        public const int Version = 3; // bump when the protocol changes; the launcher checks it
+        public const int Version = 4; // bump when the protocol changes; the launcher checks it
         private const int MaxCount = 9999;
         private const int TechCap = 999; // max of GameResSystemDef tech_red/green/blue
         private static readonly string[] TechRes = { "tech_red", "tech_green", "tech_blue" };
         private const int MoneyMax = 999999999; // GameResSystemDef "money" min 0 / max 999999999 (copper)
 
         private static int started;
+        private static volatile bool instantCraft;
+        private static string lastInstantError;
         private static readonly ConcurrentQueue<Command> Queue = new ConcurrentQueue<Command>();
 
         private sealed class Command
@@ -120,6 +123,15 @@ namespace GK2Spawner
             {
                 return HandleTech(parts);
             }
+            if (parts.Length >= 1 && parts[0] == "INSTANT")
+            {
+                if (parts.Length != 2 || (parts[1] != "1" && parts[1] != "0"))
+                {
+                    return "ERR usage: INSTANT 1|0";
+                }
+                instantCraft = parts[1] == "1"; // read by Pump on the main thread
+                return "OK instant craft " + (instantCraft ? "on - one hit finishes a craft" : "off");
+            }
             if (parts.Length >= 1 && parts[0] == "MONEY")
             {
                 int delta;
@@ -131,7 +143,7 @@ namespace GK2Spawner
             }
             if (parts.Length != 3 || parts[0] != "ADD")
             {
-                return "ERR usage: ADD <itemId> <count> | TECH <red> <green> <blue> | MONEY <copper>";
+                return "ERR usage: ADD <itemId> <count> | TECH <red> <green> <blue> | MONEY <copper> | INSTANT 1|0";
             }
             int count;
             if (!int.TryParse(parts[2], out count) || count < 1 || count > MaxCount)
@@ -176,6 +188,49 @@ namespace GK2Spawner
                     cmd.Result = "ERR " + e.GetType().Name + ": " + e.Message;
                 }
                 cmd.Done.Set();
+            }
+            if (instantCraft)
+            {
+                FinishPlayerCraft();
+            }
+        }
+
+        // Instant craft: while the player works at a station, push the current craft's
+        // progress to the end - the same call a tool hit makes (CraftComponent.UpdateManual),
+        // so the game finishes it normally (output, queue, XP) after its usual short delay.
+        private static void FinishPlayerCraft()
+        {
+            try
+            {
+                if (MainGame.Instance == null || MainGame.PlayerController == null)
+                {
+                    return;
+                }
+                PlayerCraftActivity activity = MainGame.PlayerController.WorkerActivity as PlayerCraftActivity;
+                CraftComponent craft = activity != null ? activity.CraftComponent : null;
+                CraftElementBase element = craft != null ? craft.CurrentCraftElement : null;
+                if (element == null || !element.IsStarted || element.ProgressTicks >= element.TotalProgressTicks)
+                {
+                    return;
+                }
+                if (element.ParamsData != null && element.ParamsData.craftParamsType == CraftParamsData.CraftParamsType.GardenGrowing)
+                {
+                    return; // plants grow on their own timer
+                }
+                if (!activity.IsEnoughMastery())
+                {
+                    return; // the game wouldn't let this hit count either
+                }
+                craft.UpdateManual(element.TotalProgressTicks - element.ProgressTicks);
+                lastInstantError = null;
+            }
+            catch (Exception e)
+            {
+                if (lastInstantError != e.Message) // log once, not every frame
+                {
+                    lastInstantError = e.Message;
+                    Debug.LogWarning("[GK2Spawner] instant craft: " + e);
+                }
             }
         }
 

@@ -32,6 +32,7 @@ type spawnerUI struct {
 	moneyAdd  *walk.PushButton
 	moneyDel  *walk.PushButton
 	moneyRead *walk.PushButton
+	instant   *walk.CheckBox
 	logBox    *walk.TextEdit
 	countInfo *walk.Label
 
@@ -146,6 +147,18 @@ func (ui *spawnerUI) run() error {
 					PushButton{AssignTo: &ui.moneyAdd, Text: "Add", OnClicked: func() { ui.changeMoney(1) }},
 					PushButton{AssignTo: &ui.moneyDel, Text: "Remove", OnClicked: func() { ui.changeMoney(-1) }},
 					PushButton{AssignTo: &ui.moneyRead, Text: "Show", OnClicked: func() { ui.sendAsync(func() (bool, string) { return changeMoney(0) }) }},
+				},
+			},
+			GroupBox{
+				Title:  "Crafting",
+				Layout: HBox{},
+				Children: []Widget{
+					CheckBox{
+						AssignTo:         &ui.instant,
+						Text:             "Instant craft - one hit finishes what you are crafting",
+						OnCheckedChanged: func() { ui.syncInstant(true) },
+					},
+					HSpacer{},
 				},
 			},
 			Label{Text: "Log"},
@@ -295,6 +308,30 @@ func (ui *spawnerUI) changeMoney(sign int) {
 	ui.sendAsync(func() (bool, string) { return changeMoney(sign * copper) })
 }
 
+// syncInstant sends the Instant craft checkbox to the game. It also runs on every
+// (re)connect, because a restarted game starts with the option off.
+func (ui *spawnerUI) syncInstant(logIt bool) {
+	on := ui.instant.Checked()
+	if !ui.ready.Load() {
+		if logIt {
+			ui.log("Instant craft will be applied when the spawner connects to the game.")
+		}
+		return
+	}
+	go func() {
+		ok, msg := setInstantCraft(on)
+		if logIt || !ok {
+			ui.mw.Synchronize(func() {
+				if ok {
+					ui.log("✔ " + msg)
+				} else {
+					ui.log("✖ " + msg)
+				}
+			})
+		}
+	}()
+}
+
 // sendAsync runs a game request off the UI thread and logs the answer.
 func (ui *spawnerUI) sendAsync(req func() (bool, string)) {
 	if !ui.busy.CompareAndSwap(false, true) {
@@ -342,7 +379,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	var color walk.Color = walk.RGB(200, 70, 60)
 	switch st := probeHelper(); {
 	case st == helperReady:
-		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v3", walk.RGB(70, 160, 70)
+		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v4", walk.RGB(70, 160, 70)
 	case st == helperOutdated:
 		text, warn, color = "Old helper in the game - restart the game", outdatedMsg, walk.RGB(210, 160, 40)
 	case !gameRunning():
@@ -350,7 +387,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	default:
 		err := connectToGame()
 		if err == nil {
-			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v3", walk.RGB(70, 160, 70)
+			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v4", walk.RGB(70, 160, 70)
 			ui.mw.Synchronize(func() { ui.log("Connected - helper loaded into the game.") })
 		} else {
 			// Mono isn't ready until the main menu; keep retrying quietly.
@@ -361,6 +398,9 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 		wasReady := ui.ready.Swap(ready)
 		ui.status.SetText(text)
 		ui.statusDot.SetTextColor(color)
+		if ready && !wasReady && ui.instant.Checked() {
+			ui.syncInstant(true)
+		}
 		if wasReady && !ready {
 			ui.log("Lost connection to the game.")
 		}

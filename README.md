@@ -4,6 +4,7 @@ A small Windows tool for **single-player** Graveyard Keeper 2:
 - pick any item from a searchable list, choose a count, and it appears in your inventory (if it doesn't fit, it's dropped at your feet).
 - add **red / green / blue tech points** (research points; the game caps each colour at 999).
 - **add or remove money** in gold / silver / copper (1 gold = 100 silver = 10,000 copper).
+- **instant craft**: while it's on, the first hit at a workbench finishes the craft.
 
 ## Use it
 1. Run `gk2_item_spawner.exe`.
@@ -11,6 +12,7 @@ A small Windows tool for **single-player** Graveyard Keeper 2:
 1. Items: type in the search box, pick an item, set the count (or use ×1 / ×10 / ×50 / Stack), and click **Add to inventory**. You can also double-click the item.
 1. Tech points: enter red / green / blue amounts and click **Add**. **Show** displays your current balance.
 1. Money: enter gold / silver / copper and click **Add** or **Remove**. **Show** displays your current money. Removing more than you have leaves you at 0.
+1. Crafting: turn on **Instant craft**, then craft as usual. The first hit finishes the item, and each queued item takes one hit. It applies only to what *you* craft, not to zombies or growing plants. It stays on after a game restart, because the tool re-sends it when it reconnects.
 
 After **updating this tool**, restart the game once, because the old helper can't be unloaded. The status line tells you when that's needed (yellow dot).
 
@@ -27,6 +29,7 @@ gk2_item_spawner.exe ─(1) injects GK2Spawner.dll via the Mono API──►  Gr
 - **Items list** (`items.json`). All 812 item ids, with English names and stack sizes, taken from the game's `GameBalance` and `lng_en`. Many real item ids contain `:` (organs such as `heart_2_2:2`, `grape_juice:3`, `body_certificate:1`). The helper looks ids up exactly as written.
 - **Tech points.** `TECH r g b` calls `PlayerData.AddRes("tech_red"/"tech_green"/"tech_blue", n)`, the resources behind the research-point orbs. It's clamped at 999, and the HUD updates through the game's `OnGameResChanged` event.
 - **Money.** `MONEY <copper>` (negative removes) changes the player resource `money`, which the game stores in copper, within the game's own limits of 0 to 999,999,999.
+- **Instant craft.** `INSTANT 1|0` sets a flag. Every frame, while you work at a station, the helper tops up the current craft's progress with `CraftComponent.UpdateManual(remaining)`, the same call a tool hit makes. The game then finishes the craft normally: output, queue and XP. Crafts that need more mastery than you have are left alone.
 
 ## Build from source
 ```bash

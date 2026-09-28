@@ -23,9 +23,9 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "1.2"
+	appVersion    = "1.3"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
-	helperVersion = "VERSION 3"       // must match Bridge.Version
+	helperVersion = "VERSION 4"       // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."
 	maxCount      = 9999
 	techCap       = 999
@@ -130,6 +130,14 @@ func changeMoney(copper int) (ok bool, message string) {
 		return false, "amount is too large"
 	}
 	return runCommand(fmt.Sprintf("MONEY %d", copper))
+}
+
+// setInstantCraft turns "one hit finishes the player's craft" on or off in the game.
+func setInstantCraft(on bool) (ok bool, message string) {
+	if on {
+		return runCommand("INSTANT 1")
+	}
+	return runCommand("INSTANT 0")
 }
 
 func runCommand(cmd string) (bool, string) {
