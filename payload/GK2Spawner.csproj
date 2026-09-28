@@ -20,5 +20,6 @@
     <Reference Include="Assembly-CSharp"><HintPath>$(GameManaged)/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="LazyBearTechnology"><HintPath>$(GameManaged)/LazyBearTechnology.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.CoreModule"><HintPath>$(GameManaged)/UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Sirenix.Serialization"><HintPath>$(GameManaged)/Sirenix.Serialization.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
 </Project>

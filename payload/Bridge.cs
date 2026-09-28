@@ -7,6 +7,7 @@
 //   TECH <red> <green> <blue> -> OK tech points now ... (TECH 0 0 0 = read balance)
 //   MONEY <delta>           -> OK money now ... (copper; negative removes, MONEY 0 = read balance)
 //   INSTANT <1|0>           -> OK instant craft on/off (player crafts finish on the first hit)
+//   ZOMBIE <sub> ...        -> zombie editor for the zombie menu open in game (see Zombie.cs)
 // Commands are queued and executed on Unity's main thread
 // (Application.onBeforeRender), because game/Unity APIs are not thread-safe.
 
@@ -24,7 +25,7 @@ namespace GK2Spawner
     public static class Bridge
     {
         public const int Port = 27817;
-        public const int Version = 4; // bump when the protocol changes; the launcher checks it
+        public const int Version = 5; // bump when the protocol changes; the launcher checks it
         private const int MaxCount = 9999;
         private const int TechCap = 999; // max of GameResSystemDef tech_red/green/blue
         private static readonly string[] TechRes = { "tech_red", "tech_green", "tech_blue" };
@@ -41,6 +42,7 @@ namespace GK2Spawner
             public int Count;
             public int[] Tech; // red, green, blue to add (TECH command); null for ADD
             public int? Money; // copper to add/remove (MONEY command)
+            public Func<string> Action; // any other main-thread job (ZOMBIE commands)
             public string Result;
             public readonly ManualResetEventSlim Done = new ManualResetEventSlim(false);
         }
@@ -132,6 +134,14 @@ namespace GK2Spawner
                 instantCraft = parts[1] == "1"; // read by Pump on the main thread
                 return "OK instant craft " + (instantCraft ? "on - one hit finishes a craft" : "off");
             }
+            if (parts.Length >= 2 && parts[0] == "ZOMBIE")
+            {
+                string[] args = new string[parts.Length - 1];
+                Array.Copy(parts, 1, args, 0, args.Length);
+                int at = line.IndexOf(parts[1], "ZOMBIE".Length, StringComparison.Ordinal) + parts[1].Length;
+                string rest = at < line.Length ? line.Substring(at).Trim() : "";
+                return Run(new Command { Action = () => ZombieEditor.Handle(args, rest) });
+            }
             if (parts.Length >= 1 && parts[0] == "MONEY")
             {
                 int delta;
@@ -143,7 +153,7 @@ namespace GK2Spawner
             }
             if (parts.Length != 3 || parts[0] != "ADD")
             {
-                return "ERR usage: ADD <itemId> <count> | TECH <red> <green> <blue> | MONEY <copper> | INSTANT 1|0";
+                return "ERR usage: ADD <itemId> <count> | TECH <red> <green> <blue> | MONEY <copper> | INSTANT 1|0 | ZOMBIE ...";
             }
             int count;
             if (!int.TryParse(parts[2], out count) || count < 1 || count > MaxCount)
@@ -179,7 +189,8 @@ namespace GK2Spawner
             {
                 try
                 {
-                    cmd.Result = cmd.Money.HasValue ? ChangeMoney(cmd.Money.Value)
+                    cmd.Result = cmd.Action != null ? cmd.Action()
+                        : cmd.Money.HasValue ? ChangeMoney(cmd.Money.Value)
                         : cmd.Tech != null ? AddTechPoints(cmd.Tech)
                         : Give(cmd.ItemId, cmd.Count);
                 }

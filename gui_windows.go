@@ -379,7 +379,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	var color walk.Color = walk.RGB(200, 70, 60)
 	switch st := probeHelper(); {
 	case st == helperReady:
-		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v4", walk.RGB(70, 160, 70)
+		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v5", walk.RGB(70, 160, 70)
 	case st == helperOutdated:
 		text, warn, color = "Old helper in the game - restart the game", outdatedMsg, walk.RGB(210, 160, 40)
 	case !gameRunning():
@@ -387,7 +387,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	default:
 		err := connectToGame()
 		if err == nil {
-			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v4", walk.RGB(70, 160, 70)
+			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v5", walk.RGB(70, 160, 70)
 			ui.mw.Synchronize(func() { ui.log("Connected - helper loaded into the game.") })
 		} else {
 			// Mono isn't ready until the main menu; keep retrying quietly.

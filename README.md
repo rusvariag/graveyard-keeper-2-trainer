@@ -5,6 +5,7 @@ A small Windows tool for **single-player** Graveyard Keeper 2:
 - add **red / green / blue tech points** (research points; the game caps each colour at 999).
 - **add or remove money** in gold / silver / copper (1 gold = 100 silver = 10,000 copper).
 - **instant craft**: while it's on, the first hit at a workbench finishes the craft.
+- **zombie editor commands** in the in-game helper (name, points, organs, equipment, skill tree); the window for them comes next.
 
 ## Use it
 1. Run `gk2_item_spawner.exe`.
@@ -30,6 +31,11 @@ gk2_item_spawner.exe ─(1) injects GK2Spawner.dll via the Mono API──►  Gr
 - **Tech points.** `TECH r g b` calls `PlayerData.AddRes("tech_red"/"tech_green"/"tech_blue", n)`, the resources behind the research-point orbs. It's clamped at 999, and the HUD updates through the game's `OnGameResChanged` event.
 - **Money.** `MONEY <copper>` (negative removes) changes the player resource `money`, which the game stores in copper, within the game's own limits of 0 to 999,999,999.
 - **Instant craft.** `INSTANT 1|0` sets a flag. Every frame, while you work at a station, the helper tops up the current craft's progress with `CraftComponent.UpdateManual(remaining)`, the same call a tool hit makes. The game then finishes the craft normally: output, queue and XP. Crafts that need more mastery than you have are left alone.
+- **Zombie editor.** `ZOMBIE <sub>` works on the zombie shown in the game's `UIZombieWorkerWindow`, which the helper finds and reads through the window's `data`.
+  - Sub-commands: `STATE`, `GET` and `CATALOG` (one-line JSON), `NAME`, `TECH r g b`, `ADD id n`, `REMOVE uid`, `REPLACE uid id`, `EQUIP collar|hand|armor id`, `UNEQUIP hand|armor`, `PERK id 1|0`.
+  - Body items are added and removed through the window's body inventory, followed by `OnAddOrgan`/`OnRemoveOrgan` (organ-linked perks and red-skull slots).
+  - Equipment is set by adding the item to the body and writing its id into `equippedCollar/Hand/Armor`, then calling the same "tool changed" hook as the game.
+  - A skill is learned with `PurchaseTalentLevelUp(def, free)` followed by `CheckRedSkulls`. Afterwards the window is redrawn with its own data.
 
 ## Build from source
 ```bash

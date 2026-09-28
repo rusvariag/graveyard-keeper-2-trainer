@@ -23,9 +23,9 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "1.3"
+	appVersion    = "1.4"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
-	helperVersion = "VERSION 4"       // must match Bridge.Version
+	helperVersion = "VERSION 5"       // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."
 	maxCount      = 9999
 	techCap       = 999
@@ -138,6 +138,145 @@ func setInstantCraft(on bool) (ok bool, message string) {
 		return runCommand("INSTANT 1")
 	}
 	return runCommand("INSTANT 0")
+}
+
+// ---------- zombie editor (the zombie menu currently open in the game) ----------
+
+// ZombieBodyItem is one item inside a zombie's body: an organ, embalming, pocket item or equipment.
+type ZombieBodyItem struct {
+	UID   string `json:"uid"`
+	ID    string `json:"id"`
+	Count int    `json:"count"`
+	White int    `json:"white"`
+	Red   int    `json:"red"`
+	Slot  string `json:"slot"`  // collar | hand | armor | "" (not equipment)
+	Group string `json:"group"` // organ group such as gr_heart, "" for others
+	Perk  string `json:"perk"`
+}
+
+// ZombieTalent is one skill-tree branch of a zombie.
+type ZombieTalent struct {
+	ID      string   `json:"id"`
+	Value   int      `json:"value"`
+	Studied []string `json:"studied"`
+}
+
+// ZombieInfo is what "ZOMBIE GET" returns.
+type ZombieInfo struct {
+	Name           string           `json:"name"`
+	Type           string           `json:"type"`
+	State          string           `json:"state"`
+	TechRed        int              `json:"techRed"`
+	TechGreen      int              `json:"techGreen"`
+	TechBlue       int              `json:"techBlue"`
+	White          int              `json:"white"`
+	Red            int              `json:"red"`
+	PerksUsed      int              `json:"perksUsed"`
+	PerksDisabled  int              `json:"perksDisabled"`
+	CollarRedMax   int              `json:"collarRedMax"`
+	InCollarLimits bool             `json:"inCollarLimits"`
+	Items          []ZombieBodyItem `json:"items"`
+	Talents        []ZombieTalent   `json:"talents"`
+	Disabled       []string         `json:"disabled"`
+}
+
+// Equipped returns the item in an equipment slot, or nil.
+func (z *ZombieInfo) Equipped(slot string) *ZombieBodyItem {
+	for i := range z.Items {
+		if z.Items[i].Slot == slot {
+			return &z.Items[i]
+		}
+	}
+	return nil
+}
+
+// Learned reports whether a skill-tree node is bought, and whether it is inactive (not enough red skulls).
+func (z *ZombieInfo) Learned(id string) (learned, inactive bool) {
+	for _, t := range z.Talents {
+		for _, s := range t.Studied {
+			if s == id {
+				learned = true
+			}
+		}
+	}
+	for _, s := range z.Disabled {
+		if s == id {
+			inactive = true
+		}
+	}
+	return learned, inactive
+}
+
+// ZombieCatalog lists what can be put on / into a zombie ("ZOMBIE CATALOG").
+type ZombieCatalog struct {
+	Body []struct {
+		ID    string `json:"id"`
+		White int    `json:"white"`
+		Red   int    `json:"red"`
+		Group string `json:"group"`
+		Perk  string `json:"perk"`
+	} `json:"body"`
+	Collars      []string `json:"collars"`
+	Hands        []string `json:"hands"`
+	Armors       []string `json:"armors"`
+	CollarLimits []struct {
+		ID     string `json:"id"`
+		RedMax int    `json:"redMax"`
+	} `json:"collarLimits"`
+	Skills []struct {
+		ID        string   `json:"id"`
+		Branch    string   `json:"branch"`
+		Name      string   `json:"name"`
+		Perk      string   `json:"perk"`
+		Value     int      `json:"value"`
+		CostRed   int      `json:"costRed"`
+		CostGreen int      `json:"costGreen"`
+		CostBlue  int      `json:"costBlue"`
+		Parents   []string `json:"parents"`
+	} `json:"skills"`
+	Branches []struct {
+		ID   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"branches"`
+}
+
+// zombieCmd sends "ZOMBIE <args>" (one line; newlines are stripped).
+func zombieCmd(args string) (bool, string) {
+	args = strings.NewReplacer("\r", " ", "\n", " ").Replace(args)
+	return runCommand("ZOMBIE " + args)
+}
+
+// zombieOpen reports whether a zombie's menu is open in the game, and its name.
+func zombieOpen() (bool, string) {
+	ok, msg := zombieCmd("STATE")
+	if !ok || !strings.HasPrefix(msg, "OK open") {
+		return false, ""
+	}
+	return true, strings.TrimSpace(strings.TrimPrefix(msg, "OK open"))
+}
+
+func zombieJSON(sub string, out any) error {
+	ok, msg := zombieCmd(sub)
+	if !ok {
+		return errors.New(strings.TrimPrefix(msg, "ERR "))
+	}
+	return json.Unmarshal([]byte(strings.TrimPrefix(msg, "OK ")), out)
+}
+
+func zombieGet() (*ZombieInfo, error) {
+	var z ZombieInfo
+	if err := zombieJSON("GET", &z); err != nil {
+		return nil, err
+	}
+	return &z, nil
+}
+
+func zombieCatalog() (*ZombieCatalog, error) {
+	var c ZombieCatalog
+	if err := zombieJSON("CATALOG", &c); err != nil {
+		return nil, err
+	}
+	return &c, nil
 }
 
 func runCommand(cmd string) (bool, string) {
