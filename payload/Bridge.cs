@@ -5,6 +5,7 @@
 //   VERSION                 -> VERSION <n>
 //   ADD <itemId> <count>    -> OK ... / ERR ...
 //   TECH <red> <green> <blue> -> OK tech points now ... (TECH 0 0 0 = read balance)
+//   MONEY <delta>           -> OK money now ... (copper; negative removes, MONEY 0 = read balance)
 // Commands are queued and executed on Unity's main thread
 // (Application.onBeforeRender), because game/Unity APIs are not thread-safe.
 
@@ -22,10 +23,11 @@ namespace GK2Spawner
     public static class Bridge
     {
         public const int Port = 27817;
-        public const int Version = 2; // bump when the protocol changes; the launcher checks it
+        public const int Version = 3; // bump when the protocol changes; the launcher checks it
         private const int MaxCount = 9999;
         private const int TechCap = 999; // max of GameResSystemDef tech_red/green/blue
         private static readonly string[] TechRes = { "tech_red", "tech_green", "tech_blue" };
+        private const int MoneyMax = 999999999; // GameResSystemDef "money" min 0 / max 999999999 (copper)
 
         private static int started;
         private static readonly ConcurrentQueue<Command> Queue = new ConcurrentQueue<Command>();
@@ -35,6 +37,7 @@ namespace GK2Spawner
             public string ItemId;
             public int Count;
             public int[] Tech; // red, green, blue to add (TECH command); null for ADD
+            public int? Money; // copper to add/remove (MONEY command)
             public string Result;
             public readonly ManualResetEventSlim Done = new ManualResetEventSlim(false);
         }
@@ -117,9 +120,18 @@ namespace GK2Spawner
             {
                 return HandleTech(parts);
             }
+            if (parts.Length >= 1 && parts[0] == "MONEY")
+            {
+                int delta;
+                if (parts.Length != 2 || !int.TryParse(parts[1], out delta) || delta < -MoneyMax || delta > MoneyMax)
+                {
+                    return "ERR usage: MONEY <copper> (negative removes, 0 = show)";
+                }
+                return Run(new Command { Money = delta });
+            }
             if (parts.Length != 3 || parts[0] != "ADD")
             {
-                return "ERR usage: ADD <itemId> <count> | TECH <red> <green> <blue>";
+                return "ERR usage: ADD <itemId> <count> | TECH <red> <green> <blue> | MONEY <copper>";
             }
             int count;
             if (!int.TryParse(parts[2], out count) || count < 1 || count > MaxCount)
@@ -155,7 +167,9 @@ namespace GK2Spawner
             {
                 try
                 {
-                    cmd.Result = cmd.Tech != null ? AddTechPoints(cmd.Tech) : Give(cmd.ItemId, cmd.Count);
+                    cmd.Result = cmd.Money.HasValue ? ChangeMoney(cmd.Money.Value)
+                        : cmd.Tech != null ? AddTechPoints(cmd.Tech)
+                        : Give(cmd.ItemId, cmd.Count);
                 }
                 catch (Exception e)
                 {
@@ -217,5 +231,30 @@ namespace GK2Spawner
             return "OK tech points now red " + now[0] + ", green " + now[1] + ", blue " + now[2];
         }
 
+        // Money is the player res "money", counted in copper (1 silver = 100, 1 gold = 10000).
+        private static string ChangeMoney(int delta)
+        {
+            PlayerData player = MainGame.PlayerData;
+            if (MainGame.Instance == null || player == null)
+            {
+                return "ERR no save loaded - load your game first";
+            }
+            GameResSystemDef def = GameBalance.Me != null ? GameBalance.Me.GetDataOrNull<GameResSystemDef>("money") : null;
+            string resId = def != null ? def.ResId : "money";
+            long current = player.GetResInt(resId);
+            long target = Math.Max(0L, Math.Min((long)MoneyMax, current + delta));
+            if (target != current)
+            {
+                player.AddRes(resId, (float)(target - current)); // raises OnGameResChanged so the HUD updates
+            }
+            int now = player.GetResInt(resId);
+            string change = delta == 0 ? "" : (now - current >= 0 ? " (+" : " (") + (now - current) + ")";
+            return "OK money now " + FormatCopper(now) + change;
+        }
+
+        private static string FormatCopper(long copper)
+        {
+            return (copper / 10000) + "g " + (copper / 100 % 100) + "s " + (copper % 100) + "c";
+        }
     }
 }

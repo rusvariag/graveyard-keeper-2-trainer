@@ -26,6 +26,12 @@ type spawnerUI struct {
 	techB     *walk.NumberEdit
 	techBtn   *walk.PushButton
 	techRead  *walk.PushButton
+	moneyG    *walk.NumberEdit
+	moneyS    *walk.NumberEdit
+	moneyC    *walk.NumberEdit
+	moneyAdd  *walk.PushButton
+	moneyDel  *walk.PushButton
+	moneyRead *walk.PushButton
 	logBox    *walk.TextEdit
 	countInfo *walk.Label
 
@@ -124,6 +130,22 @@ func (ui *spawnerUI) run() error {
 					HSpacer{},
 					PushButton{AssignTo: &ui.techBtn, Text: "Add", OnClicked: ui.addTechPoints},
 					PushButton{AssignTo: &ui.techRead, Text: "Show", OnClicked: func() { ui.sendAsync(func() (bool, string) { return addTech(0, 0, 0) }) }},
+				},
+			},
+			GroupBox{
+				Title:  "Money (1 gold = 100 silver = 10000 copper)",
+				Layout: HBox{},
+				Children: []Widget{
+					Label{Text: "Gold", TextColor: walk.RGB(190, 150, 30)},
+					NumberEdit{AssignTo: &ui.moneyG, MinValue: 0, MaxValue: moneyMax / 10000, Decimals: 0, MaxSize: Size{Width: 80}},
+					Label{Text: "Silver", TextColor: walk.RGB(120, 120, 130)},
+					NumberEdit{AssignTo: &ui.moneyS, MinValue: 0, MaxValue: 99, Decimals: 0, MaxSize: Size{Width: 55}},
+					Label{Text: "Copper", TextColor: walk.RGB(170, 100, 50)},
+					NumberEdit{AssignTo: &ui.moneyC, MinValue: 0, MaxValue: 99, Decimals: 0, MaxSize: Size{Width: 55}},
+					HSpacer{},
+					PushButton{AssignTo: &ui.moneyAdd, Text: "Add", OnClicked: func() { ui.changeMoney(1) }},
+					PushButton{AssignTo: &ui.moneyDel, Text: "Remove", OnClicked: func() { ui.changeMoney(-1) }},
+					PushButton{AssignTo: &ui.moneyRead, Text: "Show", OnClicked: func() { ui.sendAsync(func() (bool, string) { return changeMoney(0) }) }},
 				},
 			},
 			Label{Text: "Log"},
@@ -240,6 +262,9 @@ func (ui *spawnerUI) updateButtons() {
 	ui.addBtn.SetEnabled(on && ui.selected() != nil)
 	ui.techBtn.SetEnabled(on)
 	ui.techRead.SetEnabled(on)
+	ui.moneyAdd.SetEnabled(on)
+	ui.moneyDel.SetEnabled(on)
+	ui.moneyRead.SetEnabled(on)
 }
 
 func (ui *spawnerUI) addSelected() {
@@ -258,6 +283,16 @@ func (ui *spawnerUI) addTechPoints() {
 		return
 	}
 	ui.sendAsync(func() (bool, string) { return addTech(r, g, b) })
+}
+
+// changeMoney adds (sign 1) or removes (sign -1) the gold/silver/copper amount entered.
+func (ui *spawnerUI) changeMoney(sign int) {
+	copper := int(ui.moneyG.Value())*10000 + int(ui.moneyS.Value())*100 + int(ui.moneyC.Value())
+	if copper == 0 {
+		ui.log("Enter an amount of gold / silver / copper first.")
+		return
+	}
+	ui.sendAsync(func() (bool, string) { return changeMoney(sign * copper) })
 }
 
 // sendAsync runs a game request off the UI thread and logs the answer.
@@ -307,7 +342,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	var color walk.Color = walk.RGB(200, 70, 60)
 	switch st := probeHelper(); {
 	case st == helperReady:
-		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v2", walk.RGB(70, 160, 70)
+		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v3", walk.RGB(70, 160, 70)
 	case st == helperOutdated:
 		text, warn, color = "Old helper in the game - restart the game", outdatedMsg, walk.RGB(210, 160, 40)
 	case !gameRunning():
@@ -315,7 +350,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	default:
 		err := connectToGame()
 		if err == nil {
-			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v2", walk.RGB(70, 160, 70)
+			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v3", walk.RGB(70, 160, 70)
 			ui.mw.Synchronize(func() { ui.log("Connected - helper loaded into the game.") })
 		} else {
 			// Mono isn't ready until the main menu; keep retrying quietly.

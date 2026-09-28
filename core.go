@@ -23,12 +23,13 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "1.1"
+	appVersion    = "1.2"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
-	helperVersion = "VERSION 2"       // must match Bridge.Version
+	helperVersion = "VERSION 3"       // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."
 	maxCount      = 9999
 	techCap       = 999
+	moneyMax      = 999999999 // copper; game limit of the "money" resource
 )
 
 // Item is one entry of items.json (generated from the game's GameBalance + English texts).
@@ -120,6 +121,15 @@ func addTech(r, g, b int) (ok bool, message string) {
 		}
 	}
 	return runCommand(fmt.Sprintf("TECH %d %d %d", r, g, b))
+}
+
+// changeMoney adds (positive) or removes (negative) copper; 0 just reports the balance.
+// 1 silver = 100 copper, 1 gold = 10000 copper. The game keeps money within 0-999999999.
+func changeMoney(copper int) (ok bool, message string) {
+	if copper < -moneyMax || copper > moneyMax {
+		return false, "amount is too large"
+	}
+	return runCommand(fmt.Sprintf("MONEY %d", copper))
 }
 
 func runCommand(cmd string) (bool, string) {
