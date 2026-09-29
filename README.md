@@ -43,6 +43,10 @@ gk2_item_spawner.exe ─(1) injects GK2Spawner.dll via the Mono API──►  Gr
   - Body items are added and removed through the window's body inventory, followed by `OnAddOrgan`/`OnRemoveOrgan` (organ-linked perks and red-skull slots).
   - Equipment is set by adding the item to the body and writing its id into `equippedCollar/Hand/Armor`, then calling the same "tool changed" hook as the game.
   - A skill is learned with `PurchaseTalentLevelUp(def, free)` followed by `CheckRedSkulls`. Afterwards the window is redrawn with its own data.
+- **Dead body editor.** `CORPSE STATE|GET|ADD|REMOVE|REPLACE` works on the body item (group `body`).
+  - The body comes from the open `UIAutopsyWindow`, `UIEmbalmWindow` or `UIGraveWindow` (read from each window's data), or else from `PlayerData.OverheadItems`.
+  - Items are added to and removed from the body item's inventory. If the body belongs to a zombie, the zombie's organ hooks run too, and its equipment is left alone.
+  - The window is then redrawn with fresh data, so the skull counts and the grave quality are up to date.
 
 ## Build from source
 ```bash

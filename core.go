@@ -23,9 +23,9 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "1.4"
+	appVersion    = "2.1"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
-	helperVersion = "VERSION 5"       // must match Bridge.Version
+	helperVersion = "VERSION 6"       // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."
 	maxCount      = 9999
 	techCap       = 999
@@ -178,6 +178,9 @@ type ZombieInfo struct {
 	Items          []ZombieBodyItem `json:"items"`
 	Talents        []ZombieTalent   `json:"talents"`
 	Disabled       []string         `json:"disabled"`
+	// dead bodies only ("CORPSE GET")
+	BodyID       string `json:"bodyId"`
+	GraveQuality *int   `json:"graveQuality"` // set when the body lies in a grave
 }
 
 // Equipped returns the item in an equipment slot, or nil.
@@ -253,6 +256,34 @@ func zombieOpen() (bool, string) {
 		return false, ""
 	}
 	return true, strings.TrimSpace(strings.TrimPrefix(msg, "OK open"))
+}
+
+// corpseCmd sends "CORPSE <args>": the dead body on an open autopsy / embalming table or grave,
+// or the one the player carries.
+func corpseCmd(args string) (bool, string) {
+	args = strings.NewReplacer("\r", " ", "\n", " ").Replace(args)
+	return runCommand("CORPSE " + args)
+}
+
+// corpseOpen reports whether a dead body can be edited now, and a short description of it.
+func corpseOpen() (bool, string) {
+	ok, msg := corpseCmd("STATE")
+	if !ok || !strings.HasPrefix(msg, "OK open") {
+		return false, ""
+	}
+	return true, strings.TrimSpace(strings.TrimPrefix(msg, "OK open"))
+}
+
+func corpseGet() (*ZombieInfo, error) {
+	ok, msg := corpseCmd("GET")
+	if !ok {
+		return nil, errors.New(strings.TrimPrefix(msg, "ERR "))
+	}
+	var z ZombieInfo
+	if err := json.Unmarshal([]byte(strings.TrimPrefix(msg, "OK ")), &z); err != nil {
+		return nil, err
+	}
+	return &z, nil
 }
 
 func zombieJSON(sub string, out any) error {
