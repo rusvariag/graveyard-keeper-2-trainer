@@ -5,7 +5,7 @@ A small Windows tool for **single-player** Graveyard Keeper 2:
 - add **red / green / blue tech points** (research points; the game caps each colour at 999).
 - **add or remove money** in gold / silver / copper (1 gold = 100 silver = 10,000 copper).
 - **instant craft**: while it's on, the first hit at a workbench finishes the craft.
-- **zombie editor commands** in the in-game helper (name, points, organs, equipment, skill tree); the window for them comes next.
+- **zombie editor**: while a zombie's menu is open in the game, edit that zombie's name, skill-tree points, organs (and so its white/red skulls), body items, collar, tool/weapon, armour and skill tree.
 
 ## Use it
 1. Run `gk2_item_spawner.exe`.
@@ -14,6 +14,13 @@ A small Windows tool for **single-player** Graveyard Keeper 2:
 1. Tech points: enter red / green / blue amounts and click **Add**. **Show** displays your current balance.
 1. Money: enter gold / silver / copper and click **Add** or **Remove**. **Show** displays your current money. Removing more than you have leaves you at 0.
 1. Crafting: turn on **Instant craft**, then craft as usual. The first hit finishes the item, and each queued item takes one hit. It applies only to what *you* craft, not to zombies or growing plants. It stays on after a game restart, because the tool re-sends it when it reconnects.
+1. Zombie: in the game, open a zombie's menu (the one where you give it items or spend its red/green/blue points). The **Edit zombie…** button lights up within a second. Click it to open the editor:
+   - **Name**: type a name and click **Rename**.
+   - **Points**: set the zombie's red / green / blue skill-tree points.
+   - **Equipment**: pick the collar (bronze up to 5 red skulls, gold up to 10, steel up to 99), the tool or weapon, and the armour. "(empty)" removes a tool or armour.
+   - **Body**: lists every organ and item inside the zombie with its skull value. Remove one, **Replace** an organ with another of the same kind (for example a better heart), or **Add** organs and embalming items. White and red skulls aren't a number you can type in: the game adds them up from these items, so this is how you change them.
+   - **Skill tree**: pick a branch, then **Learn** or **Forget** skills. Learning is free. The game allows as many active skills as the zombie has red skulls; learned skills above that show as inactive until you add red skulls.
+   - The game's zombie menu redraws after each change. If something looks stale, close and reopen it, then reload.
 
 After **updating this tool**, restart the game once, because the old helper can't be unloaded. The status line tells you when that's needed (yellow dot).
 
@@ -48,7 +55,7 @@ go install github.com/tc-hib/go-winres@latest && go-winres make --in winres/winr
 # The tool (Go 1.22+), cross-compiled for Windows x64; it embeds build/GK2Spawner.dll
 GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-s -w -H windowsgui" -o gk2_item_spawner.exe .
 ```
-Files: `core.go` (item list and helper protocol), `gui_windows.go` (the window), `inject_windows.go` (Mono injection), `payload/` (the in-game helper).
+Files: `core.go` (item list and helper protocol), `gui_windows.go` (the window), `gui_zombie_windows.go` (the zombie / dead body editor), `inject_windows.go` (Mono injection), `payload/` (the in-game helper).
 A non-Windows build is a small command-line tool for testing against the helper (run it without arguments for the list of commands).
 
 ## Notes

@@ -33,6 +33,9 @@ type spawnerUI struct {
 	moneyDel  *walk.PushButton
 	moneyRead *walk.PushButton
 	instant   *walk.CheckBox
+	zombieLbl *walk.Label
+	zombieBtn *walk.PushButton
+	zombieOn  atomic.Bool // a zombie's menu is open in the game
 	logBox    *walk.TextEdit
 	countInfo *walk.Label
 
@@ -161,6 +164,15 @@ func (ui *spawnerUI) run() error {
 					HSpacer{},
 				},
 			},
+			GroupBox{
+				Title:  "Zombie",
+				Layout: HBox{},
+				Children: []Widget{
+					Label{AssignTo: &ui.zombieLbl, Text: "Open a zombie's menu in the game to edit it."},
+					HSpacer{},
+					PushButton{AssignTo: &ui.zombieBtn, Text: "Edit zombie…", Font: Font{Bold: true}, OnClicked: ui.openZombieEditor},
+				},
+			},
 			Label{Text: "Log"},
 			TextEdit{AssignTo: &ui.logBox, ReadOnly: true, VScroll: true, MinSize: Size{Height: 110}},
 		},
@@ -173,6 +185,7 @@ func (ui *spawnerUI) run() error {
 	ui.log("Start the game and load your save - the spawner connects automatically.")
 	go ui.watchGame()
 	go ui.watchSearch()
+	go ui.watchZombie()
 	ui.search.SetFocus()
 	ui.mw.Run()
 	return nil
@@ -278,6 +291,7 @@ func (ui *spawnerUI) updateButtons() {
 	ui.moneyAdd.SetEnabled(on)
 	ui.moneyDel.SetEnabled(on)
 	ui.moneyRead.SetEnabled(on)
+	ui.zombieBtn.SetEnabled(ui.ready.Load() && ui.zombieOn.Load())
 }
 
 func (ui *spawnerUI) addSelected() {
@@ -358,6 +372,32 @@ func (ui *spawnerUI) log(msg string) {
 }
 
 // watchGame keeps the status up to date and injects the helper automatically.
+
+// watchZombie checks once a second whether a zombie's menu is open in the game,
+// and enables the "Edit zombie…" button.
+func (ui *spawnerUI) watchZombie() {
+	lastZombie := "\x00"
+	for range time.Tick(time.Second) {
+		zOpen, zName := false, ""
+		if ui.ready.Load() {
+			zOpen, zName = zombieOpen()
+		}
+		zKey := fmt.Sprint(zOpen, zName)
+		if zKey == lastZombie {
+			continue
+		}
+		lastZombie = zKey
+		ui.zombieOn.Store(zOpen)
+		ui.mw.Synchronize(func() {
+			if zOpen {
+				ui.zombieLbl.SetText("Zombie menu open in game: " + zName)
+			} else {
+				ui.zombieLbl.SetText("Open a zombie's menu in the game to edit it.")
+			}
+			ui.updateButtons()
+		})
+	}
+}
 
 func (ui *spawnerUI) watchGame() {
 	for {
