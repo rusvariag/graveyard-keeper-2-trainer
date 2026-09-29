@@ -36,6 +36,9 @@ type spawnerUI struct {
 	zombieLbl *walk.Label
 	zombieBtn *walk.PushButton
 	zombieOn  atomic.Bool // a zombie's menu is open in the game
+	corpseLbl *walk.Label
+	corpseBtn *walk.PushButton
+	corpseOn  atomic.Bool // a dead body is on an open table / grave, or carried
 	logBox    *walk.TextEdit
 	countInfo *walk.Label
 
@@ -173,6 +176,15 @@ func (ui *spawnerUI) run() error {
 					PushButton{AssignTo: &ui.zombieBtn, Text: "Edit zombie…", Font: Font{Bold: true}, OnClicked: ui.openZombieEditor},
 				},
 			},
+			GroupBox{
+				Title:  "Dead body",
+				Layout: HBox{},
+				Children: []Widget{
+					Label{AssignTo: &ui.corpseLbl, Text: corpseIdleText},
+					HSpacer{},
+					PushButton{AssignTo: &ui.corpseBtn, Text: "Edit body…", Font: Font{Bold: true}, OnClicked: ui.openCorpseEditor},
+				},
+			},
 			Label{Text: "Log"},
 			TextEdit{AssignTo: &ui.logBox, ReadOnly: true, VScroll: true, MinSize: Size{Height: 110}},
 		},
@@ -292,6 +304,7 @@ func (ui *spawnerUI) updateButtons() {
 	ui.moneyDel.SetEnabled(on)
 	ui.moneyRead.SetEnabled(on)
 	ui.zombieBtn.SetEnabled(ui.ready.Load() && ui.zombieOn.Load())
+	ui.corpseBtn.SetEnabled(ui.ready.Load() && ui.corpseOn.Load())
 }
 
 func (ui *spawnerUI) addSelected() {
@@ -372,27 +385,43 @@ func (ui *spawnerUI) log(msg string) {
 }
 
 // watchGame keeps the status up to date and injects the helper automatically.
+const corpseIdleText = "Open an autopsy / embalming table or grave with a body, or carry a body."
 
-// watchZombie checks once a second whether a zombie's menu is open in the game,
-// and enables the "Edit zombie…" button.
+var corpsePlaceText = map[string]string{
+	"autopsy": "on the autopsy table",
+	"embalm":  "on the embalming table",
+	"grave":   "in the grave",
+	"carried": "carried",
+}
+
+// watchZombie checks once a second whether a zombie's menu is open in the game, and whether a
+// dead body can be edited, and enables the matching "Edit…" buttons.
 func (ui *spawnerUI) watchZombie() {
-	lastZombie := "\x00"
+	lastZombie, lastCorpse := "\x00", "\x00"
 	for range time.Tick(time.Second) {
-		zOpen, zName := false, ""
+		zOpen, zName, cOpen, cDesc := false, "", false, ""
 		if ui.ready.Load() {
 			zOpen, zName = zombieOpen()
+			cOpen, cDesc = corpseOpen()
 		}
-		zKey := fmt.Sprint(zOpen, zName)
-		if zKey == lastZombie {
+		zKey, cKey := fmt.Sprint(zOpen, zName), fmt.Sprint(cOpen, cDesc)
+		if zKey == lastZombie && cKey == lastCorpse {
 			continue
 		}
-		lastZombie = zKey
+		lastZombie, lastCorpse = zKey, cKey
 		ui.zombieOn.Store(zOpen)
+		ui.corpseOn.Store(cOpen)
 		ui.mw.Synchronize(func() {
 			if zOpen {
 				ui.zombieLbl.SetText("Zombie menu open in game: " + zName)
 			} else {
 				ui.zombieLbl.SetText("Open a zombie's menu in the game to edit it.")
+			}
+			if cOpen {
+				where, name, _ := strings.Cut(cDesc, " ")
+				ui.corpseLbl.SetText(fmt.Sprintf("Body %s: %s", corpsePlaceText[where], name))
+			} else {
+				ui.corpseLbl.SetText(corpseIdleText)
 			}
 			ui.updateButtons()
 		})

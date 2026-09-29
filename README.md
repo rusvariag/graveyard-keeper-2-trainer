@@ -6,6 +6,7 @@ A small Windows tool for **single-player** Graveyard Keeper 2:
 - **add or remove money** in gold / silver / copper (1 gold = 100 silver = 10,000 copper).
 - **instant craft**: while it's on, the first hit at a workbench finishes the craft.
 - **zombie editor**: while a zombie's menu is open in the game, edit that zombie's name, skill-tree points, organs (and so its white/red skulls), body items, collar, tool/weapon, armour and skill tree.
+- **dead body editor**: change a corpse's organs and embalming (its white/red skulls) before burial, or even in the grave.
 
 ## Use it
 1. Run `gk2_item_spawner.exe`.
@@ -21,6 +22,9 @@ A small Windows tool for **single-player** Graveyard Keeper 2:
    - **Body**: lists every organ and item inside the zombie with its skull value. Remove one, **Replace** an organ with another of the same kind (for example a better heart), or **Add** organs and embalming items. White and red skulls aren't a number you can type in: the game adds them up from these items, so this is how you change them.
    - **Skill tree**: pick a branch, then **Learn** or **Forget** skills. Learning is free. The game allows as many active skills as the zombie has red skulls; learned skills above that show as inactive until you add red skulls.
    - The game's zombie menu redraws after each change. If something looks stale, close and reopen it, then reload.
+1. Dead body: put a body on the **autopsy table** or **embalming table** and open it, open a **grave** that holds a body, or just **carry** a body. The editor shows the body's organs and embalming items, with the same Remove / Replace / Add controls as the zombie editor.
+   - **For a good burial**: the grave's quality is `grave items' quality − the body's red skulls`, but never more than the body's **white** skulls. So swap red-skull organs for white ones (the best are listed first) and add *Solution for Corpses* for extra white skulls.
+   - If the body lies in a grave, the editor shows that grave's current quality, and the game's grave window updates straight away.
 
 After **updating this tool**, restart the game once, because the old helper can't be unloaded. The status line tells you when that's needed (yellow dot).
 

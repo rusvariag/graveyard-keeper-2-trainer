@@ -1,6 +1,7 @@
 //go:build windows
 
 // Zombie editor window: edits the zombie whose menu is open in the game.
+// The same window in "dead body" mode edits a corpse (organs and embalming only).
 package main
 
 import (
@@ -14,8 +15,9 @@ import (
 )
 
 type zombieEditor struct {
-	ui  *spawnerUI
-	dlg *walk.Dialog
+	ui     *spawnerUI
+	dlg    *walk.Dialog
+	corpse bool // dead-body mode: CORPSE commands, only the body section
 
 	nameRow                        *walk.Composite
 	pointsBox, equipBox, skillsBox *walk.GroupBox
@@ -46,8 +48,13 @@ type zombieEditor struct {
 }
 
 // openZombieEditor loads the open zombie and shows the editor (runs on the UI thread).
-func (ui *spawnerUI) openZombieEditor() {
-	ed := &zombieEditor{ui: ui}
+func (ui *spawnerUI) openZombieEditor() { ui.openEditor(false) }
+
+// openCorpseEditor edits the dead body on the open autopsy / embalming table or grave, or the carried one.
+func (ui *spawnerUI) openCorpseEditor() { ui.openEditor(true) }
+
+func (ui *spawnerUI) openEditor(corpse bool) {
+	ed := &zombieEditor{ui: ui, corpse: corpse}
 	cat, err := zombieCatalog() // organs and embalming items; works without an open zombie menu
 	if err == nil {
 		ed.cat = cat
@@ -57,15 +64,28 @@ func (ui *spawnerUI) openZombieEditor() {
 			}
 		}
 	}
-	ui.log("✖ zombie editor: " + err.Error())
+	ui.log("✖ " + ed.what() + " editor: " + err.Error())
 }
 
-// send runs one ZOMBIE sub-command.
+func (ed *zombieEditor) what() string {
+	if ed.corpse {
+		return "dead body"
+	}
+	return "zombie"
+}
+
+// send runs one sub-command against the zombie or the dead body.
 func (ed *zombieEditor) send(cmd string) (bool, string) {
+	if ed.corpse {
+		return corpseCmd(cmd)
+	}
 	return zombieCmd(cmd)
 }
 
 func (ed *zombieEditor) get() (*ZombieInfo, error) {
+	if ed.corpse {
+		return corpseGet()
+	}
 	return zombieGet()
 }
 
@@ -174,6 +194,14 @@ func (ed *zombieEditor) run() error {
 	ed.body.SetModel(ed.bodyModel)
 	ed.skills.SetModel(ed.skillModel)
 	ed.replaceList.SetModel(ed.replaceModel)
+	if ed.corpse {
+		ed.dlg.SetTitle("Dead body editor")
+		for _, w := range []walk.Widget{ed.nameRow, ed.pointsBox, ed.equipBox, ed.skillsBox} {
+			w.SetVisible(false)
+		}
+		ed.dlg.SetMinMaxSize(walk.Size{Width: 720, Height: 480}, walk.Size{})
+		ed.dlg.SetSize(walk.Size{Width: 760, Height: 520})
+	}
 	ed.fillStatic()
 	ed.fillFromInfo()
 	ed.dlg.Run()
@@ -244,6 +272,11 @@ func branchLabel(id, name string) string {
 // fillFromInfo shows the zombie's current state.
 func (ed *zombieEditor) fillFromInfo() {
 	z := ed.info
+	if ed.corpse {
+		ed.fillCorpseHeader()
+		ed.fillBody()
+		return
+	}
 	ed.title.SetText(fmt.Sprintf("%s  -  %s", z.Name, z.Type))
 	active := z.PerksUsed - z.PerksDisabled
 	ed.skulls.SetText(fmt.Sprintf("White skulls: %d     Red skulls: %d  (skill slots: %d active of %d learned)", z.White, z.Red, active, z.PerksUsed))
@@ -271,6 +304,28 @@ func (ed *zombieEditor) fillFromInfo() {
 	}
 	ed.fillBody()
 	ed.fillSkills()
+}
+
+var corpsePlaces = map[string]string{
+	"autopsy": "on the autopsy table",
+	"embalm":  "on the embalming table",
+	"grave":   "in the grave",
+	"carried": "carried on your shoulders",
+}
+
+// fillCorpseHeader explains what the body's skulls mean for its burial.
+func (ed *zombieEditor) fillCorpseHeader() {
+	z := ed.info
+	ed.title.SetText(fmt.Sprintf("%s  -  %s %s", z.Name, z.Type, corpsePlaces[z.State]))
+	ed.skulls.SetText(fmt.Sprintf("White skulls: %d  (the grave's quality can't go above this)      Red skulls: %d  (subtracted from the grave's quality)", z.White, z.Red))
+	var notes []string
+	if z.GraveQuality != nil {
+		notes = append(notes, fmt.Sprintf("This grave's quality is now %d.", *z.GraveQuality))
+	}
+	if z.Red > 0 {
+		notes = append(notes, "Tip: remove or replace the red-skull organs for a better burial.")
+	}
+	ed.warn.SetText(strings.Join(notes, "  "))
 }
 
 // fillBody shows the body's items and keeps the selection.
@@ -332,6 +387,8 @@ func (ed *zombieEditor) fillReplace() {
 	switch {
 	case it == nil:
 		hint = "Click an item on the left to see what it can be replaced with."
+	case it.Slot != "" && ed.corpse:
+		hint = "That's the zombie's equipment - change it in the zombie editor."
 	case it.Slot != "":
 		hint = "That's equipment - change it in the Equipment section above."
 	default:
@@ -551,7 +608,7 @@ func (ed *zombieEditor) doMany(cmds []string) {
 				ed.status.SetText("✔ reloaded")
 			}
 			if len(cmds) > 0 {
-				ed.ui.log("zombie " + info.Name + ": " + ed.status.Text())
+				ed.ui.log(ed.what() + " " + info.Name + ": " + ed.status.Text())
 			}
 			ed.info = info
 			ed.fillFromInfo()
