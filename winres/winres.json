@@ -4,9 +4,9 @@
       "0409": {
         "identity": {
           "name": "GK2ItemSpawner",
-          "version": "2.5.0.0"
+          "version": "2.6.0.0"
         },
-        "description": "GK2 Item Spawner",
+        "description": "Keeper Trainer",
         "minimum-os": "win7",
         "execution-level": "as invoker",
         "ui-access": false,
@@ -28,17 +28,22 @@
     "#1": {
       "0000": {
         "fixed": {
-          "file_version": "2.5.0.0",
-          "product_version": "2.5.0.0"
+          "file_version": "2.6.0.0",
+          "product_version": "2.6.0.0"
         },
         "info": {
           "0409": {
-            "FileDescription": "GK2 Item Spawner for Graveyard Keeper 2",
-            "ProductName": "GK2 Item Spawner",
-            "ProductVersion": "2.5"
+            "FileDescription": "Keeper Trainer for Graveyard Keeper 2",
+            "ProductName": "Keeper Trainer",
+            "ProductVersion": "2.6"
           }
         }
       }
+    }
+  },
+  "RT_GROUP_ICON": {
+    "#1": {
+      "0000": "icon.png"
     }
   }
 }

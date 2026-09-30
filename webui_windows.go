@@ -192,6 +192,7 @@ func runWebUI(items []Item) bool {
 			Title:  "Graveyard Keeper 2 Trainer " + appVersion,
 			Width:  1180,
 			Height: 800,
+			IconId: 1,
 			Center: true,
 		},
 	})

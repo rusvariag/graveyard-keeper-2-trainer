@@ -15,12 +15,12 @@ The trainer opens in a modern dark window. It has a sidebar with **Items · Play
 - The window is drawn with **WebView2**, the Edge engine built into Windows 10/11, inside the app's own window. There's no browser tab and no console.
 - If WebView2 is missing, the app opens the classic plain window.
 - **Keep `WebView2Loader.dll` next to the .exe.** It's Microsoft's own signed file and is loaded the normal Windows way. Without it, you get the classic window.
-- The modern window takes ~1–2 s to start, because WebView2 starts Edge's helper processes. For the instant plain window, start with **`--classic`**: make a shortcut with `KeeperTrainer-v2.5.exe --classic`.
+- The modern window takes ~1–2 s to start, because WebView2 starts Edge's helper processes. For the instant plain window, start with **`--classic`**: make a shortcut with `KeeperTrainer-v2.6.exe --classic`.
 - **Antivirus:** this build doesn't load any DLL from memory. Upstream go-webview2 does that with an embedded loader, and Defender flags that technique, so the project uses a fork in `third_party/go-webview2`. The game helper is still injected into the game process, as every trainer does, so an unsigned trainer can still be flagged now and then.
 - The Zombie and Dead body tabs fill in by themselves when a zombie menu, a body table or a grave is open in the game. A green dot marks each tab that has something to edit.
 
 ## Use it
-1. Run `KeeperTrainer-v2.5.exe` (keep `WebView2Loader.dll` next to it).
+1. Run `KeeperTrainer-v2.6.exe` (keep `WebView2Loader.dll` next to it).
 1. Start the game (or have it running) and **load your save**. The tool finds the game and **connects by itself**, and the status dot turns green. Use **Reconnect** only if you want to retry straight away.
 1. Items: type in the search box, pick an item, set the count (or use ×1 / ×10 / ×50 / Stack), and click **Add to inventory**. You can also double-click the item.
 1. Tech points: enter red / green / blue amounts and click **Add**. **Show** displays your current balance.
@@ -46,7 +46,7 @@ After **updating this tool**, restart the game once, because the old helper can'
 
 ## How it works
 ```
-KeeperTrainer-v2.5.exe ─(1) injects GK2Spawner.dll via the Mono API──►  GraveyardKeeper2.exe
+KeeperTrainer-v2.6.exe ─(1) injects GK2Spawner.dll via the Mono API──►  GraveyardKeeper2.exe
      └──(2) "ADD iron_ingot 5" over 127.0.0.1:27817  ──────────►   │ Bridge.Start() → queue → main thread
                                                                     │ PlayerData.Inventory.AddItemToInventory(new Item(id, n))
                                                                     │ or dropSystem.DropItem(...) if full
@@ -80,7 +80,7 @@ dotnet build payload -c Release -o build
 go install github.com/tc-hib/go-winres@latest && go-winres make --in winres/winres.json --arch amd64
 
 # The tool (Go 1.22+), cross-compiled for Windows x64; it embeds build/GK2Spawner.dll
-GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-s -w -H windowsgui" -o KeeperTrainer-v2.5.exe .
+GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-s -w -H windowsgui" -o KeeperTrainer-v2.6.exe .
 ```
 Files: `core.go` (item list and helper protocol), `gui_windows.go` (the classic window), `gui_zombie_windows.go` (its zombie / dead body editor), `webui_windows.go` + `webui.html` (the modern window), `inject_windows.go` (Mono injection), `payload/` (the in-game helper).
 A non-Windows build is a small command-line tool for testing against the helper (run it without arguments for the list of commands).
