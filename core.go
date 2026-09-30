@@ -23,7 +23,7 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "2.3"
+	appVersion    = "2.5"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
 	helperVersion = "VERSION 7"       // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."

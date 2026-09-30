@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graveyard Keeper 2 Trainer</title>
+<style>
+:root{
+  --bg:#0d1013; --bg2:#12161b; --panel:#171c22; --panel2:#1d232b; --line:#2a323c; --line2:#35404c;
+  --text:#e9e3d6; --muted:#8e97a4; --dim:#5f6873;
+  --accent:#8fd14f; --accent2:#6fb33a; --glow:rgba(143,209,79,.35);
+  --gold:#e0b453; --silver:#c9cfd6; --copper:#c47a45;
+  --red:#e0564a; --green:#5fbf5b; --blue:#4f95e8; --warn:#e3a33b;
+  --r:10px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:14px/1.35 "Segoe UI",system-ui,sans-serif;overflow:hidden;user-select:none}
+input,select,button{font:inherit;color:inherit}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:#2c343e;border-radius:8px;border:2px solid var(--panel)}::-webkit-scrollbar-track{background:transparent}
+
+.app{display:grid;grid-template-rows:74px 1fr 104px;grid-template-columns:200px 1fr;height:100vh}
+header{grid-column:1/3;display:flex;align-items:center;gap:14px;padding:0 20px;
+  background:linear-gradient(90deg,#141a12 0%,#11161b 45%,#10141a 100%);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+header:after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 60%)}
+.logo{width:46px;height:46px;filter:drop-shadow(0 0 8px var(--glow))}
+.brand .t1{font-size:12px;letter-spacing:.32em;color:var(--muted);text-transform:uppercase}
+.brand .t2{font-size:23px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.05}
+.brand .t2 b{color:var(--accent);text-shadow:0 0 14px var(--glow)}
+.ver{margin-left:4px;font-size:11px;color:var(--muted);border:1px solid var(--line2);border-radius:20px;padding:2px 8px;align-self:flex-start;margin-top:17px}
+.spacer{flex:1}
+.pill{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:7px 14px 7px 12px;max-width:430px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);flex:none}
+.dot.ok{background:var(--green);box-shadow:0 0 10px var(--green)}.dot.warn{background:var(--warn);box-shadow:0 0 10px var(--warn)}
+.pill span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+nav{background:var(--bg2);border-right:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;gap:4px}
+nav button{display:flex;align-items:center;gap:11px;border:0;background:transparent;padding:10px 12px;border-radius:9px;color:var(--muted);cursor:pointer;text-align:left;font-weight:600;position:relative}
+nav button svg{width:19px;height:19px;flex:none;opacity:.85}
+nav button:hover{background:var(--panel);color:var(--text)}
+nav button.on{background:linear-gradient(90deg,rgba(143,209,79,.16),rgba(143,209,79,.03));color:var(--text);box-shadow:inset 3px 0 0 var(--accent)}
+nav button.on svg{color:var(--accent);opacity:1}
+nav .badge{margin-left:auto;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);display:none}
+nav .badge.show{display:block}
+nav .foot{margin-top:auto;font-size:11px;color:var(--dim);padding:8px 10px;line-height:1.5}
+
+main{overflow:auto;padding:20px 22px;background:radial-gradient(1200px 500px at 70% -10%,rgba(143,209,79,.05),transparent 60%)}
+.page{display:none}.page.on{display:block;animation:fade .18s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+h2{margin:0 0 4px;font-size:20px;letter-spacing:.02em}
+.sub{color:var(--muted);margin-bottom:16px}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.card h3{margin:0 0 12px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.card h3 .hint{margin-left:auto;text-transform:none;letter-spacing:0;font-weight:400;color:var(--dim)}
+.card h3 .hint .btn{color:var(--text);font-weight:600}
+.card h3 .hint .btn.primary{color:#0f1a07}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.row+.row{margin-top:10px}
+label.f{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select{background:var(--bg2);border:1px solid var(--line2);border-radius:8px;padding:8px 10px;outline:none;min-width:0}
+input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(143,209,79,.15)}
+input[type=number]{width:92px}
+label.f input,label.f select{font-size:14px}
+.ico{width:15px;height:15px;vertical-align:-2px}
+select{padding-right:26px}
+.btn{border:1px solid var(--line2);background:var(--panel2);padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;transition:.12s}
+.btn:hover{border-color:#4a5663;background:#232a33}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:linear-gradient(180deg,#95d957,#6fb33a);border-color:#80c347;color:#0f1a07;box-shadow:0 4px 14px rgba(143,209,79,.25)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.danger{background:#3a1f1d;border-color:#6b2e29;color:#ffb1a9}
+.btn.ghost{background:transparent}
+.btn.sm{padding:5px 10px;font-size:12px}
+.btn:disabled{opacity:.4;cursor:not-allowed;filter:none}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:3px 10px;font-size:12px;border:1px solid var(--line2);background:var(--bg2);color:var(--muted)}
+.chip.w{color:#f2efe6}.chip.r{color:#ff8b7f}.chip.g{color:var(--accent)}
+.mono{font-family:Consolas,monospace;font-size:12px;color:var(--dim)}
+.note{font-size:12px;color:var(--muted)}
+.warn{background:rgba(227,163,59,.08);border:1px solid rgba(227,163,59,.35);color:#f0c983;border-radius:8px;padding:8px 12px;font-size:13px}
+.warn:empty{display:none}
+.empty{text-align:center;padding:48px 20px;color:var(--muted)}
+.empty svg{width:64px;height:64px;color:var(--line2);margin-bottom:10px}
+.empty b{display:block;color:var(--text);font-size:16px;margin-bottom:6px}
+
+/* item list */
+.items{display:grid;grid-template-columns:1fr 300px;gap:14px;height:calc(100vh - 74px - 104px - 108px)}
+.list{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;min-height:0}
+.list .tools{display:flex;gap:8px;padding:12px;border-bottom:1px solid var(--line)}
+.search{flex:1;position:relative}.search input{width:100%;padding-left:34px}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--dim)}
+.rows{overflow:auto;flex:1}
+.it{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:8px 14px;border-bottom:1px solid #1f252d;cursor:pointer}
+.it:hover{background:#1c222a}.it.sel{background:linear-gradient(90deg,rgba(143,209,79,.14),transparent);box-shadow:inset 3px 0 0 var(--accent)}
+.it .n{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it .d{color:var(--gold);font-size:12px;white-space:nowrap}
+.it .i{grid-column:1/3}
+.count{padding:8px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--dim)}
+.selcard .big{font-size:18px;font-weight:700;margin-bottom:2px}
+.stepper{display:flex;align-items:center;background:var(--bg2);border:1px solid var(--line2);border-radius:8px;overflow:hidden}
+.stepper button{border:0;background:transparent;width:36px;height:36px;cursor:pointer;font-size:18px;color:var(--muted)}
+.stepper button:hover{color:var(--text);background:#232a33}
+.stepper input{border:0;background:transparent;text-align:center;width:80px;box-shadow:none!important}
+
+/* switches */
+.switch{display:flex;align-items:center;gap:14px;cursor:pointer}
+.switch input{display:none}
+.switch .track{width:48px;height:26px;border-radius:20px;background:#2a323c;position:relative;transition:.18s;flex:none;border:1px solid var(--line2)}
+.switch .track:after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#c7ccd3;transition:.18s}
+.switch input:checked+.track{background:var(--accent2);border-color:var(--accent);box-shadow:0 0 12px var(--glow)}
+.switch input:checked+.track:after{left:25px;background:#fff}
+.switch .lbl b{display:block}.switch .lbl small{color:var(--muted)}
+
+.sw{display:flex;flex-direction:column;gap:14px}
+.slider{margin-top:16px}.slider .sl-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}.slider .sl-h span{color:var(--accent);font-weight:800;min-width:42px}
+.slider .sl-h button{margin-left:auto}.slider small{color:var(--muted)}
+input[type=range]{width:100%;accent-color:var(--accent);height:22px}
+.npc{display:grid;grid-template-columns:110px 1fr 46px auto;gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid #1f252d}
+.npc b{font-weight:600}.npc .v{color:var(--gold);font-weight:800;text-align:right}
+/* coins / points */
+.coin{width:14px;height:14px;border-radius:50%;display:inline-block;box-shadow:inset -2px -2px 0 rgba(0,0,0,.25)}
+.pt{display:flex;flex-direction:column;gap:5px}.pt span{font-size:12px;font-weight:700;letter-spacing:.1em}
+.pt.r span{color:#ff7a6c}.pt.g span{color:var(--accent)}.pt.b span{color:#6fb0ff}
+
+/* time */
+.clock{display:flex;align-items:center;gap:22px}
+.dial{width:112px;height:112px;border-radius:50%;position:relative;flex:none;
+  background:conic-gradient(from 180deg,#1b2340 0 25%,#e9b65b 25% 26%,#5aa0d8 26% 74%,#e9885b 74% 75%,#1b2340 75%);box-shadow:0 0 0 6px var(--bg2),0 0 24px rgba(0,0,0,.6)}
+.dial .hand{position:absolute;left:50%;top:50%;width:4px;height:48px;background:#fff;border-radius:3px;transform-origin:50% 0;box-shadow:0 0 8px #fff}
+.dial .hub{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px;border-radius:50%;background:var(--panel);border:3px solid #fff}
+.clock .when{font-size:40px;font-weight:800;letter-spacing:.04em}
+.clock .day{font-size:15px;color:var(--muted)}.clock .day b{color:var(--gold)}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:9px;overflow:hidden}
+.seg button{border:0;background:var(--bg2);padding:8px 14px;cursor:pointer;color:var(--muted);font-weight:700}
+.seg button.on{background:var(--accent2);color:#0f1a07}
+.ff{display:none;align-items:center;gap:10px;margin-top:14px;padding:10px 14px;border-radius:9px;background:rgba(79,149,232,.1);border:1px solid rgba(79,149,232,.35);color:#a9cdfb}
+.ff.show{display:flex}
+.ff .bar{flex:1;height:6px;border-radius:6px;background:#1d2a3a;overflow:hidden}.ff .bar i{display:block;height:100%;background:linear-gradient(90deg,#4f95e8,#8fd14f);width:0%;transition:width .9s linear}
+
+/* zombie / body editors */
+.twin{display:grid;grid-template-columns:3fr 2fr;gap:12px}
+.box{background:var(--bg2);border:1px solid var(--line);border-radius:8px;height:230px;overflow:auto}
+.box .o{padding:7px 12px;border-bottom:1px solid #1d232a;cursor:pointer;display:flex;gap:8px;align-items:center}
+.box .o:hover{background:#1c222a}.box .o.sel{background:rgba(143,209,79,.13)}
+.box .o .x{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.tag{font-size:10px;font-weight:800;letter-spacing:.08em;border-radius:5px;padding:2px 6px;text-transform:uppercase}
+.tag.l{background:rgba(95,191,91,.18);color:#8fe18b}.tag.i{background:rgba(227,163,59,.18);color:#f0c983}.tag.n{background:#232a33;color:var(--dim)}
+.tag.e{background:rgba(79,149,232,.18);color:#9cc6fb}
+.stat{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 2px}
+
+/* log + toast */
+footer{grid-column:1/3;border-top:1px solid var(--line);background:#0b0e11;display:flex;flex-direction:column}
+footer .h{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:11px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;border-bottom:1px solid #171c21}
+#log{overflow:auto;flex:1;padding:4px 16px;font-family:Consolas,monospace;font-size:12px;user-select:text}
+#log div{padding:2px 0;color:#aab2bd}#log .ok{color:#9fdc8a}#log .err{color:#ff9b90}#log time{color:var(--dim);margin-right:10px}
+#toasts{position:fixed;right:18px;top:86px;display:flex;flex-direction:column;gap:8px;z-index:9;pointer-events:none}
+.toast{min-width:260px;max-width:420px;background:var(--panel2);border:1px solid var(--line2);border-left:4px solid var(--green);border-radius:9px;padding:10px 14px;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:tin .2s ease}
+.toast.err{border-left-color:var(--red)}
+@keyframes tin{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+.busy{opacity:.55;pointer-events:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-items" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 7l8-4 8 4-8 4zM4 7v10l8 4 8-4V7M12 11v10"/></symbol>
+  <symbol id="i-player" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-time" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-zombie" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M6 10a6 6 0 1112 0v3l-2 2v4H8v-4l-2-2z"/><circle cx="9.5" cy="10.5" r="1.3" fill="currentColor"/><circle cx="14.5" cy="10.5" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-grave" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M6 21V10a6 6 0 0112 0v11zM3 21h18M12 9v6M9.5 11.5h5"/></symbol>
+  <symbol id="i-ff" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5l9 7-9 7zM12 5l9 7-9 7z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<div class="app">
+<header>
+  <svg class="logo" viewBox="0 0 64 64">
+    <defs><linearGradient id="st" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aa3ad"/><stop offset="1" stop-color="#565f69"/></linearGradient></defs>
+    <path d="M14 58V26a18 18 0 0136 0v32z" fill="url(#st)" stroke="#2b3138" stroke-width="2"/>
+    <path d="M32 18v22M24 26h16" stroke="#8fd14f" stroke-width="4" stroke-linecap="round"/>
+    <path d="M6 58h52" stroke="#6fb33a" stroke-width="4" stroke-linecap="round"/>
+    <path d="M10 58c3-5 6-5 8 0M44 58c2-6 6-6 9 0" stroke="#8fd14f" stroke-width="3" fill="none"/>
+  </svg>
+  <div class="brand"><div class="t1">Graveyard Keeper 2</div><div class="t2"><b>Keeper</b> Trainer</div></div>
+  <div class="ver" id="ver">v2</div>
+  <div class="spacer"></div>
+  <div class="pill" title=""><div class="dot" id="dot"></div><span id="stat">Looking for the game…</span></div>
+  <button class="btn sm ghost" onclick="call('reconnect').then(r=>log(r.msg,true))">Reconnect</button>
+</header>
+
+<nav id="nav">
+  <button data-p="items" class="on"><svg><use href="#i-items"/></svg>Items</button>
+  <button data-p="player"><svg><use href="#i-player"/></svg>Player</button>
+  <button data-p="time"><svg><use href="#i-time"/></svg>Time</button>
+  <button data-p="zombie"><svg><use href="#i-zombie"/></svg>Zombie<i class="badge" id="bz"></i></button>
+  <button data-p="body"><svg><use href="#i-grave"/></svg>Dead body<i class="badge" id="bb"></i></button>
+  <div class="foot">Load your save - the trainer connects by itself.<br>Use one trainer at a time.</div>
+</nav>
+
+<main>
+<!-- ITEMS -->
+<section class="page on" id="p-items">
+  <h2>Item spawner</h2><div class="sub">Every item in the game. Double-click to add the selected count to your inventory.</div>
+  <div class="items">
+    <div class="list">
+      <div class="tools">
+        <div class="search"><svg><use href="#i-search"/></svg><input type="text" id="q" placeholder="Search items, e.g. heart, iron, solution…" autocomplete="off"></div>
+        <select id="grp"><option value="">All groups</option></select>
+      </div>
+      <div class="rows" id="rows"></div>
+      <div class="count" id="cnt"></div>
+    </div>
+    <div class="card selcard">
+      <h3>Selected</h3>
+      <div class="big" id="sname">Pick an item</div>
+      <div class="mono" id="sid">-</div>
+      <div class="note" id="sdet" style="margin:6px 0 14px"></div>
+      <div class="row">
+        <div class="stepper"><button onclick="step(-1)">−</button><input type="number" id="cntIn" value="1" min="1" max="9999"><button onclick="step(1)">+</button></div>
+      </div>
+      <div class="row">
+        <button class="btn sm" onclick="setc(1)">×1</button><button class="btn sm" onclick="setc(10)">×10</button>
+        <button class="btn sm" onclick="setc(50)">×50</button><button class="btn sm" onclick="setc(-1)">Stack</button>
+      </div>
+      <div class="row" style="margin-top:18px"><button class="btn primary" style="flex:1;padding:12px" id="addBtn" onclick="addSel()">Add to inventory</button></div>
+      <div class="note" style="margin-top:12px">If your bag is full, the items drop at your feet.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYER -->
+<section class="page" id="p-player">
+  <h2>Player</h2><div class="sub">Research points and money.</div>
+  <div class="grid g2">
+    <div class="card"><h3>Tech points <span class="hint">max 999 each</span></h3>
+      <div class="row">
+        <label class="pt r"><span>RED</span><input type="number" id="tr" value="0" min="0" max="999"></label>
+        <label class="pt g"><span>GREEN</span><input type="number" id="tg" value="0" min="0" max="999"></label>
+        <label class="pt b"><span>BLUE</span><input type="number" id="tb" value="0" min="0" max="999"></label>
+      </div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" onclick="tech()">Add points</button><button class="btn" onclick="act('tech',{r:0,g:0,b:0})">Show balance</button></div>
+    </div>
+    <div class="card"><h3>Money <span class="hint">1 gold = 100 silver = 10,000 copper</span></h3>
+      <div class="row">
+        <label class="f"><span><i class="coin" style="background:var(--gold)"></i> Gold</span><input type="number" id="mg" value="0" min="0"></label>
+        <label class="f"><span><i class="coin" style="background:var(--silver)"></i> Silver</span><input type="number" id="ms" value="0" min="0" max="99"></label>
+        <label class="f"><span><i class="coin" style="background:var(--copper)"></i> Copper</span><input type="number" id="mc" value="0" min="0" max="99"></label>
+      </div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" onclick="money(1)">Add</button><button class="btn danger" onclick="money(-1)">Remove</button><button class="btn" onclick="act('money',{copper:0})">Show</button></div>
+    </div>
+    <div class="card"><h3>Crafting</h3>
+      <div class="sw">
+        <label class="switch"><input type="checkbox" id="instant" onchange="act('instant',{on:this.checked})"><span class="track"></span>
+          <span class="lbl"><b>Instant craft</b><small>One hit finishes what you are crafting at a workbench</small></span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIME -->
+<section class="page" id="p-time">
+  <h2>Time</h2><div class="sub">Fast-forward runs the whole world faster - like sleeping - until the day and hour you pick. Nothing is skipped.</div>
+  <div class="grid g2">
+    <div class="card"><h3>Now</h3>
+      <div class="clock"><div class="dial"><div class="hand" id="hand"></div><div class="hub"></div></div>
+        <div><div class="when" id="clk">--:--</div><div class="day" id="dayl">Day - · <b>-</b></div><div class="note" id="dlen"></div></div></div>
+      <div class="ff" id="ffbox"><svg class="ico"><use href="#i-ff"/></svg><span id="fftxt"></span><div class="bar"><i id="ffbar"></i></div></div>
+    </div>
+    <div class="card"><h3>Fast-forward</h3>
+      <div class="row">
+        <label class="f">Until<select id="fft">
+          <option value="+1">Next day</option><option value="+2">In 2 days</option><option value="+3">In 3 days</option>
+          <option value="1">Gluttony</option><option value="2">Sloth</option><option value="3">Lust</option>
+          <option value="4">Envy</option><option value="5">Pride</option><option value="6">Wrath</option></select></label>
+        <label class="f">At hour<input type="number" id="ffh" value="6" min="0" max="23"></label>
+      </div>
+      <div class="row"><span class="note">Speed</span><div class="seg" id="ffs"><button data-v="10">×10</button><button data-v="25" class="on">×25</button><button data-v="50">×50</button></div></div>
+      <div class="row"><label class="switch"><input type="checkbox" id="ffr" checked><span class="track"></span><span class="lbl"><b>Stay rested</b><small>No lack-of-sleep debuff while time flies</small></span></label></div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" onclick="ff()"><svg class="ico"><use href="#i-ff"/></svg> Fast-forward</button><button class="btn danger" onclick="act('timeStop')">Stop</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ZOMBIE -->
+<section class="page" id="p-zombie">
+  <h2>Zombie editor</h2><div class="sub">Edits the zombie whose menu is open in the game.</div>
+  <div id="zEmpty" class="card empty"><svg><use href="#i-zombie"/></svg><b>No zombie menu open</b>Open a zombie's menu in the game (where you give it items or spend its points). This page fills in by itself.</div>
+  <div id="zEd" style="display:none">
+    <div class="card">
+      <div class="row"><div style="font-size:20px;font-weight:800" id="zTitle">-</div><span class="chip" id="zType">-</span><div class="spacer" style="flex:1"></div><button class="btn sm" onclick="loadZombie(true)">Reload</button></div>
+      <div class="stat" id="zStat"></div>
+      <div class="warn" id="zWarn"></div>
+      <div class="row" style="margin-top:10px"><input type="text" id="zName" maxlength="40" style="width:260px"><button class="btn" onclick="zcmd('NAME '+val('zName'))">Rename</button>
+        <span style="width:20px"></span>
+        <label class="pt r"><span>RED</span><input type="number" id="zr" min="0" max="99999"></label>
+        <label class="pt g"><span>GREEN</span><input type="number" id="zg" min="0" max="99999"></label>
+        <label class="pt b"><span>BLUE</span><input type="number" id="zb" min="0" max="99999"></label>
+        <button class="btn" style="align-self:flex-end" onclick="zcmd('TECH '+[num('zr'),num('zg'),num('zb')].join(' '))">Set points</button></div>
+    </div>
+    <div class="card" style="margin-top:14px"><h3>Equipment</h3>
+      <div class="grid g3">
+        <label class="f">Collar (belt)<div class="row"><select id="eqc" style="flex:1"></select><button class="btn sm" onclick="equip('collar','eqc')">Set</button></div></label>
+        <label class="f">Tool / weapon<div class="row"><select id="eqh" style="flex:1"></select><button class="btn sm" onclick="equip('hand','eqh')">Set</button></div></label>
+        <label class="f">Armour<div class="row"><select id="eqa" style="flex:1"></select><button class="btn sm" onclick="equip('armor','eqa')">Set</button></div></label>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px"><h3>Body <span class="hint">organs and liquids - skulls come from these</span></h3><div id="zBody"></div></div>
+    <div class="card" style="margin-top:14px"><h3>Skill tree <span class="hint">learned skills above the red-skull count are inactive</span></h3>
+      <div class="row"><select id="zBranch" onchange="renderSkills()"></select><div style="flex:1"></div>
+        <button class="btn sm" onclick="skill(true)">Learn</button><button class="btn sm" onclick="skill(false)">Forget</button>
+        <button class="btn sm" onclick="skillAll(true)">Learn all shown</button><button class="btn sm danger" onclick="skillAll(false)">Forget all shown</button></div>
+      <div class="box" id="zSkills" style="margin-top:10px;height:260px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<section class="page" id="p-body">
+  <h2>Dead body</h2><div class="sub">Organs and embalming of a corpse - on the autopsy or embalming table, in a grave, or carried on your shoulders.</div>
+  <div id="bEmpty" class="card empty"><svg><use href="#i-grave"/></svg><b>No body to edit</b>Open an autopsy table, embalming table or grave with a body in it, or carry a body.</div>
+  <div id="bEd" style="display:none">
+    <div class="card">
+      <div class="row"><div style="font-size:20px;font-weight:800" id="bTitle">-</div><span class="chip" id="bWhere">-</span><div style="flex:1"></div><button class="btn sm" onclick="loadBody(true)">Reload</button></div>
+      <div class="stat" id="bStat"></div>
+      <div class="note">Grave quality = grave items − the body's <b style="color:#ff8b7f">red</b> skulls, but never above its <b>white</b> skulls.</div>
+    </div>
+    <div class="card" style="margin-top:14px"><h3>Body</h3><div id="bBody"></div></div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="h">Log <span style="flex:1"></span><button class="btn sm ghost" onclick="$('log').innerHTML=''">Clear</button></div><div id="log"></div></footer>
+</div>
+<div id="toasts"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const val=id=>$(id).value.trim(), num=id=>Math.max(0,parseInt($(id).value||'0',10)||0);
+let seq=0; const pend={};
+window.__gk2done=(id,r)=>{const p=pend[id]; if(p){delete pend[id]; p(r);}};
+function call(action,args){return new Promise(res=>{const id=++seq; pend[id]=res;
+  try{ window.gk2call(id,action,JSON.stringify(args||{})); }catch(e){ delete pend[id]; res({ok:false,msg:'not running inside the trainer'}); }});}
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function log(msg,ok){const d=document.createElement('div'); d.className=ok?'ok':'err';
+  d.innerHTML='<time>'+new Date().toLocaleTimeString()+'</time>'+(ok?'✔ ':'✖ ')+esc(msg); $('log').prepend(d);}
+function toast(msg,ok){const t=document.createElement('div'); t.className='toast'+(ok?'':' err'); t.textContent=msg; $('toasts').append(t); setTimeout(()=>t.remove(),3800);}
+async function act(a,args){const r=await call(a,args); const m=(r.msg||'').replace(/^(OK|ERR) /,''); log(m,r.ok); toast(m,r.ok); return r;}
+
+/* nav */
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>show(b.dataset.p));
+function show(p){document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x.dataset.p===p));
+  document.querySelectorAll('.page').forEach(x=>x.classList.toggle('on',x.id==='p-'+p));
+  if(p==='zombie')loadZombie(); if(p==='body')loadBody();}
+
+/* items */
+let items=[], shown=[], selId=null, byId={};
+function nameOf(id){const it=byId[id]; return it&&it.name!==it.id? it.name : id;}
+function stars(id){const it=byId[id]; const m=it&&it.detail&&it.detail.match(/★+/); return m?' '+m[0]:'';}
+function nameQ(id){return nameOf(id)+stars(id);}
+function renderItems(){const q=$('q').value.toLowerCase().trim().split(/\s+/).filter(Boolean), g=$('grp').value;
+  shown=items.filter(it=>{const hay=(it.name+' '+it.id+' '+(it.detail||'')).toLowerCase();
+    return q.every(w=>hay.includes(w)) && (!g||(it.groups||[]).includes(g));});
+  const html=shown.slice(0,900).map(it=>'<div class="it'+(it.id===selId?' sel':'')+'" data-id="'+esc(it.id)+'"><div class="n">'+esc(it.name)+'</div><div class="d">'+esc(it.detail||'')+'</div><div class="i mono">'+esc(it.id)+(it.stack?' · stack '+it.stack:'')+'</div></div>').join('');
+  $('rows').innerHTML=html||'<div class="empty">No item matches.</div>';
+  $('cnt').textContent=shown.length+' of '+items.length+' items';}
+$('q').oninput=renderItems; $('grp').onchange=renderItems;
+$('q').onkeydown=e=>{if(e.key==='Enter'&&shown.length){select(shown[0].id);addSel();}};
+$('rows').onclick=e=>{const r=e.target.closest('.it'); if(r)select(r.dataset.id);};
+$('rows').ondblclick=e=>{const r=e.target.closest('.it'); if(r){select(r.dataset.id);addSel();}};
+function select(id){selId=id; const it=byId[id]; $('sname').textContent=it.name; $('sid').textContent=it.id;
+  $('sdet').textContent=[it.detail,(it.stack?'stack '+it.stack:''),(it.groups||[]).filter(g=>!/bag$/.test(g)).join(', ')].filter(Boolean).join(' · ');
+  document.querySelectorAll('.it').forEach(x=>x.classList.toggle('sel',x.dataset.id===id));}
+function setc(n){if(n<0){const it=byId[selId]; n=it&&it.stack?it.stack:1;} $('cntIn').value=n;}
+function step(d){$('cntIn').value=Math.min(9999,Math.max(1,(parseInt($('cntIn').value,10)||1)+d));}
+function addSel(){if(!selId){toast('Pick an item first',false);return;} act('addItem',{id:selId,count:Math.min(9999,Math.max(1,parseInt($('cntIn').value,10)||1))});}
+
+/* player */
+function tech(){const r=num('tr'),g=num('tg'),b=num('tb'); if(!r&&!g&&!b){toast('Enter how many points to add',false);return;} act('tech',{r,g,b});}
+function money(sign){const c=num('mg')*10000+num('ms')*100+num('mc'); if(!c){toast('Enter an amount first',false);return;} act('money',{copper:sign*c});}
+
+/* time */
+document.querySelectorAll('#ffs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#ffs button').forEach(x=>x.classList.toggle('on',x===b));});
+function ff(){const sp=+document.querySelector('#ffs .on').dataset.v; act('timeFF',{target:$('fft').value,hour:Math.min(23,num('ffh')),speed:sp,rested:$('ffr').checked});}
+let ffStart=null;
+function renderTime(t){if(!t)return; $('clk').textContent=t.clock; $('dayl').innerHTML='Day '+t.day+' · <b>'+esc(t.weekdayName)+'</b>';
+  $('dlen').textContent='A game day lasts '+Math.round(t.dayMinutes)+' real minutes'+(t.speed>1.01?' · world speed ×'+Math.round(t.speed):'');
+  $('hand').style.transform='rotate('+(t.tod*360)+'deg)';
+  const on=t.ff&&t.ff!=='-'; $('ffbox').classList.toggle('show',on);
+  if(on){const [d,tod]=t.ff.split('@'); const tgt=(+d)+(+tod), now=t.day+t.tod; if(!ffStart||ffStart.tgt!==tgt)ffStart={tgt,from:now};
+    const pct=Math.min(100,Math.max(0,(now-ffStart.from)/(tgt-ffStart.from)*100));
+    const h=Math.round(+tod*24); $('fftxt').textContent='×'+Math.round(t.speed)+' → day '+d+', '+String(h).padStart(2,'0')+':00'; $('ffbar').style.width=pct+'%';}
+  else ffStart=null;}
+
+/* status polling */
+let st={};
+async function poll(){const r=await call('status'); if(r.ok){st=r.data;
+  $('dot').className='dot '+(st.level||'err'); $('stat').textContent=st.text+(st.warn&&st.level!=='ok'?' - '+st.warn:'');
+  $('bz').classList.toggle('show',!!st.zombie); $('bb').classList.toggle('show',!!st.corpse);
+  renderTime(st.time);
+  if($('p-zombie').classList.contains('on')) loadZombie(); if($('p-body').classList.contains('on')) loadBody();}
+  setTimeout(poll,1000);}
+
+/* shared body editor (zombie + corpse) */
+let cat=null;
+async function catalog(){if(!cat){const r=await call('catalog'); if(r.ok)cat=r.data;} return cat;}
+function kindOf(g){return (g||'').replace(/^gr_/,'').replace(/s$/,'');}
+function bodyEditor(el,info,prefix){
+  const items=info.items||[]; const sel=el._sel&&items.find(i=>i.uid===el._sel)? el._sel : (el._selId? (items.find(i=>i.id===el._selId&&!i.slot)||{}).uid : null);
+  el._selId=null; el._sel=sel;
+  const it=items.find(i=>i.uid===sel);
+  let opts=[], hint='Click an item on the left to see what it can be replaced with.';
+  if(it&&it.slot) hint='That is equipment - change it '+(prefix==='CORPSE'?'in the zombie editor.':'in Equipment above.');
+  else if(it){opts=(cat?cat.body:[]).filter(b=>b.group===it.group&&b.id!==it.id).sort((a,b)=>b.red-a.red||b.white-a.white);
+    hint=!opts.length?(it.group?'There is only one kind of '+kindOf(it.group)+' in the game - nothing to swap it for.':'Nothing to swap this for.'):
+      (it.group?'Replace with another '+kindOf(it.group)+' (best first):':'Replace with (best first):');}
+  const sk=(w,r)=>(w?'<span class="chip w">W'+(w>0?'+':'')+w+'</span>':'')+(r?'<span class="chip r">R'+(r>0?'+':'')+r+'</span>':'');
+  const left=items.map(i=>'<div class="o'+(i.uid===sel?' sel':'')+'" data-u="'+esc(i.uid)+'">'+esc(nameQ(i.id))+' <span class="mono">×'+i.count+'</span>'+
+     (i.slot?'<span class="tag e">'+esc(i.slot)+'</span>':'')+'<span class="x">'+sk(i.white,i.red)+'</span></div>').join('');
+  const right=opts.map(o=>'<div class="o" data-r="'+esc(o.id)+'">'+esc(nameQ(o.id))+'<span class="x">'+sk(o.white,o.red)+'</span></div>').join('');
+  const add=(cat?cat.body:[]).slice().sort((a,b)=>(a.group||'~').localeCompare(b.group||'~')||a.id.localeCompare(b.id))
+     .map(b=>'<option value="'+esc(b.id)+'">'+esc(nameQ(b.id))+'  (W'+b.white+' R'+b.red+')</option>').join('');
+  const keepAdd=el.querySelector('.addSel')?el.querySelector('.addSel').value:'';
+  el.innerHTML='<div class="twin"><div><div class="note" style="margin-bottom:6px">In the body - click one:</div><div class="box left">'+left+'</div>'+
+    '<div class="row" style="margin-top:8px"><button class="btn sm danger rm">Remove selected</button></div></div>'+
+    '<div><div class="note" style="margin-bottom:6px">'+esc(hint)+'</div><div class="box right">'+(right||'')+'</div>'+
+    '<div class="row" style="margin-top:8px"><button class="btn sm rp"'+(opts.length?'':' disabled')+'>Replace with selected</button></div></div></div>'+
+    '<div class="row" style="margin-top:12px"><span class="note">Add</span><select class="addSel" style="flex:1">'+add+'</select><input type="number" class="addN" value="1" min="1" max="99" style="width:70px"><button class="btn sm primary ad">Add to body</button></div>';
+  if(keepAdd) el.querySelector('.addSel').value=keepAdd;
+  let rsel=opts.length?opts[0].id:null; if(opts.length) el.querySelector('.right .o').classList.add('sel');
+  const send=c=>(prefix==='ZOMBIE'?zcmd(c):bcmd(c));
+  el.querySelector('.left').onclick=e=>{const o=e.target.closest('.o'); if(o){el._sel=o.dataset.u; bodyEditor(el,info,prefix);}};
+  el.querySelector('.right').onclick=e=>{const o=e.target.closest('.o'); if(o){rsel=o.dataset.r; el.querySelectorAll('.right .o').forEach(x=>x.classList.toggle('sel',x===o));}};
+  el.querySelector('.right').ondblclick=e=>{const o=e.target.closest('.o'); if(o&&it){el._selId=o.dataset.r; send('REPLACE '+it.uid+' '+o.dataset.r);}};
+  el.querySelector('.rm').onclick=()=>{if(it)send('REMOVE '+it.uid);};
+  el.querySelector('.rp').onclick=()=>{if(it&&rsel){el._selId=rsel; send('REPLACE '+it.uid+' '+rsel);}};
+  el.querySelector('.ad').onclick=()=>send('ADD '+el.querySelector('.addSel').value+' '+Math.max(1,parseInt(el.querySelector('.addN').value,10)||1));
+}
+
+/* zombie */
+let zInfo=null, zKey='', zBusy=false;
+async function loadZombie(force){
+  if(!st.zombie){ $('zEmpty').style.display=''; $('zEd').style.display='none'; zInfo=null; zKey=''; return; }
+  const key=st.zombieName; if(!force&&zInfo&&key===zKey)return; if(zBusy)return; zBusy=true;
+  await catalog(); const r=await call('zombieGet'); zBusy=false;
+  if(!r.ok){log(r.msg,false);return;} zInfo=r.data; zKey=key; renderZombie();}
+function fillSel(id,ids,cur,emptyLabel,label){$(id).innerHTML=(emptyLabel?'<option value="">'+emptyLabel+'</option>':'')+ids.map(x=>'<option value="'+esc(x)+'">'+esc(label?label(x):nameOf(x))+'</option>').join(''); $(id).value=cur||'';}
+function renderZombie(){const z=zInfo; $('zEmpty').style.display='none'; $('zEd').style.display='';
+  $('zTitle').textContent=z.name; $('zType').textContent=z.type;
+  const act=z.perksUsed-z.perksDisabled;
+  $('zStat').innerHTML='<span class="chip w">☠ White '+z.white+'</span><span class="chip r">☠ Red '+z.red+'</span><span class="chip g">Skills '+act+' active / '+z.perksUsed+' learned</span>';
+  const w=[]; if(!z.inCollarLimits)w.push('Red skulls are above this collar\'s limit ('+z.collarRedMax+') - the game may block body changes.');
+  if(z.perksDisabled)w.push(z.perksDisabled+' learned skill(s) inactive: add red skulls to activate them.'); $('zWarn').textContent=w.join(' ');
+  if(document.activeElement!==$('zName'))$('zName').value=z.name;
+  $('zr').value=z.techRed; $('zg').value=z.techGreen; $('zb').value=z.techBlue;
+  const eq=s=>((z.items||[]).find(i=>i.slot===s)||{}).id;
+  const lim={}; (cat.collarLimits||[]).forEach(c=>lim[c.id]=c.redMax);
+  fillSel('eqc',cat.collars.slice().sort((a,b)=>lim[a]-lim[b]),eq('collar'),null,x=>nameOf(x)+' (max '+lim[x]+' red)');
+  fillSel('eqh',cat.hands.slice().sort(),eq('hand'),'(empty)'); fillSel('eqa',cat.armors.slice().sort(),eq('armor'),'(empty)');
+  bodyEditor($('zBody'),z,'ZOMBIE');
+  if(!$('zBranch').options.length){$('zBranch').innerHTML='<option value="">All branches</option>'+cat.branches.map(b=>'<option value="'+b.id+'">'+esc(b.name||b.id.replace('talent_','').replace(/^./,c=>c.toUpperCase())+' branch')+'</option>').join('');}
+  renderSkills();}
+let skSel=null;
+function renderSkills(){if(!zInfo)return; const br=$('zBranch').value; const learned=new Set(); (zInfo.talents||[]).forEach(t=>(t.studied||[]).forEach(s=>learned.add(s)));
+  const dis=new Set(zInfo.disabled||[]);
+  const list=cat.skills.filter(s=>!br||s.branch===br);
+  $('zSkills').innerHTML=list.map(s=>{const L=learned.has(s.id),I=dis.has(s.id);
+    const cost=[s.costRed?'<span style="color:#ff8b7f">R'+s.costRed+'</span>':'',s.costGreen?'<span style="color:var(--accent)">G'+s.costGreen+'</span>':'',s.costBlue?'<span style="color:#6fb0ff">B'+s.costBlue+'</span>':''].join(' ');
+    return '<div class="o'+(s.id===skSel?' sel':'')+'" data-s="'+esc(s.id)+'"><span class="tag '+(L?(I?'i':'l'):'n')+'">'+(L?(I?'inactive':'learned'):'—')+'</span>'+
+      esc(s.name||('Mastery +'+s.value))+(br?'':' <span class="mono">'+esc(s.branch.replace('talent_',''))+'</span>')+'<span class="x">'+cost+'</span></div>';}).join('');
+  $('zSkills').onclick=e=>{const o=e.target.closest('.o'); if(o){skSel=o.dataset.s; renderSkills();}};
+  $('zSkills').ondblclick=e=>{const o=e.target.closest('.o'); if(o){zcmd('PERK '+o.dataset.s+' '+(learned.has(o.dataset.s)?0:1));}};
+  zInfo._learned=learned; zInfo._shown=list.map(s=>s.id);}
+function skill(on){if(skSel)zcmd('PERK '+skSel+' '+(on?1:0));}
+async function skillAll(on){const ids=zInfo._shown.filter(id=>zInfo._learned.has(id)!==on); if(!ids.length){toast('Nothing to change',true);return;}
+  $('zEd').classList.add('busy'); let fail=null; for(const id of ids){const r=await call('zombieCmd',{cmd:'PERK '+id+' '+(on?1:0)}); if(!r.ok){fail=r.msg;break;}}
+  $('zEd').classList.remove('busy'); if(fail){log(fail,false);toast(fail,false);} else {log(ids.length+' skills changed',true);toast(ids.length+' skills changed',true);} loadZombie(true);}
+function equip(slot,id){const v=$(id).value; zcmd(v?'EQUIP '+slot+' '+v:'UNEQUIP '+slot);}
+async function zcmd(c){$('zEd').classList.add('busy'); const r=await call('zombieCmd',{cmd:c}); $('zEd').classList.remove('busy');
+  const m=r.msg.replace(/^(OK|ERR) /,''); log(m,r.ok); toast(m,r.ok); await loadZombie(true);}
+
+/* dead body */
+let bInfo=null, bKey='', bBusy=false;
+const places={autopsy:'on the autopsy table',embalm:'on the embalming table',grave:'in the grave',carried:'carried on your shoulders'};
+async function loadBody(force){
+  if(!st.corpse){ $('bEmpty').style.display=''; $('bEd').style.display='none'; bInfo=null; bKey=''; return; }
+  const key=st.corpseDesc; if(!force&&bInfo&&key===bKey)return; if(bBusy)return; bBusy=true;
+  await catalog(); const r=await call('corpseGet'); bBusy=false;
+  if(!r.ok){log(r.msg,false);return;} bInfo=r.data; bKey=key; renderBody();}
+function renderBody(){const b=bInfo; $('bEmpty').style.display='none'; $('bEd').style.display='';
+  $('bTitle').textContent=b.name; $('bWhere').textContent=b.type+' '+(places[b.state]||'');
+  $('bStat').innerHTML='<span class="chip w">☠ White '+b.white+' (ceiling)</span><span class="chip r">☠ Red '+b.red+' (penalty)</span>'+
+    (b.graveQuality!=null?'<span class="chip g">Grave quality now '+b.graveQuality+'</span>':'');
+  bodyEditor($('bBody'),b,'CORPSE');}
+async function bcmd(c){$('bEd').classList.add('busy'); const r=await call('corpseCmd',{cmd:c}); $('bEd').classList.remove('busy');
+  const m=r.msg.replace(/^(OK|ERR) /,''); log(m,r.ok); toast(m,r.ok); await loadBody(true);}
+
+/* start */
+(async()=>{const r=await call('init'); if(r.ok){const d=r.data; $('ver').textContent='v'+d.version; items=d.items; items.forEach(i=>byId[i.id]=i);
+  const gs={}; items.forEach(i=>(i.groups||[]).forEach(g=>{if(!/bag$/.test(g))gs[g]=(gs[g]||0)+1;}));
+  Object.keys(gs).filter(g=>gs[g]>=4).sort().forEach(g=>$('grp').insertAdjacentHTML('beforeend','<option value="'+esc(g)+'">'+esc(g.replace(/_/g,' '))+' ('+gs[g]+')</option>'));
+  $('instant').checked=!!d.instant;
+  renderItems(); log('Start the game and load your save - the trainer connects by itself.',true);}
+  poll();})();
+</script>
+</body>
+</html>

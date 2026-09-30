@@ -5,6 +5,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"sync/atomic"
 	"time"
@@ -60,6 +61,18 @@ func main() {
 	items, err := loadItems()
 	if err != nil {
 		walk.MsgBox(nil, "GK2 Item Spawner", "Cannot read the item list: "+err.Error(), walk.MsgBoxIconError)
+		return
+	}
+	// The modern trainer window needs the WebView2 runtime (built into Windows 10/11);
+	// without it, fall back to the classic native window.
+	// Start with --classic for the fast plain window.
+	classic := false
+	for _, arg := range os.Args[1:] {
+		if strings.EqualFold(arg, "--classic") || strings.EqualFold(arg, "/classic") {
+			classic = true
+		}
+	}
+	if !classic && runWebUI(items) {
 		return
 	}
 	ui := &spawnerUI{items: items}
