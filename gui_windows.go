@@ -39,6 +39,11 @@ type spawnerUI struct {
 	corpseLbl *walk.Label
 	corpseBtn *walk.PushButton
 	corpseOn  atomic.Bool // a dead body is on an open table / grave, or carried
+	timeLbl   *walk.Label
+	ffTarget  *walk.ComboBox
+	ffHour    *walk.NumberEdit
+	ffSpeed   *walk.ComboBox
+	ffRested  *walk.CheckBox
 	logBox    *walk.TextEdit
 	countInfo *walk.Label
 
@@ -183,6 +188,28 @@ func (ui *spawnerUI) run() error {
 					Label{AssignTo: &ui.corpseLbl, Text: corpseIdleText},
 					HSpacer{},
 					PushButton{AssignTo: &ui.corpseBtn, Text: "Edit body…", Font: Font{Bold: true}, OnClicked: ui.openCorpseEditor},
+				},
+			},
+			GroupBox{
+				Title:  "Time - fast-forward (the world runs faster, nothing is skipped)",
+				Layout: VBox{},
+				Children: []Widget{
+					Label{AssignTo: &ui.timeLbl, Text: "Time: -", Font: Font{Bold: true}},
+					Composite{
+						Layout: HBox{MarginsZero: true},
+						Children: []Widget{
+							Label{Text: "Until:"},
+							ComboBox{AssignTo: &ui.ffTarget, Model: ffTargetLabels, CurrentIndex: 0, MinSize: Size{Width: 130}},
+							Label{Text: "at hour"},
+							NumberEdit{AssignTo: &ui.ffHour, Value: 6.0, MinValue: 0, MaxValue: 23, Decimals: 0, MaxSize: Size{Width: 45}},
+							Label{Text: "speed"},
+							ComboBox{AssignTo: &ui.ffSpeed, Model: []string{"x10", "x25", "x50 (sleep speed)"}, CurrentIndex: 1, MaxSize: Size{Width: 120}},
+							CheckBox{AssignTo: &ui.ffRested, Text: "Stay rested", Checked: true, ToolTipText: "Clear the lack-of-sleep debuff each game day while fast-forwarding"},
+							HSpacer{},
+							PushButton{Text: "Fast-forward", Font: Font{Bold: true}, OnClicked: ui.startFastForward},
+							PushButton{Text: "Stop", OnClicked: func() { ui.sendAsync(timeStop) }},
+						},
+					},
 				},
 			},
 			Label{Text: "Log"},
@@ -394,6 +421,37 @@ var corpsePlaceText = map[string]string{
 	"carried": "carried",
 }
 
+var ffTargetLabels = []string{"Next day", "In 2 days", "In 3 days", "Gluttony (1)", "Sloth (2)", "Lust (3)", "Envy (4)", "Pride (5)", "Wrath (6)"}
+var ffTargetArgs = []string{"+1", "+2", "+3", "1", "2", "3", "4", "5", "6"}
+var ffSpeeds = []int{10, 25, 50}
+
+func (ui *spawnerUI) startFastForward() {
+	i, j := ui.ffTarget.CurrentIndex(), ui.ffSpeed.CurrentIndex()
+	if i < 0 || j < 0 {
+		return
+	}
+	target, hour, speed, rested := ffTargetArgs[i], int(ui.ffHour.Value()), ffSpeeds[j], ui.ffRested.Checked()
+	ui.sendAsync(func() (bool, string) { return timeFastForward(target, hour, speed, rested) })
+}
+
+// timeText is the Time section's status line.
+func timeText(t *GameTime) string {
+	name := ""
+	if t.Weekday >= 1 && t.Weekday <= 6 {
+		name = weekdayNames[t.Weekday]
+	}
+	s := fmt.Sprintf("Day %d · %s · %s   (a game day lasts %.0f real min)", t.Day, name, t.Clock(), t.DayMinutes)
+	if t.FFTarget != "" && t.FFTarget != "-" {
+		var day int
+		var tod float64
+		fmt.Sscanf(strings.Replace(t.FFTarget, "@", " ", 1), "%d %f", &day, &tod)
+		s += fmt.Sprintf("   ⏩ x%.0f until day %d, %s", t.Speed, day, GameTime{TimeOfDay: tod}.Clock())
+	} else if t.Speed > 1.01 {
+		s += fmt.Sprintf("   (world speed x%.0f - sleeping?)", t.Speed)
+	}
+	return s
+}
+
 // watchZombie checks once a second whether a zombie's menu is open in the game, and whether a
 // dead body can be edited, and enables the matching "Edit…" buttons.
 func (ui *spawnerUI) watchZombie() {
@@ -403,6 +461,12 @@ func (ui *spawnerUI) watchZombie() {
 		if ui.ready.Load() {
 			zOpen, zName = zombieOpen()
 			cOpen, cDesc = corpseOpen()
+		}
+		if ui.ready.Load() {
+			if t, err := timeGet(); err == nil {
+				txt := timeText(t)
+				ui.mw.Synchronize(func() { ui.timeLbl.SetText(txt) })
+			}
 		}
 		zKey, cKey := fmt.Sprint(zOpen, zName), fmt.Sprint(cOpen, cDesc)
 		if zKey == lastZombie && cKey == lastCorpse {
@@ -448,7 +512,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	var color walk.Color = walk.RGB(200, 70, 60)
 	switch st := probeHelper(); {
 	case st == helperReady:
-		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v6", walk.RGB(70, 160, 70)
+		ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v7", walk.RGB(70, 160, 70)
 	case st == helperOutdated:
 		text, warn, color = "Old helper in the game - restart the game", outdatedMsg, walk.RGB(210, 160, 40)
 	case !gameRunning():
@@ -456,7 +520,7 @@ func (ui *spawnerUI) tryConnect(manual bool) {
 	default:
 		err := connectToGame()
 		if err == nil {
-			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v6", walk.RGB(70, 160, 70)
+			ready, text, color = true, "Connected to Graveyard Keeper 2 · helper v7", walk.RGB(70, 160, 70)
 			ui.mw.Synchronize(func() { ui.log("Connected - helper loaded into the game.") })
 		} else {
 			// Mono isn't ready until the main menu; keep retrying quietly.

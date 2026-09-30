@@ -5,6 +5,7 @@ A small Windows tool for **single-player** Graveyard Keeper 2:
 - add **red / green / blue tech points** (research points; the game caps each colour at 999).
 - **add or remove money** in gold / silver / copper (1 gold = 100 silver = 10,000 copper).
 - **instant craft**: while it's on, the first hit at a workbench finishes the craft.
+- **time fast-forward**: run the whole world faster (like sleeping) until a chosen day and hour, with nothing skipped.
 - **zombie editor**: while a zombie's menu is open in the game, edit that zombie's name, skill-tree points, organs (and so its white/red skulls), body items, collar, tool/weapon, armour and skill tree.
 - **dead body editor**: change a corpse's organs and embalming (its white/red skulls) before burial, or even in the grave.
 
@@ -25,6 +26,11 @@ A small Windows tool for **single-player** Graveyard Keeper 2:
 1. Dead body: put a body on the **autopsy table** or **embalming table** and open it, open a **grave** that holds a body, or just **carry** a body. The editor shows the body's organs and embalming items, with the same Remove / Replace / Add controls as the zombie editor.
    - **For a good burial**: the grave's quality is `grave items' quality − the body's red skulls`, but never more than the body's **white** skulls. So swap red-skull organs for white ones (the best are listed first) and add *Solution for Corpses* for extra white skulls.
    - If the body lies in a grave, the editor shows that grave's current quality, and the game's grave window updates straight away.
+1. Time: pick **Until** (next day, in 2/3 days, or a weekday), **at hour** and a **speed**, then click **Fast-forward**.
+   - The world runs faster until then: the game's own sleep mechanism, which runs at ×50 while you sleep. Crops grow, crafts finish, zombies work; nothing is skipped.
+   - You keep playing at normal speed.
+   - **Stay rested** clears the lack-of-sleep debuff (which comes after 2 game days awake).
+   - **Stop** returns to normal speed at any time.
 
 After **updating this tool**, restart the game once, because the old helper can't be unloaded. The status line tells you when that's needed (yellow dot).
 
@@ -51,6 +57,9 @@ gk2_item_spawner.exe ─(1) injects GK2Spawner.dll via the Mono API──►  Gr
   - The body comes from the open `UIAutopsyWindow`, `UIEmbalmWindow` or `UIGraveWindow` (read from each window's data), or else from `PlayerData.OverheadItems`.
   - Items are added to and removed from the body item's inventory. If the body belongs to a zombie, the zombie's organ hooks run too, and its equipment is left alone.
   - The window is then redrawn with fresh data, so the skull counts and the grave quality are up to date.
+- **Time fast-forward.** `TIME GET|FF|STOP` uses `UpdateManager.SetTimeSpeedMultiplier`, the call the game makes when you sleep (×50).
+  - The update manager runs the fixed-interval systems several times per frame, so the simulation keeps its normal step size.
+  - The helper checks every frame for the target day and hour (a new day starts at time 0.0, dawn is 0.25), and then sets the speed back to 1. It leaves the game's own sleep speed alone and re-applies its speed after you wake.
 
 ## Build from source
 ```bash

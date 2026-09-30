@@ -23,9 +23,9 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "2.1"
+	appVersion    = "2.3"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
-	helperVersion = "VERSION 6"       // must match Bridge.Version
+	helperVersion = "VERSION 7"       // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."
 	maxCount      = 9999
 	techCap       = 999
@@ -257,6 +257,63 @@ func zombieOpen() (bool, string) {
 	}
 	return true, strings.TrimSpace(strings.TrimPrefix(msg, "OK open"))
 }
+
+// ---------- time fast-forward ----------
+
+var weekdayNames = []string{"", "Gluttony", "Sloth", "Lust", "Envy", "Pride", "Wrath"}
+
+// GameTime is what "TIME GET" reports.
+type GameTime struct {
+	Day, Weekday int
+	TimeOfDay    float64 // 0..1, 0 = midnight (new day), 0.25 dawn, 0.75 dusk
+	DayMinutes   float64 // real minutes per game day
+	Speed        float64 // current world speed multiplier
+	FFTarget     string  // "day@tod" while fast-forwarding, "-" otherwise
+}
+
+// Clock returns the time of day as HH:MM.
+func (t GameTime) Clock() string {
+	m := int(t.TimeOfDay*24*60+0.5) % (24 * 60)
+	return fmt.Sprintf("%02d:%02d", m/60, m%60)
+}
+
+func timeGet() (*GameTime, error) {
+	ok, msg := runCommand("TIME GET")
+	if !ok {
+		return nil, errors.New(strings.TrimPrefix(msg, "ERR "))
+	}
+	var t GameTime
+	for _, kv := range strings.Fields(strings.TrimPrefix(msg, "OK ")) {
+		k, v, _ := strings.Cut(kv, "=")
+		switch k {
+		case "day":
+			fmt.Sscan(v, &t.Day)
+		case "weekday":
+			fmt.Sscan(v, &t.Weekday)
+		case "tod":
+			fmt.Sscan(v, &t.TimeOfDay)
+		case "len":
+			fmt.Sscan(v, &t.DayMinutes)
+		case "speed":
+			fmt.Sscan(v, &t.Speed)
+		case "ff":
+			t.FFTarget = v
+		}
+	}
+	return &t, nil
+}
+
+// timeFastForward runs the world at `speed` (2-50, the game sleeps at 50) until `target`
+// ("+N" days ahead or a weekday "1".."6") at `hour`:00. rested keeps the lack-of-sleep debuff away.
+func timeFastForward(target string, hour int, speed int, rested bool) (bool, string) {
+	r := 0
+	if rested {
+		r = 1
+	}
+	return runCommand(fmt.Sprintf("TIME FF %s %d %d %d", target, hour, speed, r))
+}
+
+func timeStop() (bool, string) { return runCommand("TIME STOP") }
 
 // corpseCmd sends "CORPSE <args>": the dead body on an open autopsy / embalming table or grave,
 // or the one the player carries.

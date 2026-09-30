@@ -8,6 +8,7 @@
 //   MONEY <delta>           -> OK money now ... (copper; negative removes, MONEY 0 = read balance)
 //   INSTANT <1|0>           -> OK instant craft on/off (player crafts finish on the first hit)
 //   ZOMBIE <sub> ...        -> zombie editor for the zombie menu open in game (see Zombie.cs)
+//   TIME GET | FF <weekday|+N> <hour> <speed> <rested> | STOP -> fast-forward the world clock (TimeFF.cs)
 //   CORPSE <sub> ...        -> dead-body editor: body on an open autopsy/embalm table or grave, or carried (Corpse.cs)
 // Commands are queued and executed on Unity's main thread
 // (Application.onBeforeRender), because game/Unity APIs are not thread-safe.
@@ -26,7 +27,7 @@ namespace GK2Spawner
     public static class Bridge
     {
         public const int Port = 27817;
-        public const int Version = 6; // bump when the protocol changes; the launcher checks it
+        public const int Version = 7; // bump when the protocol changes; the launcher checks it
         private const int MaxCount = 9999;
         private const int TechCap = 999; // max of GameResSystemDef tech_red/green/blue
         private static readonly string[] TechRes = { "tech_red", "tech_green", "tech_blue" };
@@ -135,6 +136,12 @@ namespace GK2Spawner
                 instantCraft = parts[1] == "1"; // read by Pump on the main thread
                 return "OK instant craft " + (instantCraft ? "on - one hit finishes a craft" : "off");
             }
+            if (parts.Length >= 2 && parts[0] == "TIME")
+            {
+                string[] targs = new string[parts.Length - 1];
+                Array.Copy(parts, 1, targs, 0, targs.Length);
+                return Run(new Command { Action = () => TimeFF.Handle(targs) });
+            }
             if (parts.Length >= 2 && parts[0] == "CORPSE")
             {
                 string[] cargs = new string[parts.Length - 1];
@@ -210,6 +217,14 @@ namespace GK2Spawner
             if (instantCraft)
             {
                 FinishPlayerCraft();
+            }
+            try
+            {
+                TimeFF.Tick();
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning("[GK2Spawner] time fast-forward: " + e.Message);
             }
         }
 
