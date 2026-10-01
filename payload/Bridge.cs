@@ -8,8 +8,8 @@
 //   MONEY <delta>           -> OK money now ... (copper; negative removes, MONEY 0 = read balance)
 //   INSTANT <1|0>           -> OK instant craft on/off (player crafts finish on the first hit)
 //   ZOMBIE <sub> ...        -> zombie editor for the zombie menu open in game (see Zombie.cs)
-//   TIME GET | FF <weekday|+N> <hour> <speed> <rested> | STOP -> fast-forward the world clock (TimeFF.cs)
-//   CHEAT GET|SET|SPEED|RESTORE, NPC GET|SET|MAX -> common trainer options (Cheats.cs)
+//   TIME GET | FF <weekday|+N> <hour> <speed> <rested> | STOP | SET <hour> <minute> -> world clock (TimeFF.cs)
+//   CHEAT GET|SET|SPEED|RESTORE|HAPPY, NPC GET|SET|MAX -> common trainer options (Cheats.cs)
 //   CORPSE <sub> ...        -> dead-body editor: body on an open autopsy/embalm table or grave, or carried (Corpse.cs)
 // Commands are queued and executed on Unity's main thread
 // (Application.onBeforeRender), because game/Unity APIs are not thread-safe.
@@ -28,7 +28,7 @@ namespace GK2Spawner
     public static class Bridge
     {
         public const int Port = 27817;
-        public const int Version = 9; // bump when the protocol changes; the launcher checks it
+        public const int Version = 11; // bump when the protocol changes; the launcher checks it
         private const int MaxCount = 9999;
         private const int TechCap = 999; // max of GameResSystemDef tech_red/green/blue
         private static readonly string[] TechRes = { "tech_red", "tech_green", "tech_blue" };
@@ -206,10 +206,12 @@ namespace GK2Spawner
         // Runs on Unity's main thread every frame.
         private static void Pump()
         {
-            Cheats.Tick();
+            Cheats.Tick(); // before the commands, so it only sees the game's own changes since last frame
             Command cmd;
+            bool ran = false;
             while (Queue.TryDequeue(out cmd))
             {
+                ran = true;
                 try
                 {
                     cmd.Result = cmd.Action != null ? cmd.Action()
@@ -222,6 +224,10 @@ namespace GK2Spawner
                     cmd.Result = "ERR " + e.GetType().Name + ": " + e.Message;
                 }
                 cmd.Done.Set();
+            }
+            if (ran)
+            {
+                Cheats.Resync(); // the trainer's own changes are never multiplied
             }
             if (instantCraft)
             {

@@ -230,7 +230,7 @@ footer .h{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:11p
 
 <!-- PLAYER -->
 <section class="page" id="p-player">
-  <h2>Player</h2><div class="sub">Research points and money.</div>
+  <h2>Player</h2><div class="sub">Research points, money and town gratitude.</div>
   <div class="grid g2">
     <div class="card"><h3>Tech points <span class="hint">max 999 each</span></h3>
       <div class="row">
@@ -247,6 +247,13 @@ footer .h{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:11p
         <label class="f"><span><i class="coin" style="background:var(--copper)"></i> Copper</span><input type="number" id="mc" value="0" min="0" max="99"></label>
       </div>
       <div class="row" style="margin-top:14px"><button class="btn primary" onclick="money(1)">Add</button><button class="btn danger" onclick="money(-1)">Remove</button><button class="btn" onclick="act('money',{copper:0})">Show</button></div>
+    </div>
+    <div class="card"><h3>Town gratitude <span class="hint" id="hapNow">-</span></h3>
+      <div class="row">
+        <label class="f"><span>Gratitude (smiles)</span><input type="number" id="hap" value="0" min="0" max="9999"></label>
+      </div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" onclick="happy(1)">Add</button><button class="btn danger" onclick="happy(-1)">Remove</button><button class="btn" onclick="happy(0)">Set to this</button><button class="btn" onclick="happyLoad(true)">Show</button></div>
+      <div class="note" style="margin-top:10px">The game stops you earning more than your town quality, but the trainer can set any amount up to 9,999, and you can still spend it.</div>
     </div>
   </div>
 </section>
@@ -274,6 +281,7 @@ footer .h{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:11p
     <div class="card"><h3>World &amp; speed</h3>
       <div class="sw">
         <label class="switch"><input type="checkbox" data-c="freeze"><span class="track"></span><span class="lbl"><b>Freeze time of day</b><small>The clock stops; crafts and plants keep working. Fast-forward turns this off.</small></span></label>
+        <label class="switch"><input type="checkbox" data-c="noon"><span class="track"></span><span class="lbl"><b>Always noon</b><small>The clock jumps to 12:00 and stays there. Fast-forward or Set clock turns this off.</small></span></label>
       </div>
       <div class="slider"><div class="sl-h"><b>Game speed</b><span data-sv="game">×1</span><button class="btn sm ghost" onclick="speedReset('game')">Reset</button></div>
         <input type="range" data-s="game" min="0.25" max="4" step="0.25" value="1">
@@ -281,6 +289,20 @@ footer .h{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:11p
       <div class="slider"><div class="sl-h"><b>Move speed</b><span data-sv="move">×1</span><button class="btn sm ghost" onclick="speedReset('move')">Reset</button></div>
         <input type="range" data-s="move" min="1" max="3" step="0.25" value="1">
         <small>How fast your character walks and runs.</small></div>
+    </div>
+    <div class="card"><h3>Multipliers</h3>
+      <div class="slider" style="margin-top:0"><div class="sl-h"><b>Tech points gained</b><span data-sv="tech">×1</span><button class="btn sm ghost" onclick="speedReset('tech')">Reset</button></div>
+        <input type="range" data-s="tech" min="1" max="10" step="0.5" value="1">
+        <small>Every red, green and blue point you earn counts this many times (max 999 each).</small></div>
+      <div class="slider"><div class="sl-h"><b>Friendship gained</b><span data-sv="friend">×1</span><button class="btn sm ghost" onclick="speedReset('friend')">Reset</button></div>
+        <input type="range" data-s="friend" min="1" max="10" step="0.5" value="1">
+        <small>Every friendship gain with an NPC is multiplied (up to 100). Losses stay normal.</small></div>
+      <div class="slider"><div class="sl-h"><b>Energy use</b><span data-sv="energy">×1</span><button class="btn sm ghost" onclick="speedReset('energy')">Reset</button></div>
+        <input type="range" data-s="energy" min="0" max="2" step="0.1" value="1">
+        <small>×0.5 = actions cost half the energy, ×0 = free, ×2 = harder.</small></div>
+      <div class="slider"><div class="sl-h"><b>Stamina use</b><span data-sv="stamina">×1</span><button class="btn sm ghost" onclick="speedReset('stamina')">Reset</button></div>
+        <input type="range" data-s="stamina" min="0" max="2" step="0.1" value="1">
+        <small>Same for stamina: attacks, dodges and running.</small></div>
     </div>
     <div class="card"><h3>NPC friendship <span class="hint"><button class="btn sm" onclick="loadNpcs()">Refresh</button> <button class="btn sm primary" onclick="act('npcMax').then(loadNpcs)">Max all (100)</button></span></h3>
       <div id="npcs" class="note">Loading…</div>
@@ -309,6 +331,19 @@ footer .h{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:11p
       <div class="row"><span class="note">Speed</span><div class="seg" id="ffs"><button data-v="10">×10</button><button data-v="25" class="on">×25</button><button data-v="50">×50</button></div></div>
       <div class="row"><label class="switch"><input type="checkbox" id="ffr" checked><span class="track"></span><span class="lbl"><b>Stay rested</b><small>No lack-of-sleep debuff while time flies</small></span></label></div>
       <div class="row" style="margin-top:14px"><button class="btn primary" onclick="ff()"><svg class="ico"><use href="#i-ff"/></svg> Fast-forward</button><button class="btn danger" onclick="act('timeStop')">Stop</button></div>
+    </div>
+    <div class="card"><h3>Set clock</h3>
+      <div class="row">
+        <label class="f">Hour<input type="number" id="sch" value="12" min="0" max="23" style="width:70px"></label>
+        <label class="f">Minute<input type="number" id="scm" value="0" min="0" max="59" step="5" style="width:70px"></label>
+        <button class="btn primary" style="align-self:flex-end" onclick="setClock()">Set</button>
+      </div>
+      <div class="row" style="margin-top:10px"><span class="note">Quick</span>
+        <button class="btn sm" onclick="$('sch').value=6;$('scm').value=0;setClock()">06:00</button>
+        <button class="btn sm" onclick="$('sch').value=12;$('scm').value=0;setClock()">12:00</button>
+        <button class="btn sm" onclick="$('sch').value=20;$('scm').value=0;setClock()">20:00</button>
+      </div>
+      <div class="note" style="margin-top:10px">Moves today's clock straight to that time, forward or back; the day stays the same. This one <b>does</b> jump: anything timed in between is skipped. To get there without skipping, use fast-forward.</div>
     </div>
   </div>
 </section>
@@ -383,7 +418,7 @@ async function act(a,args){const r=await call(a,args); const m=(r.msg||'').repla
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>show(b.dataset.p));
 function show(p){document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x.dataset.p===p));
   document.querySelectorAll('.page').forEach(x=>x.classList.toggle('on',x.id==='p-'+p));
-  if(p==='zombie')loadZombie(); if(p==='body')loadBody(); if(p==='cheats')loadNpcs();}
+  if(p==='zombie')loadZombie(); if(p==='body')loadBody(); if(p==='cheats')loadNpcs(); if(p==='player')happyLoad(false);}
 
 /* items */
 let items=[], shown=[], selId=null, byId={};
@@ -414,7 +449,8 @@ function money(sign){const c=num('mg')*10000+num('ms')*100+num('mc'); if(!c){toa
 /* time */
 document.querySelectorAll('#ffs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#ffs button').forEach(x=>x.classList.toggle('on',x===b));});
 function unswitch(...names){names.forEach(n=>{const el=document.querySelector('[data-c="'+n+'"]'); if(el)el.checked=false;});}
-async function ff(){const sp=+document.querySelector('#ffs .on').dataset.v; const r=await act('timeFF',{target:$('fft').value,hour:Math.min(23,num('ffh')),speed:sp,rested:$('ffr').checked}); if(r.ok)unswitch('freeze');}
+async function setClock(){const r=await act('timeSet',{hour:Math.min(23,num('sch')),minute:Math.min(59,num('scm'))}); if(r.ok)unswitch('noon');}
+async function ff(){const sp=+document.querySelector('#ffs .on').dataset.v; const r=await act('timeFF',{target:$('fft').value,hour:Math.min(23,num('ffh')),speed:sp,rested:$('ffr').checked}); if(r.ok)unswitch('freeze','noon');}
 let ffStart=null;
 function renderTime(t){if(!t)return; $('clk').textContent=t.clock; $('dayl').innerHTML='Day '+t.day+' · <b>'+esc(t.weekdayName)+'</b>';
   $('dlen').textContent='A game day lasts '+Math.round(t.dayMinutes)+' real minutes'+(t.speed>1.01?' · world speed ×'+Math.round(t.speed):'');
@@ -430,6 +466,10 @@ document.querySelectorAll('[data-c]').forEach(el=>el.onchange=()=>act('cheatSet'
 function showSpeed(w,x){const i=document.querySelector('[data-s="'+w+'"]'), l=document.querySelector('[data-sv="'+w+'"]'); if(i)i.value=x; if(l)l.textContent='×'+(+x);}
 document.querySelectorAll('[data-s]').forEach(el=>{el.oninput=()=>showSpeed(el.dataset.s,el.value); el.onchange=()=>act('cheatSpeed',{which:el.dataset.s,x:+el.value});});
 function speedReset(w){showSpeed(w,1); act('cheatSpeed',{which:w,x:1});}
+async function happyLoad(say){const r=await call('happiness',{value:-1}); if(r.ok&&r.data){$('hapNow').textContent='now '+r.data.value+' · town quality '+r.data.town;} if(say){const m=(r.msg||'').replace(/^(OK|ERR) /,''); log(m,r.ok); toast(m,r.ok);} return r;}
+async function happy(sign){const n=num('hap'); let v=n;
+  if(sign){const cur=await happyLoad(false); if(!cur.ok){toast(cur.msg.replace(/^ERR /,''),false);return;} if(!n){toast('Enter an amount first',false);return;} v=Math.max(0,Math.min(9999,cur.data.value+sign*n));}
+  const r=await call('happiness',{value:v}); const m=(r.msg||'').replace(/^(OK|ERR) /,''); log(m,r.ok); toast(m,r.ok); if(r.ok&&r.data)$('hapNow').textContent='now '+r.data.value+' · town quality '+r.data.town;}
 async function loadNpcs(){const r=await call('npcGet'); if(!r.ok){$('npcs').textContent=r.msg.replace(/^ERR /,''); return;}
   $('npcs').innerHTML=r.data.map(n=>'<div class="npc"><b>'+esc(n.name)+'</b><input type="range" min="0" max="100" step="5" value="'+n.value+'" data-n="'+esc(n.id)+'"><span class="v">'+n.value+'</span><button class="btn sm" data-set="'+esc(n.id)+'">Set</button></div>').join('');
   $('npcs').querySelectorAll('input[type=range]').forEach(i=>i.oninput=()=>{i.nextElementSibling.textContent=i.value;});

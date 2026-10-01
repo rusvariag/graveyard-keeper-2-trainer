@@ -7,6 +7,7 @@
 //   TIME FF <weekday 1-6|+N> <hour 0-23> <speed 2-50> <rested 1|0>
 //        weekday: 1 Gluttony 2 Sloth 3 Lust 4 Envy 5 Pride 6 Wrath (next time that day starts) ; +N = N days ahead
 //   TIME STOP
+//   TIME SET <hour 0-23> <minute 0-59>  -> moves today's clock to that time at once (a jump, unlike FF)
 //
 // Runs on Unity's main thread (Bridge.Pump calls Tick every frame).
 
@@ -53,8 +54,10 @@ namespace GK2Spawner
                     return "OK fast-forward stopped - " + Describe(env, eng);
                 case "FF":
                     return Start(args, env, eng);
+                case "SET":
+                    return SetClock(args, env, eng);
                 default:
-                    return "ERR usage: TIME GET | TIME FF <weekday 1-6|+N> <hour 0-23> <speed 2-50> <rested 1|0> | TIME STOP";
+                    return "ERR usage: TIME GET | TIME FF <weekday 1-6|+N> <hour 0-23> <speed 2-50> <rested 1|0> | TIME STOP | TIME SET <hour> <minute>";
             }
         }
 
@@ -99,6 +102,7 @@ namespace GK2Spawner
                 return "ERR you are sleeping - wake up first";
             }
             Cheats.Freeze = false; // a frozen clock would never reach the target
+            Cheats.Noon = false;
             active = true;
             targetDay = target;
             targetTod = tod;
@@ -110,6 +114,26 @@ namespace GK2Spawner
             float realSeconds = daysLeft * eng.gameplayDayInMinutes * 60f / speed;
             return "OK fast-forwarding x" + speed.ToString("0", CultureInfo.InvariantCulture) + " to day " + target + " (" + DayNames[env.GetDayNumberFromDay(target)] + ") "
                 + hour.ToString("00") + ":00 - about " + Mathf.CeilToInt(realSeconds) + " s real time";
+        }
+
+        // Today's clock jumps to hour:minute (the day number stays). Anything timed between the old and
+        // the new time is skipped (forward) or happens again (backward) - fast-forward is the safe way.
+        private static string SetClock(string[] args, EnvironmentData env, EnvironmentEngine eng)
+        {
+            int hour, minute;
+            if (args.Length != 3 || !int.TryParse(args[1], out hour) || hour < 0 || hour > 23
+                || !int.TryParse(args[2], out minute) || minute < 0 || minute > 59)
+            {
+                return "ERR usage: TIME SET <hour 0-23> <minute 0-59>";
+            }
+            if (active) return "ERR fast-forward is running - stop it first";
+            if (MainGame.PlayerData.energySystem.IsSleeping || MainGame.PlayerData.energySystem.IsInTransitionBetweenSleep)
+            {
+                return "ERR you are sleeping - wake up first";
+            }
+            Cheats.Noon = false;
+            eng.SetTimeOfDay((hour * 60 + minute) / 1440f);
+            return "OK clock set to " + hour.ToString("00") + ":" + minute.ToString("00") + " - " + Describe(env, eng);
         }
 
         private static void Stop(EnvironmentData env)

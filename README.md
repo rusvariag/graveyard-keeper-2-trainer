@@ -4,9 +4,12 @@ A small Windows trainer for **single-player** Graveyard Keeper 2:
 - pick any item from a searchable list, choose a count, and it appears in your inventory (if it doesn't fit, it's dropped at your feet).
 - add **red / green / blue tech points** (research points; the game caps each colour at 999).
 - **add or remove money** in gold / silver / copper (1 gold = 100 silver = 10,000 copper).
+- **town gratitude** (the smiles): add, remove or set it.
 - **instant craft**: while it's on, the first hit at a workbench finishes the craft.
-- **cheats**: god mode, infinite stamina / energy, zero insanity, no lack of sleep, one-hit gathering, freeze time of day, game speed, move speed, and NPC friendship (set each NPC or max all).
+- **cheats**: god mode, infinite stamina / energy, zero insanity, no lack of sleep, one-hit gathering, freeze time of day, always noon, game speed, move speed, and NPC friendship (set each NPC or max all).
+- **multipliers**: tech points gained ×1–10, NPC friendship gained ×1–10, energy use and stamina use ×0–2.
 - **time fast-forward**: run the whole world faster (like sleeping) until a chosen day and hour, with nothing skipped.
+- **set clock**: jump today's clock to any hour and minute.
 - **zombie editor**: while a zombie's menu is open in the game, edit that zombie's name, skill-tree points, organs (and so its white/red skulls), body items, collar, tool/weapon, armour and skill tree.
 - **dead body editor**: change a corpse's organs and embalming (its white/red skulls) before burial, or even in the grave.
 
@@ -16,17 +19,18 @@ The trainer opens in a modern dark window. It has a sidebar with **Items · Play
 - The window is drawn with **WebView2**, the Edge engine built into Windows 10/11, inside the app's own window. There's no browser tab and no console.
 - If WebView2 is missing, the app opens the classic plain window.
 - **Keep `WebView2Loader.dll` next to the .exe.** It's Microsoft's own signed file and is loaded the normal Windows way. Without it, you get the classic window.
-- The modern window takes ~1–2 s to start, because WebView2 starts Edge's helper processes. For the instant plain window, start with **`--classic`**: make a shortcut with `KeeperTrainer-v3.0.exe --classic`.
+- The modern window takes ~1–2 s to start, because WebView2 starts Edge's helper processes. For the instant plain window, start with **`--classic`**: make a shortcut with `KeeperTrainer-v3.1.exe --classic`.
 - **Antivirus:** this build doesn't load any DLL from memory. Upstream go-webview2 does that with an embedded loader, and Defender flags that technique, so the project uses a fork in `third_party/go-webview2`. The game helper is still injected into the game process, as every trainer does, so an unsigned trainer can still be flagged now and then.
 - The Zombie and Dead body tabs fill in by themselves when a zombie menu, a body table or a grave is open in the game. A green dot marks each tab that has something to edit.
 - The classic window has the items, player, zombie, dead body and time sections, but no Cheats tab.
 
 ## Use it
-1. Run `KeeperTrainer-v3.0.exe` (keep `WebView2Loader.dll` next to it).
+1. Run `KeeperTrainer-v3.1.exe` (keep `WebView2Loader.dll` next to it).
 1. Start the game (or have it running) and **load your save**. The tool finds the game and **connects by itself**, and the status dot turns green. Use **Reconnect** only if you want to retry straight away.
 1. Items: type in the search box, pick an item, set the count (or use ×1 / ×10 / ×50 / Stack), and click **Add to inventory**. You can also double-click the item.
 1. Tech points: enter red / green / blue amounts and click **Add**. **Show** displays your current balance.
 1. Money: enter gold / silver / copper and click **Add** or **Remove**. **Show** displays your current money. Removing more than you have leaves you at 0.
+1. Town gratitude (Player): type an amount, then **Add**, **Remove** or **Set to this**. The game stops you *earning* more than your town quality, but the trainer can set up to 9,999, and you can spend all of it.
 1. Crafting: turn on **Instant craft**, then craft as usual. The first hit finishes the item, and each queued item takes one hit. It applies only to what *you* craft, not to zombies or growing plants. It stays on after a game restart, because the tool re-sends it when it reconnects.
 1. Zombie: in the game, open a zombie's menu (the one where you give it items or spend its red/green/blue points). The **Edit zombie…** button (or the Zombie tab) lights up within a second:
    - **Name**: type a name and click **Rename**.
@@ -43,13 +47,15 @@ The trainer opens in a modern dark window. It has a sidebar with **Items · Play
    - You keep playing at normal speed.
    - **Stay rested** clears the lack-of-sleep debuff (which comes after 2 game days awake).
    - **Stop** returns to normal speed at any time.
+   - **Set clock** moves today's clock straight to an hour and minute, forward or back. Unlike fast-forward this *does* jump, so anything timed in between is skipped.
 1. Cheats: flip a switch and it stays on while you play; the trainer sends it again after a game restart. **Restore all now** fills health, energy and stamina once.
+1. Cheats → **Multipliers**: slide **Tech points gained** or **Friendship gained** above ×1 to multiply every gain the game gives you. Losses stay normal, and your own trainer changes aren't multiplied. **Energy use** / **Stamina use** below ×1 makes actions cheaper: ×0.5 is half, ×0 is free. Above ×1 makes them dearer.
 
 After **updating this tool**, restart the game once, because the old helper can't be unloaded. The status line tells you when that's needed (yellow dot).
 
 ## How it works
 ```
-KeeperTrainer-v3.0.exe ─(1) injects GK2Spawner.dll via the Mono API──►  GraveyardKeeper2.exe
+KeeperTrainer-v3.1.exe ─(1) injects GK2Spawner.dll via the Mono API──►  GraveyardKeeper2.exe
      └──(2) "ADD iron_ingot 5" over 127.0.0.1:27817  ──────────►   │ Bridge.Start() → queue → main thread
                                                                     │ PlayerData.Inventory.AddItemToInventory(new Item(id, n))
                                                                     │ or dropSystem.DropItem(...) if full
@@ -73,15 +79,18 @@ KeeperTrainer-v3.0.exe ─(1) injects GK2Spawner.dll via the Mono API──►  
 - **Time fast-forward.** `TIME GET|FF|STOP` uses `UpdateManager.SetTimeSpeedMultiplier`, the call the game makes when you sleep (×50).
   - The update manager runs the fixed-interval systems several times per frame, so the simulation keeps its normal step size.
   - The helper checks every frame for the target day and hour (a new day starts at time 0.0, dawn is 0.25), and then sets the speed back to 1. It leaves the game's own sleep speed alone and re-applies its speed after you wake.
-- **Cheats.** `CHEAT GET|SET|SPEED|RESTORE` and `NPC GET|SET|MAX` (`payload/Cheats.cs`). Each switch is re-applied every frame through the game's own systems:
+- **Set clock.** `TIME SET <hour> <minute>` calls `EnvironmentEngine.SetTimeOfDay` (the same call cutscenes use); the day number stays.
+- **Cheats.** `CHEAT GET|SET|SPEED|RESTORE|HAPPY` and `NPC GET|SET|MAX` (`payload/Cheats.cs`). Each switch is re-applied every frame through the game's own systems:
   - health: `PlayerData.hpComponent`, `IsImmuneToDamage` / `RestoreFullHp`;
   - stamina, energy, insanity: the `GK2GameResSystem` resources, set to their current max or min;
   - sleep: `EnergySystem.DeactivateLackOfSleep`;
   - gathering: the target's `HPComponent` is finished after your first real hit, only if your mastery allows the hit;
-  - time: `EnvironmentEngine.IsPaused`;
+  - time: `EnvironmentEngine.IsPaused`; always noon also holds `timeOfDay` at 0.5;
   - move speed: `PlayerPhysicsConfig.speed`, restored at ×1;
   - game speed: `Time.timeScale`, leaving the game's own pause alone;
   - friendship: `PlayerData.SetNPCRep`, which re-checks reputation unlocks;
+  - town gratitude: the `happiness` resource (`PlayerData.SetRes`, max 9,999);
+  - multipliers (`CHEAT SPEED tech|friend|energy|stamina <x>`): each frame the helper compares `tech_red/green/blue`, each NPC's `*_REP`, `energy` and `stamina` with the previous frame and scales a gain (tech, friendship) or a drop (energy, stamina) through the game's own setters. Values are re-read after every trainer command, so the trainer's own changes are never scaled.
 
 ## Build from source
 ```bash
@@ -92,7 +101,7 @@ dotnet build payload -c Release -o build
 go install github.com/tc-hib/go-winres@latest && go-winres make --in winres/winres.json --arch amd64
 
 # The tool (Go 1.22+), cross-compiled for Windows x64; it embeds build/GK2Spawner.dll
-GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-s -w -H windowsgui" -o KeeperTrainer-v3.0.exe .
+GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-s -w -H windowsgui" -o KeeperTrainer-v3.1.exe .
 ```
 Files: `core.go` (item list and helper protocol), `gui_windows.go` (the classic window), `gui_zombie_windows.go` (its zombie / dead body editor), `webui_windows.go` + `webui.html` (the modern window), `inject_windows.go` (Mono injection), `payload/` (the in-game helper).
 A non-Windows build is a small command-line tool for testing against the helper (run it without arguments for the list of commands).

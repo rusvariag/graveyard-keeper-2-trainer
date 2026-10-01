@@ -23,9 +23,9 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "3.0"
+	appVersion    = "3.1"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
-	helperVersion = "VERSION 9"       // must match Bridge.Version
+	helperVersion = "VERSION 11"      // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."
 	maxCount      = 9999
 	techCap       = 999
@@ -260,7 +260,7 @@ func zombieOpen() (bool, string) {
 
 // ---------- common trainer options ----------
 
-// cheatSet turns a switch on or off: god, stamina, energy, insanity, sleep, gather, freeze.
+// cheatSet turns a switch on or off: god, stamina, energy, insanity, sleep, gather, freeze, noon.
 func cheatSet(name string, on bool) (bool, string) {
 	v := 0
 	if on {
@@ -269,12 +269,42 @@ func cheatSet(name string, on bool) (bool, string) {
 	return runCommand(fmt.Sprintf("CHEAT SET %s %d", name, v))
 }
 
-// cheatSpeed sets "move" (1-3) or "game" (0.25-4) speed.
+// cheatSpeed sets a multiplier: "move" (1-3), "game" (0.25-4) speed, "tech" / "friend" gains (1-10),
+// "energy" / "stamina" use (0-2).
 func cheatSpeed(which string, x float64) (bool, string) {
 	return runCommand(fmt.Sprintf("CHEAT SPEED %s %.2f", which, x))
 }
 
 func cheatRestore() (bool, string) { return runCommand("CHEAT RESTORE") }
+
+// Happiness is the town gratitude (smiles) balance and the town quality that caps what you earn.
+type Happiness struct {
+	Value int `json:"value"`
+	Town  int `json:"town"`
+}
+
+// happiness reads the balance, or sets it first when value >= 0.
+func happiness(value int) (*Happiness, string, error) {
+	cmd := "CHEAT HAPPY"
+	if value >= 0 {
+		cmd = fmt.Sprintf("CHEAT HAPPY %d", value)
+	}
+	ok, msg := runCommand(cmd)
+	if !ok {
+		return nil, msg, errors.New(strings.TrimPrefix(msg, "ERR "))
+	}
+	var h Happiness
+	for _, kv := range strings.Fields(strings.TrimPrefix(msg, "OK ")) {
+		k, v, _ := strings.Cut(kv, "=")
+		switch k {
+		case "happiness":
+			fmt.Sscan(v, &h.Value)
+		case "town":
+			fmt.Sscan(v, &h.Town)
+		}
+	}
+	return &h, fmt.Sprintf("Town gratitude now %d (town quality %d)", h.Value, h.Town), nil
+}
 
 // NPCRep is one NPC's friendship value.
 type NPCRep struct {
@@ -354,6 +384,11 @@ func timeFastForward(target string, hour int, speed int, rested bool) (bool, str
 }
 
 func timeStop() (bool, string) { return runCommand("TIME STOP") }
+
+// timeSet moves today's clock straight to hour:minute (a jump, unlike timeFastForward).
+func timeSet(hour, minute int) (bool, string) {
+	return runCommand(fmt.Sprintf("TIME SET %d %d", hour, minute))
+}
 
 // corpseCmd sends "CORPSE <args>": the dead body on an open autopsy / embalming table or grave,
 // or the one the player carries.

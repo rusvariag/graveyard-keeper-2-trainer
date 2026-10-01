@@ -136,6 +136,7 @@ func handleAPI(st *webState, items []Item, action string, raw string) apiResult 
 		On     bool    `json:"on"`
 		Target string  `json:"target"`
 		Hour   int     `json:"hour"`
+		Minute int     `json:"minute"`
 		Speed  int     `json:"speed"`
 		Rested bool    `json:"rested"`
 		Cmd    string  `json:"cmd"`
@@ -174,6 +175,12 @@ func handleAPI(st *webState, items []Item, action string, raw string) apiResult 
 		return res(addTech(a.R, a.G, a.B))
 	case "money":
 		return res(changeMoney(a.Copper))
+	case "happiness":
+		h, msg, err := happiness(a.Value)
+		if err != nil {
+			return res(false, msg)
+		}
+		return apiResult{OK: true, Msg: msg, Data: h}
 	case "instant":
 		st.instant.Store(a.On)
 		if !st.Ready {
@@ -211,8 +218,14 @@ func handleAPI(st *webState, items []Item, action string, raw string) apiResult 
 	case "timeFF":
 		st.mu.Lock()
 		st.cheats["freeze"] = false // the helper unfreezes the clock for the fast-forward
+		st.cheats["noon"] = false
 		st.mu.Unlock()
 		return res(timeFastForward(a.Target, a.Hour, a.Speed, a.Rested))
+	case "timeSet":
+		st.mu.Lock()
+		st.cheats["noon"] = false // the helper drops "always noon" when the clock is set
+		st.mu.Unlock()
+		return res(timeSet(a.Hour, a.Minute))
 	case "timeStop":
 		return res(timeStop())
 	case "zombieGet":

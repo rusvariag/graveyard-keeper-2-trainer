@@ -7,13 +7,21 @@
 //   sleep     lack-of-sleep debuff cleared          (EnergySystem.DeactivateLackOfSleep)
 //   gather    a tree / rock / stump / ripe plant you hit dies after the first hit (if you have the mastery)
 //   freeze    world clock stopped                   (EnvironmentEngine.IsPaused)
+//   noon      clock held at 12:00                   (EnvironmentEngine.SetTimeOfDay + IsPaused)
 //   move      player speed multiplier               (PlayerPhysicsConfig.speed, restored when set back to 1)
 //   game      game speed                            (Time.timeScale; the game's own pause (0) is left alone)
+//   tech      tech points earned x1-10              (every gain of tech_red/green/blue is scaled)
+//   friend    NPC friendship earned x1-10           (every gain of an NPC's *_REP is scaled, up to 100)
+//   energy    energy used x0-2                      (every drop of the energy resource is scaled)
+//   stamina   stamina used x0-2                     (every drop of the stamina resource is scaled)
+// The multipliers compare each value with the previous frame; Resync() is called after every trainer
+// command, so the trainer's own changes (TECH, NPC SET, ...) are never scaled.
 //
-//   CHEAT GET                     -> OK god=0 stamina=1 ... move=1.5 game=1
+//   CHEAT GET                     -> OK god=0 stamina=1 ... move=1.5 game=1 tech=1 friend=1 energyUse=1 staminaUse=1
 //   CHEAT SET <switch> 1|0
-//   CHEAT SPEED move|game <x>
+//   CHEAT SPEED move|game|tech|friend|energy|stamina <x>
 //   CHEAT RESTORE                 -> full health, energy and stamina, zero insanity, once
+//   CHEAT HAPPY [value]           -> OK happiness=12 town=40 (town gratitude; value 0-9999 sets it)
 //   NPC GET                       -> OK [{"id":"nun_REP","name":"Nun","value":35}, ...]
 //   NPC SET <repId> <value>       (PlayerData.SetNPCRep, which also re-checks reputation unlocks)
 //   NPC MAX                       -> every NPC to 100
@@ -28,8 +36,12 @@ namespace GK2Spawner
 {
     public static class Cheats
     {
-        private static bool god, stamina, energy, insanity, sleep, gather, freeze;
+        private static bool god, stamina, energy, insanity, sleep, gather, freeze, noon;
         private static float moveMul = 1f, gameSpeed = 1f;
+        private static float techMul = 1f, repMul = 1f, energyUse = 1f, staminaUse = 1f;
+        private static readonly string[] TechRes = { "tech_red", "tech_green", "tech_blue" };
+        private static readonly Dictionary<string, float> lastValue = new Dictionary<string, float>();
+        private static PlayerData trackedPlayer;
         private static PlayerPhysicsConfig speedConfig;
         private static float baseSpeed;
         private static string lastError;
@@ -40,7 +52,17 @@ namespace GK2Spawner
             set
             {
                 freeze = value;
-                if (!value && EnvironmentEngine.Instance != null) EnvironmentEngine.Instance.IsPaused = false;
+                if (!value && !noon && EnvironmentEngine.Instance != null) EnvironmentEngine.Instance.IsPaused = false;
+            }
+        }
+
+        public static bool Noon
+        {
+            get { return noon; }
+            set
+            {
+                noon = value;
+                if (!value && !freeze && EnvironmentEngine.Instance != null) EnvironmentEngine.Instance.IsPaused = false;
             }
         }
 
@@ -70,6 +92,7 @@ namespace GK2Spawner
                         case "sleep": sleep = on; break;
                         case "gather": gather = on; break;
                         case "freeze": Freeze = on; break;
+                        case "noon": Noon = on; break;
                         default: return "ERR unknown switch '" + args[1] + "'";
                     }
                     return "OK " + args[1].ToLowerInvariant() + (on ? " on" : " off");
@@ -77,7 +100,7 @@ namespace GK2Spawner
                 case "SPEED":
                 {
                     float x;
-                    if (args.Length != 3 || !float.TryParse(args[2], NumberStyles.Float, CultureInfo.InvariantCulture, out x)) return "ERR usage: CHEAT SPEED move|game <x>";
+                    if (args.Length != 3 || !float.TryParse(args[2], NumberStyles.Float, CultureInfo.InvariantCulture, out x)) return "ERR usage: CHEAT SPEED move|game|tech|friend|energy|stamina <x>";
                     string which = args[1].ToLowerInvariant();
                     if (which == "move")
                     {
@@ -93,7 +116,21 @@ namespace GK2Spawner
                         if (Time.timeScale > 0f) Time.timeScale = x;
                         return "OK game speed x" + x.ToString("0.##", CultureInfo.InvariantCulture);
                     }
-                    return "ERR usage: CHEAT SPEED move|game <x>";
+                    if (which == "tech" || which == "friend")
+                    {
+                        if (x < 1f || x > 10f) return "ERR multiplier must be 1-10";
+                        Resync();
+                        if (which == "tech") techMul = x; else repMul = x;
+                        return "OK " + (which == "tech" ? "tech points" : "NPC friendship") + " gains x" + x.ToString("0.##", CultureInfo.InvariantCulture);
+                    }
+                    if (which == "energy" || which == "stamina")
+                    {
+                        if (x < 0f || x > 2f) return "ERR use rate must be 0-2";
+                        Resync();
+                        if (which == "energy") energyUse = x; else staminaUse = x;
+                        return "OK " + which + " use x" + x.ToString("0.##", CultureInfo.InvariantCulture);
+                    }
+                    return "ERR usage: CHEAT SPEED move|game|tech|friend|energy|stamina <x>";
                 }
                 case "RESTORE":
                     MainGame.PlayerData.hpComponent.RestoreFullHp();
@@ -101,8 +138,22 @@ namespace GK2Spawner
                     SetMax("stamina");
                     SetMin("insanity");
                     return "OK health, energy and stamina full, insanity 0";
+                case "HAPPY":
+                {
+                    int v;
+                    if (args.Length == 2)
+                    {
+                        if (!int.TryParse(args[1], out v) || v < 0 || v > HappinessMax) return "ERR happiness must be 0-" + HappinessMax;
+                        MainGame.PlayerData.SetRes("happiness", v); // raises OnGameResChanged so the HUD updates
+                    }
+                    else if (args.Length != 1)
+                    {
+                        return "ERR usage: CHEAT HAPPY [0-" + HappinessMax + "]";
+                    }
+                    return "OK happiness=" + MainGame.PlayerData.GetResInt("happiness") + " town=" + MainGame.Instance.GameSave.townSystem.Quality;
+                }
                 default:
-                    return "ERR usage: CHEAT GET | SET <switch> 1|0 | SPEED move|game <x> | RESTORE";
+                    return "ERR usage: CHEAT GET | SET <switch> 1|0 | SPEED <name> <x> | RESTORE | HAPPY [value]";
             }
         }
 
@@ -110,11 +161,15 @@ namespace GK2Spawner
         {
             var c = CultureInfo.InvariantCulture;
             return "god=" + B(god) + " stamina=" + B(stamina) + " energy=" + B(energy) + " insanity=" + B(insanity)
-                + " sleep=" + B(sleep) + " gather=" + B(gather) + " freeze=" + B(freeze)
-                + " move=" + moveMul.ToString("0.##", c) + " game=" + gameSpeed.ToString("0.##", c);
+                + " sleep=" + B(sleep) + " gather=" + B(gather) + " freeze=" + B(freeze) + " noon=" + B(noon)
+                + " move=" + moveMul.ToString("0.##", c) + " game=" + gameSpeed.ToString("0.##", c)
+                + " tech=" + techMul.ToString("0.##", c) + " friend=" + repMul.ToString("0.##", c)
+                + " energyUse=" + energyUse.ToString("0.##", c) + " staminaUse=" + staminaUse.ToString("0.##", c);
         }
 
         private static string B(bool b) { return b ? "1" : "0"; }
+
+        private const int HappinessMax = 9999; // GameResSystemDef "happiness" max
 
         private static void SetMax(string res)
         {
@@ -148,6 +203,7 @@ namespace GK2Spawner
             try
             {
                 PlayerData pd = MainGame.PlayerData;
+                ScaleChanges(pd);
                 if (god)
                 {
                     pd.hpComponent.IsImmuneToDamage = true;
@@ -157,10 +213,17 @@ namespace GK2Spawner
                 if (insanity) SetMin("insanity");
                 if (energy) SetMax("energy");
                 if (sleep) pd.energySystem.DeactivateLackOfSleep();
+                if (noon && EnvironmentEngine.Instance != null)
+                {
+                    EnvironmentEngine eng = EnvironmentEngine.Instance;
+                    if (Mathf.Abs(eng.timeOfDay - 0.5f) > 0.0005f) eng.SetTimeOfDay(0.5f);
+                    if (!eng.IsPaused) eng.IsPaused = true;
+                }
                 if (freeze && EnvironmentEngine.Instance != null && !EnvironmentEngine.Instance.IsPaused) EnvironmentEngine.Instance.IsPaused = true;
                 if (moveMul != 1f || speedConfig != null) ApplyMoveSpeed();
                 if (gameSpeed != 1f && Time.timeScale > 0f && Mathf.Abs(Time.timeScale - gameSpeed) > 0.01f) Time.timeScale = gameSpeed;
                 if (gather) OneHitGather();
+                Resync(); // the switches above changed values: don't scale those next frame
                 lastError = null;
             }
             catch (Exception e)
@@ -170,6 +233,61 @@ namespace GK2Spawner
                     lastError = e.Message;
                     Debug.LogWarning("[GK2Spawner] cheats: " + e);
                 }
+            }
+        }
+
+        // ---------- multipliers ----------
+
+        // Remembers the current values, so the next frame only sees changes made by the game.
+        public static void Resync()
+        {
+            PlayerData pd = MainGame.PlayerData;
+            if (pd == null) return;
+            trackedPlayer = pd;
+            foreach (string id in TechRes) lastValue[id] = pd.GetRes(id);
+            foreach (string[] n in Npcs) lastValue[n[0]] = pd.GetNPCRep(n[0]);
+            lastValue["energy"] = pd.GetRes("energy");
+            lastValue["stamina"] = pd.GetRes("stamina");
+        }
+
+        private static void ScaleChanges(PlayerData pd)
+        {
+            if (pd != trackedPlayer)
+            {
+                Resync(); // another save was loaded
+                return;
+            }
+            float before;
+            foreach (string id in TechRes)
+            {
+                float now = pd.GetRes(id);
+                if (techMul != 1f && lastValue.TryGetValue(id, out before) && now > before + 0.001f)
+                {
+                    pd.SetRes(id, before + (now - before) * techMul); // clamped to 999 by the game
+                }
+            }
+            foreach (string[] n in Npcs)
+            {
+                int now = pd.GetNPCRep(n[0]);
+                if (repMul != 1f && lastValue.TryGetValue(n[0], out before) && now > before + 0.5f && now < 100)
+                {
+                    int want = Mathf.Min(100, Mathf.RoundToInt(before + (now - before) * repMul));
+                    if (want > now) pd.SetNPCRep(n[0], want);
+                }
+            }
+            ScaleUse(pd, "energy", energyUse);
+            ScaleUse(pd, "stamina", staminaUse);
+        }
+
+        // A drop of `res` since the last frame becomes drop * rate (energy/stamina use).
+        private static void ScaleUse(PlayerData pd, string res, float rate)
+        {
+            float before;
+            if (rate == 1f || !lastValue.TryGetValue(res, out before)) return;
+            float now = pd.GetRes(res);
+            if (now < before - 0.001f)
+            {
+                pd.SetRes(res, before - (before - now) * rate); // clamped to the resource's min/max by the game
             }
         }
 
