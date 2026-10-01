@@ -23,9 +23,9 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "2.8"
+	appVersion    = "3.0"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
-	helperVersion = "VERSION 8"       // must match Bridge.Version
+	helperVersion = "VERSION 9"       // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."
 	maxCount      = 9999
 	techCap       = 999
@@ -275,6 +275,28 @@ func cheatSpeed(which string, x float64) (bool, string) {
 }
 
 func cheatRestore() (bool, string) { return runCommand("CHEAT RESTORE") }
+
+// NPCRep is one NPC's friendship value.
+type NPCRep struct {
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	Value int    `json:"value"`
+}
+
+func npcGet() ([]NPCRep, error) {
+	ok, msg := runCommand("NPC GET")
+	if !ok {
+		return nil, errors.New(strings.TrimPrefix(msg, "ERR "))
+	}
+	var out []NPCRep
+	err := json.Unmarshal([]byte(strings.TrimPrefix(msg, "OK ")), &out)
+	return out, err
+}
+
+func npcSet(id string, value int) (bool, string) {
+	return runCommand(fmt.Sprintf("NPC SET %s %d", id, value))
+}
+func npcMax() (bool, string) { return runCommand("NPC MAX") }
 
 // ---------- time fast-forward ----------
 

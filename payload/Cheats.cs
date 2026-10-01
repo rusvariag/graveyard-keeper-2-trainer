@@ -14,6 +14,9 @@
 //   CHEAT SET <switch> 1|0
 //   CHEAT SPEED move|game <x>
 //   CHEAT RESTORE                 -> full health, energy and stamina, zero insanity, once
+//   NPC GET                       -> OK [{"id":"nun_REP","name":"Nun","value":35}, ...]
+//   NPC SET <repId> <value>       (PlayerData.SetNPCRep, which also re-checks reputation unlocks)
+//   NPC MAX                       -> every NPC to 100
 
 using System;
 using System.Collections.Generic;
@@ -180,6 +183,50 @@ namespace GK2Spawner
             if (act.WgoData.Definition.playerHpActivityMod <= 0) return; // repair-type objects
             if (!act.IsEnoughMastery()) return;                          // the game wouldn't let this hit count either
             hp.ApplyDamage(hp.Hp);
+        }
+
+        // ---------- NPC friendship ----------
+
+        private static readonly string[][] Npcs =
+        {
+            new[] { "nun_REP", "Agatha (Nun)" },
+            new[] { "npc_head_of_the_guards_REP", "Herbert" },
+            new[] { "npc_plague_doctor_REP", "Albert" },
+            new[] { "npc_tavern_owner_REP", "Linda" },
+            new[] { "npc_workshop_foreman_REP", "Jack" },
+            new[] { "npc_astrologer_REP", "Gunter" },
+            new[] { "npc_larry_REP", "Larry" },
+            new[] { "village_REP", "Village" },
+        };
+
+        public static string HandleNpc(string[] args)
+        {
+            if (!InGame()) return "ERR no save loaded - load your game first";
+            PlayerData pd = MainGame.PlayerData;
+            string sub = args.Length > 0 ? args[0].ToUpperInvariant() : "";
+            if (sub == "GET")
+            {
+                var parts = new List<string>();
+                foreach (string[] n in Npcs)
+                {
+                    parts.Add("{\"id\":\"" + n[0] + "\",\"name\":\"" + n[1] + "\",\"value\":" + pd.GetNPCRep(n[0]).ToString(CultureInfo.InvariantCulture) + "}");
+                }
+                return "OK [" + string.Join(",", parts.ToArray()) + "]";
+            }
+            if (sub == "SET")
+            {
+                int v;
+                if (args.Length != 3 || !int.TryParse(args[2], out v) || v < 0 || v > 100) return "ERR usage: NPC SET <repId> <0-100>";
+                if (Array.Find(Npcs, n => n[0] == args[1]) == null) return "ERR unknown NPC '" + args[1] + "'";
+                pd.SetNPCRep(args[1], v);
+                return "OK " + Array.Find(Npcs, n => n[0] == args[1])[1] + " friendship " + v;
+            }
+            if (sub == "MAX")
+            {
+                foreach (string[] n in Npcs) pd.SetNPCRep(n[0], 100);
+                return "OK every NPC's friendship set to 100";
+            }
+            return "ERR usage: NPC GET | SET <repId> <0-100> | MAX";
         }
     }
 }

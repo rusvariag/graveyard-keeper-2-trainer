@@ -282,6 +282,10 @@ footer .h{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:11p
         <input type="range" data-s="move" min="1" max="3" step="0.25" value="1">
         <small>How fast your character walks and runs.</small></div>
     </div>
+    <div class="card"><h3>NPC friendship <span class="hint"><button class="btn sm" onclick="loadNpcs()">Refresh</button> <button class="btn sm primary" onclick="act('npcMax').then(loadNpcs)">Max all (100)</button></span></h3>
+      <div id="npcs" class="note">Loading…</div>
+      <div class="note" style="margin-top:8px">Friendship unlocks NPC techs (the highest needs 70). Changing it re-checks those unlocks right away.</div>
+    </div>
   </div>
 </section>
 
@@ -379,7 +383,7 @@ async function act(a,args){const r=await call(a,args); const m=(r.msg||'').repla
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>show(b.dataset.p));
 function show(p){document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x.dataset.p===p));
   document.querySelectorAll('.page').forEach(x=>x.classList.toggle('on',x.id==='p-'+p));
-  if(p==='zombie')loadZombie(); if(p==='body')loadBody();}
+  if(p==='zombie')loadZombie(); if(p==='body')loadBody(); if(p==='cheats')loadNpcs();}
 
 /* items */
 let items=[], shown=[], selId=null, byId={};
@@ -426,6 +430,10 @@ document.querySelectorAll('[data-c]').forEach(el=>el.onchange=()=>act('cheatSet'
 function showSpeed(w,x){const i=document.querySelector('[data-s="'+w+'"]'), l=document.querySelector('[data-sv="'+w+'"]'); if(i)i.value=x; if(l)l.textContent='×'+(+x);}
 document.querySelectorAll('[data-s]').forEach(el=>{el.oninput=()=>showSpeed(el.dataset.s,el.value); el.onchange=()=>act('cheatSpeed',{which:el.dataset.s,x:+el.value});});
 function speedReset(w){showSpeed(w,1); act('cheatSpeed',{which:w,x:1});}
+async function loadNpcs(){const r=await call('npcGet'); if(!r.ok){$('npcs').textContent=r.msg.replace(/^ERR /,''); return;}
+  $('npcs').innerHTML=r.data.map(n=>'<div class="npc"><b>'+esc(n.name)+'</b><input type="range" min="0" max="100" step="5" value="'+n.value+'" data-n="'+esc(n.id)+'"><span class="v">'+n.value+'</span><button class="btn sm" data-set="'+esc(n.id)+'">Set</button></div>').join('');
+  $('npcs').querySelectorAll('input[type=range]').forEach(i=>i.oninput=()=>{i.nextElementSibling.textContent=i.value;});
+  $('npcs').querySelectorAll('[data-set]').forEach(b=>b.onclick=()=>{const v=+$('npcs').querySelector('[data-n="'+b.dataset.set+'"]').value; act('npcSet',{id:b.dataset.set,value:v});});}
 
 /* status polling */
 let st={};

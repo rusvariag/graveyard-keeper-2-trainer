@@ -142,6 +142,7 @@ func handleAPI(st *webState, items []Item, action string, raw string) apiResult 
 		Name   string  `json:"name"`
 		Which  string  `json:"which"`
 		X      float64 `json:"x"`
+		Value  int     `json:"value"`
 	}
 	if raw != "" {
 		if err := json.Unmarshal([]byte(raw), &a); err != nil {
@@ -197,6 +198,16 @@ func handleAPI(st *webState, items []Item, action string, raw string) apiResult 
 		return res(cheatSpeed(a.Which, a.X))
 	case "cheatRestore":
 		return res(cheatRestore())
+	case "npcGet":
+		n, err := npcGet()
+		if err != nil {
+			return res(false, err.Error())
+		}
+		return apiResult{OK: true, Data: n}
+	case "npcSet":
+		return res(npcSet(a.ID, a.Value))
+	case "npcMax":
+		return res(npcMax())
 	case "timeFF":
 		st.mu.Lock()
 		st.cheats["freeze"] = false // the helper unfreezes the clock for the fast-forward
