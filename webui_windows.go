@@ -32,6 +32,46 @@ type webState struct {
 	Warn      string `json:"warn"`
 	instant   atomic.Bool
 	connectMu sync.Mutex
+	// wanted cheat state, re-sent after every (re)connect because a restarted game starts clean
+	cheats map[string]bool
+	speeds map[string]float64 // move, game, tech, friend, energy, stamina; 1 = normal
+}
+
+func (s *webState) cheatState() (map[string]bool, map[string]float64) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	c := map[string]bool{}
+	for k, v := range s.cheats {
+		c[k] = v
+	}
+	sp := map[string]float64{}
+	for k, v := range s.speeds {
+		sp[k] = v
+	}
+	return c, sp
+}
+
+func (s *webState) reapplyCheats() {
+	s.mu.Lock()
+	on := []string{}
+	for k, v := range s.cheats {
+		if v {
+			on = append(on, k)
+		}
+	}
+	speeds := map[string]float64{}
+	for k, v := range s.speeds {
+		if v != 1 {
+			speeds[k] = v
+		}
+	}
+	s.mu.Unlock()
+	for _, k := range on {
+		cheatSet(k, true)
+	}
+	for k, v := range speeds {
+		cheatSpeed(k, v)
+	}
 }
 
 func (s *webState) snapshot() map[string]any {
@@ -50,6 +90,7 @@ func (s *webState) set(ready bool, text, level, warn string) {
 		if s.instant.Load() {
 			setInstantCraft(true)
 		}
+		s.reapplyCheats()
 	}
 }
 
@@ -86,18 +127,21 @@ func res(ok bool, msg string) apiResult { return apiResult{OK: ok, Msg: msg} }
 // handleAPI runs one page request (off the UI thread).
 func handleAPI(st *webState, items []Item, action string, raw string) apiResult {
 	var a struct {
-		ID     string `json:"id"`
-		Count  int    `json:"count"`
-		R      int    `json:"r"`
-		G      int    `json:"g"`
-		B      int    `json:"b"`
-		Copper int    `json:"copper"`
-		On     bool   `json:"on"`
-		Target string `json:"target"`
-		Hour   int    `json:"hour"`
-		Speed  int    `json:"speed"`
-		Rested bool   `json:"rested"`
-		Cmd    string `json:"cmd"`
+		ID     string  `json:"id"`
+		Count  int     `json:"count"`
+		R      int     `json:"r"`
+		G      int     `json:"g"`
+		B      int     `json:"b"`
+		Copper int     `json:"copper"`
+		On     bool    `json:"on"`
+		Target string  `json:"target"`
+		Hour   int     `json:"hour"`
+		Speed  int     `json:"speed"`
+		Rested bool    `json:"rested"`
+		Cmd    string  `json:"cmd"`
+		Name   string  `json:"name"`
+		Which  string  `json:"which"`
+		X      float64 `json:"x"`
 	}
 	if raw != "" {
 		if err := json.Unmarshal([]byte(raw), &a); err != nil {
@@ -106,7 +150,8 @@ func handleAPI(st *webState, items []Item, action string, raw string) apiResult 
 	}
 	switch action {
 	case "init":
-		return apiResult{OK: true, Data: map[string]any{"version": appVersion, "items": items, "instant": st.instant.Load()}}
+		cheats, speeds := st.cheatState()
+		return apiResult{OK: true, Data: map[string]any{"version": appVersion, "items": items, "instant": st.instant.Load(), "cheats": cheats, "speeds": speeds}}
 	case "status":
 		out := st.snapshot()
 		if st.Ready {
@@ -134,7 +179,28 @@ func handleAPI(st *webState, items []Item, action string, raw string) apiResult 
 			return res(true, "Instant craft will be applied when the trainer connects to the game.")
 		}
 		return res(setInstantCraft(a.On))
+	case "cheatSet":
+		st.mu.Lock()
+		st.cheats[a.Name] = a.On
+		st.mu.Unlock()
+		if !st.Ready {
+			return res(true, "Will be applied when the trainer connects to the game.")
+		}
+		return res(cheatSet(a.Name, a.On))
+	case "cheatSpeed":
+		st.mu.Lock()
+		st.speeds[a.Which] = a.X
+		st.mu.Unlock()
+		if !st.Ready {
+			return res(true, "Will be applied when the trainer connects to the game.")
+		}
+		return res(cheatSpeed(a.Which, a.X))
+	case "cheatRestore":
+		return res(cheatRestore())
 	case "timeFF":
+		st.mu.Lock()
+		st.cheats["freeze"] = false // the helper unfreezes the clock for the fast-forward
+		st.mu.Unlock()
 		return res(timeFastForward(a.Target, a.Hour, a.Speed, a.Rested))
 	case "timeStop":
 		return res(timeStop())
@@ -202,7 +268,7 @@ func runWebUI(items []Item) bool {
 	defer w.Destroy()
 	w.SetSize(980, 680, webview2.HintMin)
 
-	st := &webState{Text: "Looking for the game…", Level: "err"}
+	st := &webState{Text: "Looking for the game…", Level: "err", cheats: map[string]bool{}, speeds: map[string]float64{}}
 	go func() {
 		for {
 			st.connect()

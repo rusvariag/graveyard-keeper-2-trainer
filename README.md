@@ -5,22 +5,24 @@ A small Windows trainer for **single-player** Graveyard Keeper 2:
 - add **red / green / blue tech points** (research points; the game caps each colour at 999).
 - **add or remove money** in gold / silver / copper (1 gold = 100 silver = 10,000 copper).
 - **instant craft**: while it's on, the first hit at a workbench finishes the craft.
+- **cheats**: god mode, infinite stamina / energy, zero insanity, no lack of sleep, one-hit gathering, freeze time of day, game speed and move speed.
 - **time fast-forward**: run the whole world faster (like sleeping) until a chosen day and hour, with nothing skipped.
 - **zombie editor**: while a zombie's menu is open in the game, edit that zombie's name, skill-tree points, organs (and so its white/red skulls), body items, collar, tool/weapon, armour and skill tree.
 - **dead body editor**: change a corpse's organs and embalming (its white/red skulls) before burial, or even in the grave.
 
 ## The window
 
-The trainer opens in a modern dark window. It has a sidebar with **Items · Player · Time · Zombie · Dead body**, a live connection pill, toast messages and a log strip.
+The trainer opens in a modern dark window. It has a sidebar with **Items · Player · Cheats · Time · Zombie · Dead body**, a live connection pill, toast messages and a log strip.
 - The window is drawn with **WebView2**, the Edge engine built into Windows 10/11, inside the app's own window. There's no browser tab and no console.
 - If WebView2 is missing, the app opens the classic plain window.
 - **Keep `WebView2Loader.dll` next to the .exe.** It's Microsoft's own signed file and is loaded the normal Windows way. Without it, you get the classic window.
-- The modern window takes ~1–2 s to start, because WebView2 starts Edge's helper processes. For the instant plain window, start with **`--classic`**: make a shortcut with `KeeperTrainer-v2.6.exe --classic`.
+- The modern window takes ~1–2 s to start, because WebView2 starts Edge's helper processes. For the instant plain window, start with **`--classic`**: make a shortcut with `KeeperTrainer-v2.8.exe --classic`.
 - **Antivirus:** this build doesn't load any DLL from memory. Upstream go-webview2 does that with an embedded loader, and Defender flags that technique, so the project uses a fork in `third_party/go-webview2`. The game helper is still injected into the game process, as every trainer does, so an unsigned trainer can still be flagged now and then.
 - The Zombie and Dead body tabs fill in by themselves when a zombie menu, a body table or a grave is open in the game. A green dot marks each tab that has something to edit.
+- The classic window has the items, player, zombie, dead body and time sections, but no Cheats tab.
 
 ## Use it
-1. Run `KeeperTrainer-v2.6.exe` (keep `WebView2Loader.dll` next to it).
+1. Run `KeeperTrainer-v2.8.exe` (keep `WebView2Loader.dll` next to it).
 1. Start the game (or have it running) and **load your save**. The tool finds the game and **connects by itself**, and the status dot turns green. Use **Reconnect** only if you want to retry straight away.
 1. Items: type in the search box, pick an item, set the count (or use ×1 / ×10 / ×50 / Stack), and click **Add to inventory**. You can also double-click the item.
 1. Tech points: enter red / green / blue amounts and click **Add**. **Show** displays your current balance.
@@ -41,12 +43,13 @@ The trainer opens in a modern dark window. It has a sidebar with **Items · Play
    - You keep playing at normal speed.
    - **Stay rested** clears the lack-of-sleep debuff (which comes after 2 game days awake).
    - **Stop** returns to normal speed at any time.
+1. Cheats: flip a switch and it stays on while you play; the trainer sends it again after a game restart. **Restore all now** fills health, energy and stamina once.
 
 After **updating this tool**, restart the game once, because the old helper can't be unloaded. The status line tells you when that's needed (yellow dot).
 
 ## How it works
 ```
-KeeperTrainer-v2.6.exe ─(1) injects GK2Spawner.dll via the Mono API──►  GraveyardKeeper2.exe
+KeeperTrainer-v2.8.exe ─(1) injects GK2Spawner.dll via the Mono API──►  GraveyardKeeper2.exe
      └──(2) "ADD iron_ingot 5" over 127.0.0.1:27817  ──────────►   │ Bridge.Start() → queue → main thread
                                                                     │ PlayerData.Inventory.AddItemToInventory(new Item(id, n))
                                                                     │ or dropSystem.DropItem(...) if full
@@ -70,6 +73,14 @@ KeeperTrainer-v2.6.exe ─(1) injects GK2Spawner.dll via the Mono API──►  
 - **Time fast-forward.** `TIME GET|FF|STOP` uses `UpdateManager.SetTimeSpeedMultiplier`, the call the game makes when you sleep (×50).
   - The update manager runs the fixed-interval systems several times per frame, so the simulation keeps its normal step size.
   - The helper checks every frame for the target day and hour (a new day starts at time 0.0, dawn is 0.25), and then sets the speed back to 1. It leaves the game's own sleep speed alone and re-applies its speed after you wake.
+- **Cheats.** `CHEAT GET|SET|SPEED|RESTORE` (`payload/Cheats.cs`). Each switch is re-applied every frame through the game's own systems:
+  - health: `PlayerData.hpComponent`, `IsImmuneToDamage` / `RestoreFullHp`;
+  - stamina, energy, insanity: the `GK2GameResSystem` resources, set to their current max or min;
+  - sleep: `EnergySystem.DeactivateLackOfSleep`;
+  - gathering: the target's `HPComponent` is finished after your first real hit, only if your mastery allows the hit;
+  - time: `EnvironmentEngine.IsPaused`;
+  - move speed: `PlayerPhysicsConfig.speed`, restored at ×1;
+  - game speed: `Time.timeScale`, leaving the game's own pause alone;
 
 ## Build from source
 ```bash
@@ -80,7 +91,7 @@ dotnet build payload -c Release -o build
 go install github.com/tc-hib/go-winres@latest && go-winres make --in winres/winres.json --arch amd64
 
 # The tool (Go 1.22+), cross-compiled for Windows x64; it embeds build/GK2Spawner.dll
-GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-s -w -H windowsgui" -o KeeperTrainer-v2.6.exe .
+GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-s -w -H windowsgui" -o KeeperTrainer-v2.8.exe .
 ```
 Files: `core.go` (item list and helper protocol), `gui_windows.go` (the classic window), `gui_zombie_windows.go` (its zombie / dead body editor), `webui_windows.go` + `webui.html` (the modern window), `inject_windows.go` (Mono injection), `payload/` (the in-game helper).
 A non-Windows build is a small command-line tool for testing against the helper (run it without arguments for the list of commands).

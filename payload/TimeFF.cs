@@ -98,6 +98,7 @@ namespace GK2Spawner
             {
                 return "ERR you are sleeping - wake up first";
             }
+            Cheats.Freeze = false; // a frozen clock would never reach the target
             active = true;
             targetDay = target;
             targetTod = tod;

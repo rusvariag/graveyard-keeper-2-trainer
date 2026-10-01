@@ -190,6 +190,7 @@ footer .h{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:11p
 <nav id="nav">
   <button data-p="items" class="on"><svg><use href="#i-items"/></svg>Items</button>
   <button data-p="player"><svg><use href="#i-player"/></svg>Player</button>
+  <button data-p="cheats"><svg><use href="#i-bolt"/></svg>Cheats</button>
   <button data-p="time"><svg><use href="#i-time"/></svg>Time</button>
   <button data-p="zombie"><svg><use href="#i-zombie"/></svg>Zombie<i class="badge" id="bz"></i></button>
   <button data-p="body"><svg><use href="#i-grave"/></svg>Dead body<i class="badge" id="bb"></i></button>
@@ -247,11 +248,39 @@ footer .h{display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:11p
       </div>
       <div class="row" style="margin-top:14px"><button class="btn primary" onclick="money(1)">Add</button><button class="btn danger" onclick="money(-1)">Remove</button><button class="btn" onclick="act('money',{copper:0})">Show</button></div>
     </div>
-    <div class="card"><h3>Crafting</h3>
+  </div>
+</section>
+
+<!-- CHEATS -->
+<section class="page" id="p-cheats">
+  <h2>Cheats</h2><div class="sub">Switches stay on while you play and come back on by themselves after a game restart.</div>
+  <div class="grid g2">
+    <div class="card"><h3>Player <span class="hint"><button class="btn sm" onclick="act('cheatRestore')">Restore all now</button></span></h3>
+      <div class="sw">
+        <label class="switch"><input type="checkbox" data-c="god"><span class="track"></span><span class="lbl"><b>God mode</b><small>No damage in fights, health always full</small></span></label>
+        <label class="switch"><input type="checkbox" data-c="stamina"><span class="track"></span><span class="lbl"><b>Infinite stamina</b><small>Attack and dodge without running out</small></span></label>
+        <label class="switch"><input type="checkbox" data-c="energy"><span class="track"></span><span class="lbl"><b>Infinite energy</b><small>Energy kept at its maximum (100 − insanity)</small></span></label>
+        <label class="switch"><input type="checkbox" data-c="insanity"><span class="track"></span><span class="lbl"><b>Zero insanity</b><small>Insanity kept at 0 - which also keeps max energy at 100</small></span></label>
+        <label class="switch"><input type="checkbox" data-c="sleep"><span class="track"></span><span class="lbl"><b>No lack of sleep</b><small>Never get the tired debuff from staying awake</small></span></label>
+      </div>
+    </div>
+    <div class="card"><h3>Work</h3>
       <div class="sw">
         <label class="switch"><input type="checkbox" id="instant" onchange="act('instant',{on:this.checked})"><span class="track"></span>
           <span class="lbl"><b>Instant craft</b><small>One hit finishes what you are crafting at a workbench</small></span></label>
+        <label class="switch"><input type="checkbox" data-c="gather"><span class="track"></span><span class="lbl"><b>One-hit gathering</b><small>Trees, rocks, stumps and ripe plants fall after your first hit (needs the usual skill level)</small></span></label>
       </div>
+    </div>
+    <div class="card"><h3>World &amp; speed</h3>
+      <div class="sw">
+        <label class="switch"><input type="checkbox" data-c="freeze"><span class="track"></span><span class="lbl"><b>Freeze time of day</b><small>The clock stops; crafts and plants keep working. Fast-forward turns this off.</small></span></label>
+      </div>
+      <div class="slider"><div class="sl-h"><b>Game speed</b><span data-sv="game">×1</span><button class="btn sm ghost" onclick="speedReset('game')">Reset</button></div>
+        <input type="range" data-s="game" min="0.25" max="4" step="0.25" value="1">
+        <small>Everything runs faster or slower, you included. ×1 is normal.</small></div>
+      <div class="slider"><div class="sl-h"><b>Move speed</b><span data-sv="move">×1</span><button class="btn sm ghost" onclick="speedReset('move')">Reset</button></div>
+        <input type="range" data-s="move" min="1" max="3" step="0.25" value="1">
+        <small>How fast your character walks and runs.</small></div>
     </div>
   </div>
 </section>
@@ -380,7 +409,8 @@ function money(sign){const c=num('mg')*10000+num('ms')*100+num('mc'); if(!c){toa
 
 /* time */
 document.querySelectorAll('#ffs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#ffs button').forEach(x=>x.classList.toggle('on',x===b));});
-function ff(){const sp=+document.querySelector('#ffs .on').dataset.v; act('timeFF',{target:$('fft').value,hour:Math.min(23,num('ffh')),speed:sp,rested:$('ffr').checked});}
+function unswitch(...names){names.forEach(n=>{const el=document.querySelector('[data-c="'+n+'"]'); if(el)el.checked=false;});}
+async function ff(){const sp=+document.querySelector('#ffs .on').dataset.v; const r=await act('timeFF',{target:$('fft').value,hour:Math.min(23,num('ffh')),speed:sp,rested:$('ffr').checked}); if(r.ok)unswitch('freeze');}
 let ffStart=null;
 function renderTime(t){if(!t)return; $('clk').textContent=t.clock; $('dayl').innerHTML='Day '+t.day+' · <b>'+esc(t.weekdayName)+'</b>';
   $('dlen').textContent='A game day lasts '+Math.round(t.dayMinutes)+' real minutes'+(t.speed>1.01?' · world speed ×'+Math.round(t.speed):'');
@@ -390,6 +420,12 @@ function renderTime(t){if(!t)return; $('clk').textContent=t.clock; $('dayl').inn
     const pct=Math.min(100,Math.max(0,(now-ffStart.from)/(tgt-ffStart.from)*100));
     const h=Math.round(+tod*24); $('fftxt').textContent='×'+Math.round(t.speed)+' → day '+d+', '+String(h).padStart(2,'0')+':00'; $('ffbar').style.width=pct+'%';}
   else ffStart=null;}
+
+/* cheats */
+document.querySelectorAll('[data-c]').forEach(el=>el.onchange=()=>act('cheatSet',{name:el.dataset.c,on:el.checked}));
+function showSpeed(w,x){const i=document.querySelector('[data-s="'+w+'"]'), l=document.querySelector('[data-sv="'+w+'"]'); if(i)i.value=x; if(l)l.textContent='×'+(+x);}
+document.querySelectorAll('[data-s]').forEach(el=>{el.oninput=()=>showSpeed(el.dataset.s,el.value); el.onchange=()=>act('cheatSpeed',{which:el.dataset.s,x:+el.value});});
+function speedReset(w){showSpeed(w,1); act('cheatSpeed',{which:w,x:1});}
 
 /* status polling */
 let st={};
@@ -499,7 +535,8 @@ async function bcmd(c){$('bEd').classList.add('busy'); const r=await call('corps
   const gs={}; items.forEach(i=>(i.groups||[]).forEach(g=>{if(!/bag$/.test(g))gs[g]=(gs[g]||0)+1;}));
   Object.keys(gs).filter(g=>gs[g]>=4).sort().forEach(g=>$('grp').insertAdjacentHTML('beforeend','<option value="'+esc(g)+'">'+esc(g.replace(/_/g,' '))+' ('+gs[g]+')</option>'));
   $('instant').checked=!!d.instant;
-  renderItems(); log('Start the game and load your save - the trainer connects by itself.',true);}
+  const c=d.cheats||{}; document.querySelectorAll('[data-c]').forEach(el=>el.checked=!!c[el.dataset.c]);
+  Object.entries(d.speeds||{}).forEach(([w,x])=>showSpeed(w,x)); renderItems(); log('Start the game and load your save - the trainer connects by itself.',true);}
   poll();})();
 </script>
 </body>

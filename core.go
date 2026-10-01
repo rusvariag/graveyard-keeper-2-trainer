@@ -23,9 +23,9 @@ var itemsJSON []byte
 var helperDLL []byte
 
 const (
-	appVersion    = "2.6"
+	appVersion    = "2.8"
 	helperAddr    = "127.0.0.1:27817" // must match Bridge.Port in payload/Bridge.cs
-	helperVersion = "VERSION 7"       // must match Bridge.Version
+	helperVersion = "VERSION 8"       // must match Bridge.Version
 	outdatedMsg   = "The game still has an older helper loaded. Restart the game and load your save - the spawner reconnects by itself."
 	maxCount      = 9999
 	techCap       = 999
@@ -257,6 +257,24 @@ func zombieOpen() (bool, string) {
 	}
 	return true, strings.TrimSpace(strings.TrimPrefix(msg, "OK open"))
 }
+
+// ---------- common trainer options ----------
+
+// cheatSet turns a switch on or off: god, stamina, energy, insanity, sleep, gather, freeze.
+func cheatSet(name string, on bool) (bool, string) {
+	v := 0
+	if on {
+		v = 1
+	}
+	return runCommand(fmt.Sprintf("CHEAT SET %s %d", name, v))
+}
+
+// cheatSpeed sets "move" (1-3) or "game" (0.25-4) speed.
+func cheatSpeed(which string, x float64) (bool, string) {
+	return runCommand(fmt.Sprintf("CHEAT SPEED %s %.2f", which, x))
+}
+
+func cheatRestore() (bool, string) { return runCommand("CHEAT RESTORE") }
 
 // ---------- time fast-forward ----------
 
