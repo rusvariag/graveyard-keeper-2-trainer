@@ -110,3 +110,11 @@ A non-Windows build is a small command-line tool for testing against the helper 
 - It builds for Windows as a GUI app with its manifest embedded, the protocol is exercised against a stand-in helper, and the helper compiles against the real game DLLs. It has **not** been run against the live game on Windows yet, so treat the first run as a test and **back up your save** first.
 - After a game update, rebuild the helper, and regenerate `items.json` if items changed.
 - For single-player use only. The helper only accepts connections from your own PC.
+
+## License
+MIT © 2026 Ivan Savin, see [LICENSE](LICENSE). You're free to use, change and share this trainer, including in your own projects, as long as you keep the copyright notice that credits Ivan Savin.
+
+Parts that aren't covered by this license:
+- `third_party/go-webview2`: MIT © 2020 John Chadwick (its own `LICENSE` is in that folder).
+- `WebView2Loader.dll`: Microsoft's redistributable WebView2 loader, under Microsoft's terms.
+- Graveyard Keeper 2 and its game data (the item names and ids in `items.json`) belong to their owners.
