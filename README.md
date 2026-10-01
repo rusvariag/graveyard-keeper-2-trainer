@@ -15,7 +15,7 @@ A small Windows trainer for **single-player** Graveyard Keeper 2:
 
 ## The window
 
-The trainer opens in a modern dark window. It has a sidebar with **Items · Player · Cheats · Time · Zombie · Dead body**, a live connection pill, toast messages and a log strip.
+The trainer opens in a modern dark window. It has a sidebar with **Items · Player · Cheats · Time · Zombie · Dead body**, a live connection pill, toast messages and a log strip. Previews are in `screenshots/`.
 - The window is drawn with **WebView2**, the Edge engine built into Windows 10/11, inside the app's own window. There's no browser tab and no console.
 - If WebView2 is missing, the app opens the classic plain window.
 - **Keep `WebView2Loader.dll` next to the .exe.** It's Microsoft's own signed file and is loaded the normal Windows way. Without it, you get the classic window.
